@@ -13,8 +13,13 @@ TEMPLATE = app
 
 
 SOURCES += main.cpp\
-        mainwindow.cpp
+        mainwindow.cpp \
+    notepainter.cpp
 
-HEADERS  += mainwindow.h
+HEADERS  += mainwindow.h \
+    track.h \
+    notepainter.h \
+    musicsymbol.h \
+    track.h
 
 FORMS    += mainwindow.ui
