@@ -1,10 +1,11 @@
 #ifndef NOTEPAINTER_H
 #define NOTEPAINTER_H
 
-#include <QWidget>
-#include <QPainter>
+#include <QGraphicsView>
+#include <QGraphicsPixmapItem>
+#include <QtCore>
 
-class NotePainter : public QPainter
+class NotePainter : public QGraphicsView
 {
     Q_OBJECT
 public:

@@ -2,6 +2,7 @@
 #define MUSICSYMBOL_H
 
 #include <QObject>
+#include "QVector"
 
 class MusicSymbol : public QObject
 {
@@ -16,8 +17,7 @@ public:
 
     }
 
-    explicit MusicSymbol(QObject *parent = 0, QVector<QString> params, unsigned short int type):
-        QObject(parent),
+    MusicSymbol(QVector<QString> params, unsigned short int type):
         params(params),
         type(type)
     {

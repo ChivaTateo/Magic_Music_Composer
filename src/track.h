@@ -2,7 +2,7 @@
 #define TRACK_H
 
 #include <QObject>
-
+#include "musicsymbol.h"
 class Track : public QObject
 {
     Q_OBJECT
@@ -12,8 +12,8 @@ private:
 
 public:
     explicit Track(QObject *parent = 0);
-    explicit Track(QObject *parent = 0, QList<QList<MusicSymbol>> notesheet, QVector<QString> params):
-        QObject(parent),
+
+    Track(QList<QList<MusicSymbol>> notesheet, QVector<QString> params):
         notesheet(notesheet),
         params(params)
     {
