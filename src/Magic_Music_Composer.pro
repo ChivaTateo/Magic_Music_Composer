@@ -23,8 +23,7 @@ HEADERS  += mainwindow.h \
     track.h \
     notepainter.h
 
-FORMS    += mainwindow.ui \
-    test.ui
+FORMS    += mainwindow.ui
 
 OTHER_FILES += \
     images/1.jpg \

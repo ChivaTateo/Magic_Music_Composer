@@ -8,29 +8,30 @@ class MusicSymbol : public QObject
 {
     Q_OBJECT
 private:
-    QVector<QString> params;
-    unsigned short int type;
-
+    QVector<int> params;
 public:
-    explicit MusicSymbol(QObject *parent = 0)
-    {
+    explicit MusicSymbol(QObject *parent = 0):
+        QObject(parent)
+    {}
 
-    }
-
-    MusicSymbol(QVector<QString> params, unsigned short int type):
-        params(params),
-        type(type)
-    {
-    }
-
-    QVector<QString> getParams()
+    QVector<int> getParams()
     {
         return params;
     }
 
-    void setParams(QVector<QString> params)
+    void addParam(int param)
     {
-        this->params = params;
+        params.push_back(param);
+    }
+
+    void changeParam(int param, int i)
+    {
+        params[i] = param;
+    }
+
+    ~MusicSymbol()
+    {
+        params.clear();
     }
 };
 
