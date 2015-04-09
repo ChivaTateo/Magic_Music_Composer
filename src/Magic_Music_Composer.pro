@@ -15,29 +15,16 @@ TEMPLATE = app
 SOURCES += main.cpp\
         mainwindow.cpp \
     test.cpp \
-    notepainter.cpp
+    track.cpp \
+    options.cpp
 
 HEADERS  += mainwindow.h \
-    test.h \
     musicsymbol.h \
+    test.h \
+    notegroup.h \
     track.h \
-    notepainter.h
+    options.h
 
-FORMS    += mainwindow.ui
-
-OTHER_FILES += \
-    images/1.jpg \
-    images/2.jpg \
-    images/3.jpg \
-    images/4.jpg \
-    images/5.jpg \
-    images/6.jpg \
-    images/7.jpg \
-    images/8.jpg \
-    images/9.jpg \
-    images/10.jpg \
-    images/1.png \
-    images/2.png \
-    images/3.png \
-    images/4.png \
-    images/5.png
+FORMS    += mainwindow.ui \
+    test.ui \
+    options.ui

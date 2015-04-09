@@ -1,68 +1,32 @@
-#ifndef TRACK_H
-#define TRACK_H
+#ifndef NOTEPAINTER_H
+#define NOTEPAINTER_H
 
-#include <QObject>
+#include <QGraphicsView>
+#include <QGraphicsPixmapItem>
 #include <QtCore>
-#include "musicsymbol.h"
+#include <QtGui>
+#include "notegroup.h"
 
-class Track : public QObject
+class Track : public QGraphicsView
 {
     Q_OBJECT
-private:
-    QList<QList<MusicSymbol*>> notesheet;
-    QVector<int> params;
-
 public:
-    explicit Track(QObject *parent = 0):
-        QObject(parent)
-    {
-    }
+    explicit Track(QWidget *parent = 0);
+    ~Track();
+private:
+    qreal right;
+    qreal count;
+    qreal lastX;
+    QVector<QPixmap> pixVect;
+    QVector<int> params;
+    QPen pen;
 
-    QList<QList<MusicSymbol*>> getNotes()
-    {
-        return notesheet;
-    }
+    void drawLines(qreal x);
+    void drawStart();
+signals:
 
-    QVector<int> getParams()
-    {
-        return params;
-    }
-
-    void setNotes(QList<QList<MusicSymbol*>> notesheet)
-    {
-        this->notesheet = notesheet;
-    }
-
-    void initTest()
-    {
-        params.push_back(2);
-        params.push_back(4);
-
-        for (int i = 0; i < 16; ++i)
-        {
-            MusicSymbol* temp = new MusicSymbol;
-            temp->addParam(qrand()%12 - 4);
-            temp->addParam(qrand()%5);
-            QList<MusicSymbol*> tempList;
-            tempList.append(temp);
-
-            if (qrand()%3 == 2)
-            {
-                temp = new MusicSymbol;
-                temp->addParam(qrand()%12 - 4);
-                temp->addParam(qrand()%5);
-                tempList.append(temp);
-            }
-            notesheet.append(tempList);
-        }
-    }
-
-    ~Track()
-    {
-        params.clear();
-        notesheet.clear();
-    }
-
+public slots:
+    void createNote(const QString &str);
 };
 
-#endif // TRACK_H
+#endif // NOTEPAINTER_H

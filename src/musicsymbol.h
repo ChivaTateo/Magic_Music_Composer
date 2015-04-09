@@ -2,17 +2,25 @@
 #define MUSICSYMBOL_H
 
 #include <QObject>
+#include <QGraphicsPixmapItem>
+#include <QGraphicsSceneMouseEvent>
 #include "QVector"
+#include "options.h"
 
-class MusicSymbol : public QObject
+class MusicSymbol : public QGraphicsPixmapItem
 {
-    Q_OBJECT
 private:
     QVector<int> params;
+    Options *options;
 public:
-    explicit MusicSymbol(QObject *parent = 0):
-        QObject(parent)
+    explicit MusicSymbol(QGraphicsItem *parent = 0):
+        QGraphicsPixmapItem(parent)
     {}
+
+    explicit MusicSymbol(const QPixmap &pixmap, QGraphicsItem *parent = 0):QGraphicsPixmapItem(pixmap, parent)
+    {
+
+    }
 
     QVector<int> getParams()
     {
@@ -32,6 +40,18 @@ public:
     ~MusicSymbol()
     {
         params.clear();
+    }
+
+protected:
+    void mousePressEvent(QGraphicsSceneMouseEvent *event)
+    {
+
+        if (event->button() == Qt::MouseButton::RightButton)
+        {
+            options = new Options(this,0);
+            options->show();
+
+        }
     }
 };
 
