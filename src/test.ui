@@ -166,16 +166,6 @@
       <normaloff>../../../../Study/Magic/build-Magic_Music_Composer-Desktop_Qt_5_3_MSVC2012_OpenGL_32bit-Debug/debug/images/note7.png</normaloff>../../../../Study/Magic/build-Magic_Music_Composer-Desktop_Qt_5_3_MSVC2012_OpenGL_32bit-Debug/debug/images/note7.png</iconset>
     </property>
    </widget>
-   <widget class="Options" name="widget" native="true">
-    <property name="geometry">
-     <rect>
-      <x>520</x>
-      <y>220</y>
-      <width>221</width>
-      <height>191</height>
-     </rect>
-    </property>
-   </widget>
   </widget>
   <widget class="QMenuBar" name="menubar">
    <property name="geometry">
@@ -197,12 +187,6 @@
    <slots>
     <slot>createNote(int)</slot>
    </slots>
-  </customwidget>
-  <customwidget>
-   <class>Options</class>
-   <extends>QWidget</extends>
-   <header>options.h</header>
-   <container>1</container>
   </customwidget>
  </customwidgets>
  <resources/>

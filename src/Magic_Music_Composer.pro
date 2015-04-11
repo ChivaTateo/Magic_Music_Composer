@@ -16,15 +16,13 @@ SOURCES += main.cpp\
         mainwindow.cpp \
     test.cpp \
     track.cpp \
-    options.cpp
+    musicsymbol.cpp
 
 HEADERS  += mainwindow.h \
     musicsymbol.h \
     test.h \
     notegroup.h \
-    track.h \
-    options.h
+    track.h
 
 FORMS    += mainwindow.ui \
-    test.ui \
-    options.ui
+    test.ui

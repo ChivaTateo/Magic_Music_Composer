@@ -13,20 +13,22 @@ class Track : public QGraphicsView
 public:
     explicit Track(QWidget *parent = 0);
     ~Track();
+    QList<NoteGroup*> sortListGroups();
+
 private:
     qreal right;
-    qreal count;
-    qreal lastX;
+    qreal startX;
+
     QVector<QPixmap> pixVect;
     QVector<int> params;
     QPen pen;
 
-    void drawLines(qreal x);
-    void drawStart();
-signals:
-
+    void drawLines();
+    void changeLines(qreal x);
+    void drawStart(); 
 public slots:
     void createNote(const QString &str);
+    void update();
 };
 
 #endif // NOTEPAINTER_H
