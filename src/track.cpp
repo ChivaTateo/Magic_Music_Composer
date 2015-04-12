@@ -36,6 +36,17 @@ Track::Track(QWidget *parent) :
     drawStart();
 
     setMouseTracking(true);
+
+    QLinearGradient gradient(0,0,100,100);
+    gradient.setColorAt(0,Qt::blue);
+    gradient.setColorAt(1,Qt::white);
+
+    QBrush newBrush(gradient);
+
+    selectRect = new QGraphicsRectItem(0,0,0,0);
+    selectRect->setBrush(newBrush);
+    selectRect->setOpacity(0.1);
+    this->scene()->addItem(selectRect);
 }
 
 void Track::drawLines()
@@ -119,17 +130,18 @@ void Track::update()
                 if (params[0] != 100)
                 {
                     if(params[1] == 0)
-                        symbol->setPos(lastX + 20 - symbol->boundingRect().width()*0.25,
+                        symbol->setPos(lastX - symbol->boundingRect().width()*0.25,
                                    params[0]*7.5 - symbol->boundingRect().height()*0.25);
                     else
-                        symbol->setPos(lastX + 20 - symbol->boundingRect().width()*0.25,
+                        symbol->setPos(lastX - symbol->boundingRect().width()*0.25,
                                    params[0]*7.5 - symbol->boundingRect().height()*0.43);
 
                     if (params[0] < -3)
                     {
                         for (int i = 1; (i+1)*-15 > symbol->pos().y() + symbol->boundingRect().height()*0.25; ++i)
                         {
-                            this->scene()->addLine(lastX+10,(i+1)*-15,lastX+25,(i+1)*-15, pen);
+                            this->scene()->addLine(lastX - symbol->boundingRect().width()*0.25,(i+1)*-15,
+                                                   lastX - symbol->boundingRect().width()*0.25+20,(i+1)*-15, pen);
                         }
                     }
 
@@ -159,12 +171,12 @@ void Track::update()
 
             if (count >= 1.0f)
             {
-                lastX += notes.first()->boundingRect().width()*0.5 + 10;
+                lastX += notes.first()->boundingRect().width()*0.5 + 20;
                 count = 0;
-                this->scene()->addLine(lastX+20,-15,lastX+20,45,pen);
+                this->scene()->addLine(lastX,-15,lastX,45,pen);
             }
 
-            lastX += notes.first()->boundingRect().width()*0.5 + 10;
+            lastX += notes.first()->boundingRect().width()*0.5 + 30;
             if (lastX >= right)
             {
                 changeLines(right + 500);
@@ -176,7 +188,7 @@ void Track::update()
 
 void Track::drawStart()
 {
-    MusicSymbol* item = new MusicSymbol(pixVect[0]);
+    MusicSymbol* item = new MusicSymbol(this, pixVect[0]);
     item->setTransformationMode(Qt::SmoothTransformation);
     item->setPos(-640,-45);
     item->setScale(0.9);
@@ -193,7 +205,7 @@ void Track::drawStart()
     text->setPos(lastX + 5, -15);
     text->setScale(4);
     this->scene()->addItem(text);
-    lastX += text->boundingRect().width()*4;
+    lastX += text->boundingRect().width()*4 + 30;
     startX = lastX;
 }
 
@@ -201,19 +213,28 @@ void Track::createNote(const QString& str)
 {
     int id = str.toInt();
     NoteGroup* group = new NoteGroup;
-    MusicSymbol* symbol = new MusicSymbol(pixVect[id+1], group);
-    int k = qrand()%16-4;
-    symbol->addParam(k);
+    MusicSymbol* symbol = new MusicSymbol(this, pixVect[id+1], group);
+    symbol->addParam(0);
     symbol->addParam(id);
 
     symbol->setTransformationMode(Qt::SmoothTransformation);
     symbol->setScale(0.5);
     symbol->setFlag(QGraphicsItem::ItemSendsScenePositionChanges);
-    symbol->setFlag(QGraphicsItem::ItemIsMovable);
+    symbol->setFlag(QGraphicsItem::ItemIsFocusable);
     symbol->setFlag(QGraphicsItem::ItemIsSelectable);
     this->scene()->addItem(group);
 
     update();
+}
+
+void Track::setSelectRect(qreal x, qreal y, qreal w, qreal h)
+{
+    selectRect->setRect(x,y,w,h);
+}
+
+QGraphicsRectItem* Track::getSelectRect()
+{
+    return selectRect;
 }
 
 Track::~Track()

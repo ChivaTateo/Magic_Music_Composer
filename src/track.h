@@ -14,10 +14,12 @@ public:
     explicit Track(QWidget *parent = 0);
     ~Track();
     QList<NoteGroup*> sortListGroups();
-
+    void setSelectRect(qreal x, qreal y, qreal w, qreal h);
+    QGraphicsRectItem* getSelectRect();
 private:
     qreal right;
     qreal startX;
+    QGraphicsRectItem* selectRect;
 
     QVector<QPixmap> pixVect;
     QVector<int> params;
@@ -25,7 +27,7 @@ private:
 
     void drawLines();
     void changeLines(qreal x);
-    void drawStart(); 
+    void drawStart();
 public slots:
     void createNote(const QString &str);
     void update();

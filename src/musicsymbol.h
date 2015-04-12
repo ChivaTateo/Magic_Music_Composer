@@ -16,10 +16,11 @@ class MusicSymbol : public QGraphicsPixmapItem
 {
 private:
     QVector<int> params;
-    bool click;
+    static bool ctrl;
+    Track* track;
 public:
     explicit MusicSymbol(QGraphicsItem *parent = 0);
-    explicit MusicSymbol(const QPixmap &pixmap, QGraphicsItem *parent = 0);
+    explicit MusicSymbol(Track* track, const QPixmap &pixmap, QGraphicsItem *parent = 0);
 
     QVector<int> getParams();
     void addParam(int param);
@@ -27,6 +28,10 @@ public:
     ~MusicSymbol();
 protected:
     void mouseMoveEvent(QGraphicsSceneMouseEvent *event);
-
+    void mouseReleaseEvent(QGraphicsSceneMouseEvent *event);
+    void mousePressEvent(QGraphicsSceneMouseEvent *event);
+    void keyPressEvent(QKeyEvent *event);
+    void keyReleaseEvent(QKeyEvent *event);
 };
+
 #endif // MUSICSYMBOL_H

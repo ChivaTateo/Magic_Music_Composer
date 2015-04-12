@@ -20,10 +20,12 @@ public:
     }
     void paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget)
     {
-
+        painter = nullptr;
+        option = nullptr;
+        widget = nullptr;
     }
 
-    bool isChild(QGraphicsItem* item)
+    bool hasChild(QGraphicsItem* item)
     {
         bool res = false;
 
