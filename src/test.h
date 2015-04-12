@@ -6,13 +6,14 @@
 
 namespace Ui {
 class Test;
+class NoteEditor;
 }
 
 class Test : public QMainWindow
 {
     Q_OBJECT
 private:
-    QSignalMapper* mapper;
+    QSignalMapper* noteMapper;
 public:
     explicit Test(QWidget *parent = 0);
     ~Test();

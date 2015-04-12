@@ -14,6 +14,7 @@ public:
     {
     }
 
+    //Переопределенные функции абстрактного класса
     QRectF boundingRect() const
     {
         return QRectF(0,0,0,0);
@@ -25,6 +26,7 @@ public:
         widget = nullptr;
     }
 
+    //Является ли item ребенком данного объекта
     bool hasChild(QGraphicsItem* item)
     {
         bool res = false;

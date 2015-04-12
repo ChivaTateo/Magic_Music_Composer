@@ -57,24 +57,24 @@ void MusicSymbol::mousePressEvent(QGraphicsSceneMouseEvent *event)
 void MusicSymbol::mouseMoveEvent(QGraphicsSceneMouseEvent *event)
 {
     QPointF mousePos = event->scenePos();
-    if (this->parentItem()->childItems().size() == 1)
-    {
-        if (mousePos.x() > pos().x())
-            this->setX(mousePos.x() - this->boundingRect().width()*0.5 - 5);
-        else
-            this->setX(mousePos.x() + 5);
-    }
-    mousePos.setY(mousePos.y() - this->boundingRect().height()*0.43);
+//    if (this->parentItem()->childItems().size() == 1)
+//    {
+//        if (mousePos.x() > pos().x())
+//            this->setX(mousePos.x() - this->boundingRect().width()*0.5 - 5);
+//        else
+//            this->setX(mousePos.x() + 5);
+//    }
+    mousePos.setY(mousePos.y() - this->boundingRect().height()*LONG_NOTE_SCALE_FOR_CENTER);
 
-    track->setSelectRect(mousePos.x()-this->boundingRect().width()*0.25,
+    track->setSelectRect(mousePos.x()-this->boundingRect().width()*NOTE_SCALE_FOR_CENTER,
                          -60, 20, 130);
 
     for(int i = -6; i < 12; ++i)
     {
         if (params[1] == 0)
         {
-            if (mousePos.y() >=  (i-1)*7.5 - this->boundingRect().height()*0.25 &&
-                mousePos.y() <=  (i)*7.5 - this->boundingRect().height()*0.25)
+            if (mousePos.y() >=  (i-1)*HALF_SIZE - this->boundingRect().height()*NOTE_SCALE_FOR_CENTER &&
+                mousePos.y() <=  (i)*HALF_SIZE - this->boundingRect().height()*NOTE_SCALE_FOR_CENTER)
             {
                 changeParam(i, 0);
                 break;
@@ -82,8 +82,8 @@ void MusicSymbol::mouseMoveEvent(QGraphicsSceneMouseEvent *event)
         }
         else
         {
-            if (mousePos.y() >=  (i-1)*7.5 - this->boundingRect().height()*0.43 &&
-                mousePos.y() <=  (i)*7.5 - this->boundingRect().height()*0.43)
+            if (mousePos.y() >=  (i-1)*HALF_SIZE - this->boundingRect().height()*LONG_NOTE_SCALE_FOR_CENTER &&
+                mousePos.y() <=  (i)*HALF_SIZE - this->boundingRect().height()*LONG_NOTE_SCALE_FOR_CENTER)
             {
                 changeParam(i, 0);
                 break;
@@ -126,12 +126,15 @@ void MusicSymbol::mouseReleaseEvent(QGraphicsSceneMouseEvent *event)
             }
         }
 
-        if (!haveSymbols && this->parentItem()->childItems().size() != 1)
+        if (!haveSymbols)
         {
-            NoteGroup* group = new NoteGroup;
-            this->setParentItem(group);
+            if (this->parentItem()->childItems().size() != 1)
+            {
+                NoteGroup* group = new NoteGroup;
+                this->setParentItem(group);
+                track->scene()->addItem(group);
+            }
             this->setPos(newPos);
-            track->scene()->addItem(group);
         }
         track->setSelectRect(0,0,0,0);
         track->update();
