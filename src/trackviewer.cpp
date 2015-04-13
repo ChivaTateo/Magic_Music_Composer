@@ -16,3 +16,8 @@ void TrackViewer::addTrack()
         tracks.append(track);
     }
 }
+
+QList<Track*> TrackViewer::getTracks()
+{
+    return tracks;
+}

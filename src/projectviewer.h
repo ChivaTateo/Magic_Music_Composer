@@ -15,6 +15,7 @@ signals:
 public slots:
     void addTrack();
     void addProject();
+    void createNote(int id);
 };
 
 #endif // PROJECTVIEWER_H

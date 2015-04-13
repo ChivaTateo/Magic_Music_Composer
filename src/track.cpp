@@ -1,5 +1,7 @@
 #include "track.h"
 
+Track* Track::lastFocus = nullptr;
+
 Track::Track(QWidget *parent) :
     QGraphicsView(parent)
 {
@@ -261,9 +263,8 @@ void Track::drawStart()
 }
 
 //Создание ноты
-void Track::createNote(const QString& str)
+void Track::createNote(int id)
 {
-    int id = str.toInt();
     NoteGroup* group = new NoteGroup;
     MusicSymbol* symbol = new MusicSymbol(this, pixVect[NOTE_START+id], group);
     symbol->addParam(0);
@@ -280,30 +281,19 @@ void Track::createNote(const QString& str)
     update();
 }
 
-void Track::changeFocusColor()
-{
-    if (!this->hasFocus())
-    {
-        QBrush brush(QColor(0,0,255,25));
-        this->scene()->setBackgroundBrush(brush);
-    }
-    else
-    {
-        QBrush brush(Qt::white);
-        this->scene()->setBackgroundBrush(brush);
-    }
-}
-
 void Track::focusInEvent(QFocusEvent *event)
 {
     event->accept();
-    changeFocusColor();
+    QBrush brush(Qt::white);
+    this->scene()->setBackgroundBrush(brush);
+    lastFocus = this;
 }
 
 void Track::focusOutEvent(QFocusEvent *event)
 {
     event->accept();
-    changeFocusColor();
+    QBrush brush(QColor(0,0,255,25));
+    this->scene()->setBackgroundBrush(brush);
 }
 
 void Track::setSelectRect(qreal x, qreal y, qreal w, qreal h)

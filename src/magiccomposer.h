@@ -2,6 +2,7 @@
 #define MAINWINDOW_H
 
 #include <QMainWindow>
+#include <QSignalMapper>
 #include "track.h"
 
 namespace Ui {
@@ -17,6 +18,7 @@ public:
     ~MagicComposer();
 
 private:
+    QSignalMapper* noteMapper;
     Ui::MagicComposer *ui;
 };
 

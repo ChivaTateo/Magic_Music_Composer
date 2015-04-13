@@ -45,7 +45,23 @@
        <attribute name="title">
         <string>Страница</string>
        </attribute>
-       <layout class="QVBoxLayout" name="verticalLayout"/>
+       <layout class="QVBoxLayout" name="verticalLayout">
+        <property name="spacing">
+         <number>0</number>
+        </property>
+        <property name="leftMargin">
+         <number>0</number>
+        </property>
+        <property name="topMargin">
+         <number>0</number>
+        </property>
+        <property name="rightMargin">
+         <number>0</number>
+        </property>
+        <property name="bottomMargin">
+         <number>0</number>
+        </property>
+       </layout>
       </widget>
      </widget>
     </item>
@@ -92,63 +108,26 @@
    </attribute>
    <widget class="QWidget" name="dockWidgetContents_2">
     <layout class="QGridLayout" name="gridLayout_2">
-     <item row="0" column="0">
-      <widget class="QPushButton" name="note_0">
-       <property name="text">
-        <string/>
-       </property>
-       <property name="icon">
-        <iconset>
-         <normaloff>../../../../Study/Magic/build-Magic_Music_Composer-Desktop_Qt_5_3_MSVC2012_OpenGL_32bit-Debug/debug/images/note0.png</normaloff>../../../../Study/Magic/build-Magic_Music_Composer-Desktop_Qt_5_3_MSVC2012_OpenGL_32bit-Debug/debug/images/note0.png</iconset>
-       </property>
-      </widget>
-     </item>
-     <item row="0" column="1">
-      <widget class="QPushButton" name="note_4">
-       <property name="text">
-        <string/>
-       </property>
-       <property name="icon">
-        <iconset>
-         <normaloff>../../../../Study/Magic/build-Magic_Music_Composer-Desktop_Qt_5_3_MSVC2012_OpenGL_32bit-Debug/debug/images/note4.png</normaloff>../../../../Study/Magic/build-Magic_Music_Composer-Desktop_Qt_5_3_MSVC2012_OpenGL_32bit-Debug/debug/images/note4.png</iconset>
-       </property>
-      </widget>
-     </item>
-     <item row="1" column="0">
-      <widget class="QPushButton" name="note_1">
-       <property name="text">
-        <string/>
-       </property>
-       <property name="icon">
-        <iconset>
-         <normaloff>../../../../Study/Magic/build-Magic_Music_Composer-Desktop_Qt_5_3_MSVC2012_OpenGL_32bit-Debug/debug/images/note1.png</normaloff>../../../../Study/Magic/build-Magic_Music_Composer-Desktop_Qt_5_3_MSVC2012_OpenGL_32bit-Debug/debug/images/note1.png</iconset>
-       </property>
-      </widget>
-     </item>
-     <item row="1" column="1">
-      <widget class="QPushButton" name="note_5">
-       <property name="text">
-        <string/>
-       </property>
-       <property name="icon">
-        <iconset>
-         <normaloff>../../../../Study/Magic/build-Magic_Music_Composer-Desktop_Qt_5_3_MSVC2012_OpenGL_32bit-Debug/debug/images/note5.png</normaloff>../../../../Study/Magic/build-Magic_Music_Composer-Desktop_Qt_5_3_MSVC2012_OpenGL_32bit-Debug/debug/images/note5.png</iconset>
-       </property>
-      </widget>
-     </item>
-     <item row="2" column="0">
-      <widget class="QPushButton" name="note_2">
-       <property name="text">
-        <string/>
-       </property>
-       <property name="icon">
-        <iconset>
-         <normaloff>../../../../Study/Magic/build-Magic_Music_Composer-Desktop_Qt_5_3_MSVC2012_OpenGL_32bit-Debug/debug/images/note2.png</normaloff>../../../../Study/Magic/build-Magic_Music_Composer-Desktop_Qt_5_3_MSVC2012_OpenGL_32bit-Debug/debug/images/note2.png</iconset>
-       </property>
-      </widget>
-     </item>
+     <property name="leftMargin">
+      <number>0</number>
+     </property>
+     <property name="topMargin">
+      <number>0</number>
+     </property>
+     <property name="rightMargin">
+      <number>0</number>
+     </property>
+     <property name="bottomMargin">
+      <number>0</number>
+     </property>
+     <property name="spacing">
+      <number>1</number>
+     </property>
      <item row="2" column="1">
       <widget class="QPushButton" name="note_6">
+       <property name="focusPolicy">
+        <enum>Qt::NoFocus</enum>
+       </property>
        <property name="text">
         <string/>
        </property>
@@ -158,8 +137,25 @@
        </property>
       </widget>
      </item>
+     <item row="1" column="1">
+      <widget class="QPushButton" name="note_5">
+       <property name="focusPolicy">
+        <enum>Qt::NoFocus</enum>
+       </property>
+       <property name="text">
+        <string/>
+       </property>
+       <property name="icon">
+        <iconset>
+         <normaloff>../../../../Study/Magic/build-Magic_Music_Composer-Desktop_Qt_5_3_MSVC2012_OpenGL_32bit-Debug/debug/images/note5.png</normaloff>../../../../Study/Magic/build-Magic_Music_Composer-Desktop_Qt_5_3_MSVC2012_OpenGL_32bit-Debug/debug/images/note5.png</iconset>
+       </property>
+      </widget>
+     </item>
      <item row="3" column="0">
       <widget class="QPushButton" name="note_3">
+       <property name="focusPolicy">
+        <enum>Qt::NoFocus</enum>
+       </property>
        <property name="text">
         <string/>
        </property>
@@ -171,12 +167,71 @@
      </item>
      <item row="3" column="1">
       <widget class="QPushButton" name="note_7">
+       <property name="focusPolicy">
+        <enum>Qt::NoFocus</enum>
+       </property>
        <property name="text">
         <string/>
        </property>
        <property name="icon">
         <iconset>
          <normaloff>../../../../Study/Magic/build-Magic_Music_Composer-Desktop_Qt_5_3_MSVC2012_OpenGL_32bit-Debug/debug/images/note7.png</normaloff>../../../../Study/Magic/build-Magic_Music_Composer-Desktop_Qt_5_3_MSVC2012_OpenGL_32bit-Debug/debug/images/note7.png</iconset>
+       </property>
+      </widget>
+     </item>
+     <item row="0" column="1">
+      <widget class="QPushButton" name="note_4">
+       <property name="focusPolicy">
+        <enum>Qt::NoFocus</enum>
+       </property>
+       <property name="text">
+        <string/>
+       </property>
+       <property name="icon">
+        <iconset>
+         <normaloff>../../../../Study/Magic/build-Magic_Music_Composer-Desktop_Qt_5_3_MSVC2012_OpenGL_32bit-Debug/debug/images/note4.png</normaloff>../../../../Study/Magic/build-Magic_Music_Composer-Desktop_Qt_5_3_MSVC2012_OpenGL_32bit-Debug/debug/images/note4.png</iconset>
+       </property>
+      </widget>
+     </item>
+     <item row="2" column="0">
+      <widget class="QPushButton" name="note_2">
+       <property name="focusPolicy">
+        <enum>Qt::NoFocus</enum>
+       </property>
+       <property name="text">
+        <string/>
+       </property>
+       <property name="icon">
+        <iconset>
+         <normaloff>../../../../Study/Magic/build-Magic_Music_Composer-Desktop_Qt_5_3_MSVC2012_OpenGL_32bit-Debug/debug/images/note2.png</normaloff>../../../../Study/Magic/build-Magic_Music_Composer-Desktop_Qt_5_3_MSVC2012_OpenGL_32bit-Debug/debug/images/note2.png</iconset>
+       </property>
+      </widget>
+     </item>
+     <item row="1" column="0">
+      <widget class="QPushButton" name="note_1">
+       <property name="focusPolicy">
+        <enum>Qt::NoFocus</enum>
+       </property>
+       <property name="text">
+        <string/>
+       </property>
+       <property name="icon">
+        <iconset>
+         <normaloff>../../../../Study/Magic/build-Magic_Music_Composer-Desktop_Qt_5_3_MSVC2012_OpenGL_32bit-Debug/debug/images/note1.png</normaloff>../../../../Study/Magic/build-Magic_Music_Composer-Desktop_Qt_5_3_MSVC2012_OpenGL_32bit-Debug/debug/images/note1.png</iconset>
+       </property>
+      </widget>
+     </item>
+     <item row="0" column="0">
+      <widget class="QPushButton" name="note_0">
+       <property name="focusPolicy">
+        <enum>Qt::NoFocus</enum>
+       </property>
+       <property name="text">
+        <string/>
+       </property>
+       <property name="icon">
+        <iconset>
+         <normaloff>../../../../Study/Magic/build-Magic_Music_Composer-Desktop_Qt_5_3_MSVC2012_OpenGL_32bit-Debug/debug/images/note0.png</normaloff>../../../../Study/Magic/build-Magic_Music_Composer-Desktop_Qt_5_3_MSVC2012_OpenGL_32bit-Debug/debug/images/note0.png</iconset>
        </property>
       </widget>
      </item>

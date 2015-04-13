@@ -25,6 +25,7 @@ public:
     explicit Track(QWidget *parent = 0);
     ~Track();
 
+    static Track* lastFocus;
     //Возравращает отсортированный по X список всех блоков
     QList<NoteGroup*> sortListGroups();
 
@@ -66,11 +67,9 @@ private:
     void focusInEvent(QFocusEvent* event);
     void focusOutEvent(QFocusEvent* event);
 
-    //Изменение фона при потере/получении фокуса
-    void changeFocusColor();
 public slots:
     //Слот создания ноты(обработка нажатия кнопок)
-    void createNote(const QString &str);
+    void createNote(int id);
 
     //Обновление всего трека
     void update();
