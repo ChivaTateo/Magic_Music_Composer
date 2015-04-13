@@ -62,6 +62,7 @@ Track::Track(QWidget *parent) :
     key = new MusicSymbol(this, pixVect[0]);
     end = new MusicSymbol(this, pixVect[END_START]);
 
+    this->setAlignment(Qt::AlignLeft);
     //Прорисовка старта
     drawLines();
     drawStart();
@@ -71,12 +72,12 @@ Track::Track(QWidget *parent) :
 //Первоначальная прорисовка нотоносца(линии)
 void Track::drawLines()
 {
-    this->scene()->addLine(-650,0,50,0,pen);
-    this->scene()->addLine(-650,15,50,15,pen);
-    this->scene()->addLine(-650,30,50,30,pen);
-    this->scene()->addLine(-650,45,50,45,pen);
-    this->scene()->addLine(-650,-15,50,-15,pen);
-    right = 50;
+    this->scene()->addLine(-650,0,500,0,pen);
+    this->scene()->addLine(-650,15,500,15,pen);
+    this->scene()->addLine(-650,30,500,30,pen);
+    this->scene()->addLine(-650,45,500,45,pen);
+    this->scene()->addLine(-650,-15,500,-15,pen);
+    right = 500;
     end->setPos(right - end->boundingRect().width()*END_SCALE + 2,-15);
 }
 
@@ -277,6 +278,32 @@ void Track::createNote(const QString& str)
     this->scene()->addItem(group);
 
     update();
+}
+
+void Track::changeFocusColor()
+{
+    if (!this->hasFocus())
+    {
+        QBrush brush(QColor(0,0,255,25));
+        this->scene()->setBackgroundBrush(brush);
+    }
+    else
+    {
+        QBrush brush(Qt::white);
+        this->scene()->setBackgroundBrush(brush);
+    }
+}
+
+void Track::focusInEvent(QFocusEvent *event)
+{
+    event->accept();
+    changeFocusColor();
+}
+
+void Track::focusOutEvent(QFocusEvent *event)
+{
+    event->accept();
+    changeFocusColor();
 }
 
 void Track::setSelectRect(qreal x, qreal y, qreal w, qreal h)

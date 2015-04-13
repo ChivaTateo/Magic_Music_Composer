@@ -13,16 +13,22 @@ TEMPLATE = app
 
 
 SOURCES += main.cpp\
-        mainwindow.cpp \
     test.cpp \
     track.cpp \
-    musicsymbol.cpp
+    musicsymbol.cpp \
+    trackviewer.cpp \
+    projectviewer.cpp \
+    magiccomposer.cpp
 
-HEADERS  += mainwindow.h \
+HEADERS  += \
     musicsymbol.h \
     test.h \
     notegroup.h \
-    track.h
+    track.h \
+    trackviewer.h \
+    projectviewer.h \
+    magiccomposer.h
 
-FORMS    += mainwindow.ui \
-    test.ui
+FORMS    += \
+    test.ui \
+    magiccomposer.ui

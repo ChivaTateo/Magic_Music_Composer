@@ -23,6 +23,9 @@
       <height>171</height>
      </rect>
     </property>
+    <property name="viewportUpdateMode">
+     <enum>QGraphicsView::BoundingRectViewportUpdate</enum>
+    </property>
    </widget>
    <widget class="QPushButton" name="note_0">
     <property name="geometry">

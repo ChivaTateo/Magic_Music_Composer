@@ -59,8 +59,15 @@ private:
     //Удаляет все тактовые линии
     void deleteTactLines();
 
-    //Рисование одной ноты
+    //Изменение координат в зависимости от параметров symbol
     void drawNote(MusicSymbol* symbol, qreal lastX);
+
+    //Событие получения и выхода из фокуса
+    void focusInEvent(QFocusEvent* event);
+    void focusOutEvent(QFocusEvent* event);
+
+    //Изменение фона при потере/получении фокуса
+    void changeFocusColor();
 public slots:
     //Слот создания ноты(обработка нажатия кнопок)
     void createNote(const QString &str);
