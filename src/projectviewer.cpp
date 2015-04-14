@@ -9,6 +9,7 @@ void ProjectViewer::addTrack()
 {
     TrackViewer* viewer = dynamic_cast<TrackViewer*>(this->currentWidget());
     viewer->addTrack();
+
 }
 
 void ProjectViewer::addProject()

@@ -12,7 +12,7 @@ class TrackViewer : public QScrollArea
 public:
     explicit TrackViewer(QWidget *parent = 0);
     void addTrack();
-    QList<Track*> getTracks();
+    QList<Track*> getTracks();    
 };
 
 #endif // TRACKVIEWER_H

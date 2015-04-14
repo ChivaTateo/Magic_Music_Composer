@@ -1,5 +1,6 @@
 #include "magiccomposer.h"
 #include "ui_magiccomposer.h"
+#include "ui_options_1.h"
 
 MagicComposer::MagicComposer(QWidget *parent) :
     QMainWindow(parent),

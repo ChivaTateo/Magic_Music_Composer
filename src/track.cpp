@@ -1,6 +1,8 @@
 #include "track.h"
+#include "options.h"
 
 Track* Track::lastFocus = nullptr;
+QVector<QPixmap> Track::pixVect;
 
 Track::Track(QWidget *parent) :
     QGraphicsView(parent)
@@ -68,6 +70,8 @@ Track::Track(QWidget *parent) :
     //Прорисовка старта
     drawLines();
     drawStart();
+
+    connect(this->scene(),SIGNAL(selectionChanged()),this,SLOT(selectionChanged()));
 }
 
 
@@ -304,6 +308,22 @@ void Track::setSelectRect(qreal x, qreal y, qreal w, qreal h)
 QGraphicsRectItem* Track::getSelectRect()
 {
     return selectRect;
+}
+
+void Track::selectionChanged()
+{
+    QList<QGraphicsItem*> notes = this->scene()->selectedItems();
+    QList<MusicSymbol*> symbols;
+    for (QList<QGraphicsItem*>::iterator iter = notes.begin(); iter != notes.end(); ++iter)
+    {
+        MusicSymbol* symbol = dynamic_cast<MusicSymbol*>(*iter);
+        if (symbol != nullptr)
+        {
+            symbols << symbol;
+        }
+    }
+
+    Options::p_instance->updateData(symbols);
 }
 
 Track::~Track()

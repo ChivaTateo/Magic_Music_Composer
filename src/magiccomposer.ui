@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>583</width>
-    <height>490</height>
+    <width>714</width>
+    <height>556</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -72,7 +72,7 @@
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>583</width>
+     <width>714</width>
      <height>21</height>
     </rect>
    </property>
@@ -99,7 +99,7 @@
    </attribute>
   </widget>
   <widget class="QStatusBar" name="statusBar"/>
-  <widget class="QDockWidget" name="Palette">
+  <widget class="QDockWidget" name="palette">
    <property name="floating">
     <bool>false</bool>
    </property>
@@ -137,8 +137,8 @@
        </property>
       </widget>
      </item>
-     <item row="1" column="1">
-      <widget class="QPushButton" name="note_5">
+     <item row="3" column="1">
+      <widget class="QPushButton" name="note_7">
        <property name="focusPolicy">
         <enum>Qt::NoFocus</enum>
        </property>
@@ -147,7 +147,7 @@
        </property>
        <property name="icon">
         <iconset>
-         <normaloff>../../../../Study/Magic/build-Magic_Music_Composer-Desktop_Qt_5_3_MSVC2012_OpenGL_32bit-Debug/debug/images/note5.png</normaloff>../../../../Study/Magic/build-Magic_Music_Composer-Desktop_Qt_5_3_MSVC2012_OpenGL_32bit-Debug/debug/images/note5.png</iconset>
+         <normaloff>../../../../Study/Magic/build-Magic_Music_Composer-Desktop_Qt_5_3_MSVC2012_OpenGL_32bit-Debug/debug/images/note7.png</normaloff>../../../../Study/Magic/build-Magic_Music_Composer-Desktop_Qt_5_3_MSVC2012_OpenGL_32bit-Debug/debug/images/note7.png</iconset>
        </property>
       </widget>
      </item>
@@ -165,8 +165,8 @@
        </property>
       </widget>
      </item>
-     <item row="3" column="1">
-      <widget class="QPushButton" name="note_7">
+     <item row="0" column="0">
+      <widget class="QPushButton" name="note_0">
        <property name="focusPolicy">
         <enum>Qt::NoFocus</enum>
        </property>
@@ -175,7 +175,7 @@
        </property>
        <property name="icon">
         <iconset>
-         <normaloff>../../../../Study/Magic/build-Magic_Music_Composer-Desktop_Qt_5_3_MSVC2012_OpenGL_32bit-Debug/debug/images/note7.png</normaloff>../../../../Study/Magic/build-Magic_Music_Composer-Desktop_Qt_5_3_MSVC2012_OpenGL_32bit-Debug/debug/images/note7.png</iconset>
+         <normaloff>../../../../Study/Magic/build-Magic_Music_Composer-Desktop_Qt_5_3_MSVC2012_OpenGL_32bit-Debug/debug/images/note0.png</normaloff>../../../../Study/Magic/build-Magic_Music_Composer-Desktop_Qt_5_3_MSVC2012_OpenGL_32bit-Debug/debug/images/note0.png</iconset>
        </property>
       </widget>
      </item>
@@ -207,6 +207,20 @@
        </property>
       </widget>
      </item>
+     <item row="1" column="1">
+      <widget class="QPushButton" name="note_5">
+       <property name="focusPolicy">
+        <enum>Qt::NoFocus</enum>
+       </property>
+       <property name="text">
+        <string/>
+       </property>
+       <property name="icon">
+        <iconset>
+         <normaloff>../../../../Study/Magic/build-Magic_Music_Composer-Desktop_Qt_5_3_MSVC2012_OpenGL_32bit-Debug/debug/images/note5.png</normaloff>../../../../Study/Magic/build-Magic_Music_Composer-Desktop_Qt_5_3_MSVC2012_OpenGL_32bit-Debug/debug/images/note5.png</iconset>
+       </property>
+      </widget>
+     </item>
      <item row="1" column="0">
       <widget class="QPushButton" name="note_1">
        <property name="focusPolicy">
@@ -221,31 +235,29 @@
        </property>
       </widget>
      </item>
-     <item row="0" column="0">
-      <widget class="QPushButton" name="note_0">
-       <property name="focusPolicy">
-        <enum>Qt::NoFocus</enum>
-       </property>
-       <property name="text">
-        <string/>
-       </property>
-       <property name="icon">
-        <iconset>
-         <normaloff>../../../../Study/Magic/build-Magic_Music_Composer-Desktop_Qt_5_3_MSVC2012_OpenGL_32bit-Debug/debug/images/note0.png</normaloff>../../../../Study/Magic/build-Magic_Music_Composer-Desktop_Qt_5_3_MSVC2012_OpenGL_32bit-Debug/debug/images/note0.png</iconset>
-       </property>
-      </widget>
-     </item>
     </layout>
    </widget>
   </widget>
-  <widget class="QDockWidget" name="dockWidget">
+  <widget class="QDockWidget" name="options">
+   <property name="minimumSize">
+    <size>
+     <width>143</width>
+     <height>300</height>
+    </size>
+   </property>
+   <property name="maximumSize">
+    <size>
+     <width>5000</width>
+     <height>5000</height>
+    </size>
+   </property>
    <property name="floating">
     <bool>false</bool>
    </property>
    <attribute name="dockWidgetArea">
     <number>1</number>
    </attribute>
-   <widget class="QWidget" name="dockWidgetContents"/>
+   <widget class="Options" name="dockWidgetContents"/>
   </widget>
   <action name="create_project">
    <property name="text">
@@ -290,6 +302,12 @@
     <slot>addTrack()</slot>
     <slot>addProject()</slot>
    </slots>
+  </customwidget>
+  <customwidget>
+   <class>Options</class>
+   <extends>QWidget</extends>
+   <header>options.h</header>
+   <container>1</container>
   </customwidget>
  </customwidgets>
  <resources/>

@@ -25,7 +25,9 @@ public:
     explicit Track(QWidget *parent = 0);
     ~Track();
 
-    static Track* lastFocus;
+    static Track* lastFocus;             //Последний трек с фокусом
+    static QVector<QPixmap> pixVect;     //Массив всех иконок, необходимых для прорисовки
+
     //Возравращает отсортированный по X список всех блоков
     QList<NoteGroup*> sortListGroups();
 
@@ -34,19 +36,21 @@ public:
 
     //Возвращает курсор
     QGraphicsRectItem* getSelectRect();
+
+
 private:
 
     qreal right;            //Крайнее положение стана
     qreal startX;           //Стартовое положение для прорисовки нот
 
     QGraphicsRectItem* selectRect;//"Курсор" при перемещении
-    QVector<QPixmap> pixVect;     //Массив всех иконок, необходимых для прорисовки(Требуется перенести на главную форму)
 
     QVector<int> params;    //Параметры трека. Подробное описание будет в документации
     QPen pen;               //Ручка для прорисовки линий
 
     MusicSymbol* key;       //Ключ
     MusicSymbol* end;       //Конечный символ
+
 
     //Рисует нотоносец(линии)
     inline void drawLines();
@@ -68,6 +72,8 @@ private:
     void focusOutEvent(QFocusEvent* event);
 
 public slots:
+    //Слот изменения выделения нот
+    void selectionChanged();
     //Слот создания ноты(обработка нажатия кнопок)
     void createNote(int id);
 
