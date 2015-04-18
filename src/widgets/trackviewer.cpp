@@ -13,7 +13,7 @@ void TrackViewer::addTrack()
         this->layout()->addWidget(track);
         track->show();
         track->setFocus();
-        tracks.append(track);
+        tracks.append(track);    
     }
 }
 

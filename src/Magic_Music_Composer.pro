@@ -11,25 +11,33 @@ greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 TARGET = Magic_Music_Composer
 TEMPLATE = app
 
-
 SOURCES += main.cpp\
-    track.cpp \
-    musicsymbol.cpp \
-    trackviewer.cpp \
-    projectviewer.cpp \
-    magiccomposer.cpp \
-    options.cpp
+    symbols/musicsymbol.cpp \
+    widgets/magiccomposer.cpp \
+    widgets/options.cpp \
+    widgets/projectviewer.cpp \
+    widgets/track.cpp \
+    widgets/trackviewer.cpp \
+    symbols/note.cpp \
+    symbols/pause.cpp \
+    symbols/key.cpp \
+    symbols/end.cpp
 
 HEADERS  += \
-    musicsymbol.h \
-    notegroup.h \
-    track.h \
-    trackviewer.h \
-    projectviewer.h \
-    magiccomposer.h \
-    options.h
+    symbols/musicsymbol.h \
+    symbols/notegroup.h \
+    widgets/magiccomposer.h \
+    widgets/options.h \
+    widgets/projectviewer.h \
+    widgets/track.h \
+    widgets/trackviewer.h \
+    symbols/note.h \
+    symbols/pause.h \
+    symbols/key.h \
+    symbols/end.h
 
 FORMS    += \
-    magiccomposer.ui \
-    options_1.ui \
-    options_2.ui
+    ui/magiccomposer.ui \
+    ui/note_options.ui \
+    ui/pause_options.ui \
+    ui/track_options.ui

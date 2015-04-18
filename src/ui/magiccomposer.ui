@@ -123,8 +123,8 @@
      <property name="spacing">
       <number>1</number>
      </property>
-     <item row="2" column="1">
-      <widget class="QPushButton" name="note_6">
+     <item row="5" column="1">
+      <widget class="QPushButton" name="pause_3">
        <property name="focusPolicy">
         <enum>Qt::NoFocus</enum>
        </property>
@@ -133,12 +133,12 @@
        </property>
        <property name="icon">
         <iconset>
-         <normaloff>../../../../Study/Magic/build-Magic_Music_Composer-Desktop_Qt_5_3_MSVC2012_OpenGL_32bit-Debug/debug/images/note6.png</normaloff>../../../../Study/Magic/build-Magic_Music_Composer-Desktop_Qt_5_3_MSVC2012_OpenGL_32bit-Debug/debug/images/note6.png</iconset>
+         <normaloff>../../../../../Study/Magic/build-Magic_Music_Composer-Desktop_Qt_5_3_MSVC2012_OpenGL_32bit-Debug/debug/images/pause4.png</normaloff>../../../../../Study/Magic/build-Magic_Music_Composer-Desktop_Qt_5_3_MSVC2012_OpenGL_32bit-Debug/debug/images/pause4.png</iconset>
        </property>
       </widget>
      </item>
-     <item row="3" column="1">
-      <widget class="QPushButton" name="note_7">
+     <item row="5" column="0">
+      <widget class="QPushButton" name="pause_2">
        <property name="focusPolicy">
         <enum>Qt::NoFocus</enum>
        </property>
@@ -147,35 +147,7 @@
        </property>
        <property name="icon">
         <iconset>
-         <normaloff>../../../../Study/Magic/build-Magic_Music_Composer-Desktop_Qt_5_3_MSVC2012_OpenGL_32bit-Debug/debug/images/note7.png</normaloff>../../../../Study/Magic/build-Magic_Music_Composer-Desktop_Qt_5_3_MSVC2012_OpenGL_32bit-Debug/debug/images/note7.png</iconset>
-       </property>
-      </widget>
-     </item>
-     <item row="3" column="0">
-      <widget class="QPushButton" name="note_3">
-       <property name="focusPolicy">
-        <enum>Qt::NoFocus</enum>
-       </property>
-       <property name="text">
-        <string/>
-       </property>
-       <property name="icon">
-        <iconset>
-         <normaloff>../../../../Study/Magic/build-Magic_Music_Composer-Desktop_Qt_5_3_MSVC2012_OpenGL_32bit-Debug/debug/images/note3.png</normaloff>../../../../Study/Magic/build-Magic_Music_Composer-Desktop_Qt_5_3_MSVC2012_OpenGL_32bit-Debug/debug/images/note3.png</iconset>
-       </property>
-      </widget>
-     </item>
-     <item row="0" column="0">
-      <widget class="QPushButton" name="note_0">
-       <property name="focusPolicy">
-        <enum>Qt::NoFocus</enum>
-       </property>
-       <property name="text">
-        <string/>
-       </property>
-       <property name="icon">
-        <iconset>
-         <normaloff>../../../../Study/Magic/build-Magic_Music_Composer-Desktop_Qt_5_3_MSVC2012_OpenGL_32bit-Debug/debug/images/note0.png</normaloff>../../../../Study/Magic/build-Magic_Music_Composer-Desktop_Qt_5_3_MSVC2012_OpenGL_32bit-Debug/debug/images/note0.png</iconset>
+         <normaloff>../../../../../Study/Magic/build-Magic_Music_Composer-Desktop_Qt_5_3_MSVC2012_OpenGL_32bit-Debug/debug/images/pause3.png</normaloff>../../../../../Study/Magic/build-Magic_Music_Composer-Desktop_Qt_5_3_MSVC2012_OpenGL_32bit-Debug/debug/images/pause3.png</iconset>
        </property>
       </widget>
      </item>
@@ -193,8 +165,8 @@
        </property>
       </widget>
      </item>
-     <item row="2" column="0">
-      <widget class="QPushButton" name="note_2">
+     <item row="2" column="1">
+      <widget class="QPushButton" name="note_6">
        <property name="focusPolicy">
         <enum>Qt::NoFocus</enum>
        </property>
@@ -203,7 +175,49 @@
        </property>
        <property name="icon">
         <iconset>
-         <normaloff>../../../../Study/Magic/build-Magic_Music_Composer-Desktop_Qt_5_3_MSVC2012_OpenGL_32bit-Debug/debug/images/note2.png</normaloff>../../../../Study/Magic/build-Magic_Music_Composer-Desktop_Qt_5_3_MSVC2012_OpenGL_32bit-Debug/debug/images/note2.png</iconset>
+         <normaloff>../../../../Study/Magic/build-Magic_Music_Composer-Desktop_Qt_5_3_MSVC2012_OpenGL_32bit-Debug/debug/images/note6.png</normaloff>../../../../Study/Magic/build-Magic_Music_Composer-Desktop_Qt_5_3_MSVC2012_OpenGL_32bit-Debug/debug/images/note6.png</iconset>
+       </property>
+      </widget>
+     </item>
+     <item row="0" column="0">
+      <widget class="QPushButton" name="note_0">
+       <property name="focusPolicy">
+        <enum>Qt::NoFocus</enum>
+       </property>
+       <property name="text">
+        <string/>
+       </property>
+       <property name="icon">
+        <iconset>
+         <normaloff>../../../../Study/Magic/build-Magic_Music_Composer-Desktop_Qt_5_3_MSVC2012_OpenGL_32bit-Debug/debug/images/note0.png</normaloff>../../../../Study/Magic/build-Magic_Music_Composer-Desktop_Qt_5_3_MSVC2012_OpenGL_32bit-Debug/debug/images/note0.png</iconset>
+       </property>
+      </widget>
+     </item>
+     <item row="3" column="0">
+      <widget class="QPushButton" name="note_3">
+       <property name="focusPolicy">
+        <enum>Qt::NoFocus</enum>
+       </property>
+       <property name="text">
+        <string/>
+       </property>
+       <property name="icon">
+        <iconset>
+         <normaloff>../../../../Study/Magic/build-Magic_Music_Composer-Desktop_Qt_5_3_MSVC2012_OpenGL_32bit-Debug/debug/images/note3.png</normaloff>../../../../Study/Magic/build-Magic_Music_Composer-Desktop_Qt_5_3_MSVC2012_OpenGL_32bit-Debug/debug/images/note3.png</iconset>
+       </property>
+      </widget>
+     </item>
+     <item row="3" column="1">
+      <widget class="QPushButton" name="note_7">
+       <property name="focusPolicy">
+        <enum>Qt::NoFocus</enum>
+       </property>
+       <property name="text">
+        <string/>
+       </property>
+       <property name="icon">
+        <iconset>
+         <normaloff>../../../../Study/Magic/build-Magic_Music_Composer-Desktop_Qt_5_3_MSVC2012_OpenGL_32bit-Debug/debug/images/note7.png</normaloff>../../../../Study/Magic/build-Magic_Music_Composer-Desktop_Qt_5_3_MSVC2012_OpenGL_32bit-Debug/debug/images/note7.png</iconset>
        </property>
       </widget>
      </item>
@@ -221,6 +235,20 @@
        </property>
       </widget>
      </item>
+     <item row="2" column="0">
+      <widget class="QPushButton" name="note_2">
+       <property name="focusPolicy">
+        <enum>Qt::NoFocus</enum>
+       </property>
+       <property name="text">
+        <string/>
+       </property>
+       <property name="icon">
+        <iconset>
+         <normaloff>../../../../Study/Magic/build-Magic_Music_Composer-Desktop_Qt_5_3_MSVC2012_OpenGL_32bit-Debug/debug/images/note2.png</normaloff>../../../../Study/Magic/build-Magic_Music_Composer-Desktop_Qt_5_3_MSVC2012_OpenGL_32bit-Debug/debug/images/note2.png</iconset>
+       </property>
+      </widget>
+     </item>
      <item row="1" column="0">
       <widget class="QPushButton" name="note_1">
        <property name="focusPolicy">
@@ -235,14 +263,70 @@
        </property>
       </widget>
      </item>
+     <item row="4" column="0">
+      <widget class="QPushButton" name="pause_0">
+       <property name="focusPolicy">
+        <enum>Qt::NoFocus</enum>
+       </property>
+       <property name="text">
+        <string/>
+       </property>
+       <property name="icon">
+        <iconset>
+         <normaloff>../../../../../Study/Magic/build-Magic_Music_Composer-Desktop_Qt_5_3_MSVC2012_OpenGL_32bit-Debug/debug/images/pause1.png</normaloff>../../../../../Study/Magic/build-Magic_Music_Composer-Desktop_Qt_5_3_MSVC2012_OpenGL_32bit-Debug/debug/images/pause1.png</iconset>
+       </property>
+      </widget>
+     </item>
+     <item row="4" column="1">
+      <widget class="QPushButton" name="pause_1">
+       <property name="focusPolicy">
+        <enum>Qt::NoFocus</enum>
+       </property>
+       <property name="text">
+        <string/>
+       </property>
+       <property name="icon">
+        <iconset>
+         <normaloff>../../../../../Study/Magic/build-Magic_Music_Composer-Desktop_Qt_5_3_MSVC2012_OpenGL_32bit-Debug/debug/images/pause2.png</normaloff>../../../../../Study/Magic/build-Magic_Music_Composer-Desktop_Qt_5_3_MSVC2012_OpenGL_32bit-Debug/debug/images/pause2.png</iconset>
+       </property>
+      </widget>
+     </item>
+     <item row="6" column="0">
+      <widget class="QPushButton" name="pause_4">
+       <property name="focusPolicy">
+        <enum>Qt::NoFocus</enum>
+       </property>
+       <property name="text">
+        <string/>
+       </property>
+       <property name="icon">
+        <iconset>
+         <normaloff>../../../../../Study/Magic/build-Magic_Music_Composer-Desktop_Qt_5_3_MSVC2012_OpenGL_32bit-Debug/debug/images/pause5.png</normaloff>../../../../../Study/Magic/build-Magic_Music_Composer-Desktop_Qt_5_3_MSVC2012_OpenGL_32bit-Debug/debug/images/pause5.png</iconset>
+       </property>
+      </widget>
+     </item>
+     <item row="6" column="1">
+      <widget class="QPushButton" name="pause_5">
+       <property name="focusPolicy">
+        <enum>Qt::NoFocus</enum>
+       </property>
+       <property name="text">
+        <string/>
+       </property>
+       <property name="icon">
+        <iconset>
+         <normaloff>../../../../../Study/Magic/build-Magic_Music_Composer-Desktop_Qt_5_3_MSVC2012_OpenGL_32bit-Debug/debug/images/pause6.png</normaloff>../../../../../Study/Magic/build-Magic_Music_Composer-Desktop_Qt_5_3_MSVC2012_OpenGL_32bit-Debug/debug/images/pause6.png</iconset>
+       </property>
+      </widget>
+     </item>
     </layout>
    </widget>
   </widget>
   <widget class="QDockWidget" name="options">
    <property name="minimumSize">
     <size>
-     <width>143</width>
-     <height>300</height>
+     <width>0</width>
+     <height>0</height>
     </size>
    </property>
    <property name="maximumSize">

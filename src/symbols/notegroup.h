@@ -1,9 +1,11 @@
-#ifndef TRACK_H
-#define TRACK_H
+#ifndef NOTEGROUP_H
+#define NOTEGROUP_H
 
-#include <QObject>
-#include <QtCore>
-#include "musicsymbol.h"
+#include <QGraphicsItem>
+#include "note.h"
+#include "pause.h"
+#include "key.h"
+#include "end.h"
 
 class NoteGroup : public QGraphicsItem
 {

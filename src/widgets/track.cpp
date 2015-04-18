@@ -3,13 +3,13 @@
 
 Track* Track::lastFocus = nullptr;
 QVector<QPixmap> Track::pixVect;
+bool Track::ctrl = false;
 
 Track::Track(QWidget *parent) :
     QGraphicsView(parent)
 {
     this->setRenderHints(QPainter::Antialiasing | QPainter::SmoothPixmapTransform);
     this->setScene(new QGraphicsScene());
-    startX = 0;
 
     //Первоначальные параметры трека при создании
     params.push_back(2);
@@ -47,10 +47,29 @@ Track::Track(QWidget *parent) :
     pixVect.append(map);
     map.load(QCoreApplication::applicationDirPath() + "/images/pause3.png");
     pixVect.append(map);
+    map.load(QCoreApplication::applicationDirPath() + "/images/pause4.png");
+    pixVect.append(map);
+    map.load(QCoreApplication::applicationDirPath() + "/images/pause5.png");
+    pixVect.append(map);
+    map.load(QCoreApplication::applicationDirPath() + "/images/pause6.png");
+    pixVect.append(map);
 
     map.load(QCoreApplication::applicationDirPath() + "/images/end1.png");
     pixVect.append(map);
     map.load(QCoreApplication::applicationDirPath() + "/images/end2.png");
+    pixVect.append(map);
+
+    map.load(QCoreApplication::applicationDirPath() + "/images/spec1_1.png");
+    pixVect.append(map);
+    map.load(QCoreApplication::applicationDirPath() + "/images/spec1_2.png");
+    pixVect.append(map);
+    map.load(QCoreApplication::applicationDirPath() + "/images/spec2_1.png");
+    pixVect.append(map);
+    map.load(QCoreApplication::applicationDirPath() + "/images/spec2_2.png");
+    pixVect.append(map);
+    map.load(QCoreApplication::applicationDirPath() + "/images/spec3_1.png");
+    pixVect.append(map);
+    map.load(QCoreApplication::applicationDirPath() + "/images/spec3_2.png");
     pixVect.append(map);
 
     setMouseTracking(true);
@@ -63,8 +82,10 @@ Track::Track(QWidget *parent) :
     selectRect->setOpacity(0.1);
     this->scene()->addItem(selectRect);
 
-    key = new MusicSymbol(this, pixVect[0]);
-    end = new MusicSymbol(this, pixVect[END_START]);
+    key = new Key(this, pixVect[0]);
+    key->addParam(0);
+    end = new End(this, pixVect[END_START]);
+    end->addParam(0);
 
     this->setAlignment(Qt::AlignLeft);
     //Прорисовка старта
@@ -98,7 +119,7 @@ void Track::changeLines(qreal x)
         QGraphicsLineItem* line = dynamic_cast<QGraphicsLineItem*>(*iter);
         if (line != NULL)
         {
-            line->setLine(-650,(count-2)*SIZE,x,(count-2)*SIZE);
+            line->setLine(-650,(count-2)*SIZE_BETWEEN_LINES,x,(count-2)*SIZE_BETWEEN_LINES);
             --count;
         }
     }
@@ -147,44 +168,19 @@ void Track::deleteTactLines()
     }
 }
 
-//Изменение координат в зависимости от параметров symbol
-void Track::drawNote(MusicSymbol *symbol, qreal lastX)
-{
-    QVector<int> params = symbol->getParams();
-    if (params[0] != 100)
-    {
-        symbol->setPixmap(pixVect[NOTE_START + params[1]]);
-        if(params[1] == 0)
-            symbol->setPos(lastX - symbol->boundingRect().width()*NOTE_SCALE_FOR_CENTER,
-                       params[0]*HALF_SIZE - symbol->boundingRect().height()*NOTE_SCALE_FOR_CENTER);
-        else
-            symbol->setPos(lastX - symbol->boundingRect().width()*NOTE_SCALE_FOR_CENTER,
-                       params[0]*HALF_SIZE - symbol->boundingRect().height()*LONG_NOTE_SCALE_FOR_CENTER);
-
-        if (params[0] < -3)
-        {
-            for (int i = 1; (i+1)*-SIZE > symbol->pos().y() + symbol->boundingRect().height()*NOTE_SCALE_FOR_CENTER; ++i)
-            {
-                this->scene()->addLine(lastX - symbol->boundingRect().width()*NOTE_SCALE_FOR_CENTER,(i+1)*-SIZE,
-                                       lastX - symbol->boundingRect().width()*NOTE_SCALE_FOR_CENTER+20,(i+1)*-SIZE, pen);
-            }
-        }
-
-        /*   if (params[0] > 8)
-           {
-               for (int i = 0; -15*i > 15 - k*7.6; ++i)
-               {
-                   this->scene()->addLine(lastX+5,-15*i,lastX+25,-15*i, pen);
-               }
-           }
-        */
-    }
-}
-
 //Обновление виджета и координат нот
 void Track::update()
 {
-    qreal lastX = startX;
+    qreal lastX = 0;
+    if (key->getParams()[0] == 1)
+        key->setPos(-650,-1.5*SIZE_BETWEEN_LINES);
+    else
+        key->setPos(-650,-3*SIZE_BETWEEN_LINES);
+    lastX = key->pos().x() + key->boundingRect().width()*KEY_SCALE;
+    text_1->setPos(lastX + 5, -3*SIZE_BETWEEN_LINES);
+    text_2->setPos(lastX + 5, -SIZE_BETWEEN_LINES);
+    lastX += text_2->boundingRect().width()*TEXT_SCALE + SPACE;
+
     qreal count = 0;
 
     deleteTactLines();
@@ -198,29 +194,35 @@ void Track::update()
         bool first = true;
         for (QList<QGraphicsItem*>::iterator iter_n = notes.begin(); iter_n != notes.end(); ++iter_n)
         {
-            MusicSymbol* symbol = dynamic_cast<MusicSymbol*>(*iter_n);
+            MusicSymbol* symbol = static_cast<MusicSymbol*>(*iter_n);
             QVector<int> params = symbol->getParams();
-            drawNote(symbol, lastX);
+            symbol->drawSymbol(lastX,pen);
 
-            if (first && params[0] != 100)
+            if (first)
             {
-                if(params[1] == 0)
+                if (params.size() == 1)
                 {
-                    count = 1.0;
+                    count += 1/qPow(2,params[0]+2);
                 }
                 else
-                    count += 1/qPow(2,params[1]);
-
+                {
+                    if(params[1] == 0)
+                    {
+                        count = 1.0;
+                    }
+                    else
+                        count += 1/qPow(2,params[1]);
+                }
                 first = false;
             }
 
         }
 
-        if (count >= 1.0f)
+        if (count >= 1)
         {
             lastX += notes.first()->boundingRect().width()*NOTE_SCALE + SPACE;
             count = 0;
-            this->scene()->addLine(lastX,-SIZE,lastX,3*SIZE,pen);
+            this->scene()->addLine(lastX,-SIZE_BETWEEN_LINES,lastX,3*SIZE_BETWEEN_LINES,pen);
         }
 
         lastX += notes.first()->boundingRect().width()*NOTE_SCALE + SPACE;
@@ -230,6 +232,8 @@ void Track::update()
         }
 
     }
+
+    end->setPos(right - end->boundingRect().width()*END_SCALE + 2,-SIZE_BETWEEN_LINES);
 }
 
 //Прорисовка ключа и трековых параметров, а так же конечных символов
@@ -237,32 +241,25 @@ void Track::drawStart()
 {
     //Рисуем ключ
     key->setTransformationMode(Qt::SmoothTransformation);
-    key->setFlag(QGraphicsItem::ItemIsSelectable);
     key->setPos(-640,-45);
     key->setScale(KEY_SCALE);
-    key->addParam(100);
     this->scene()->addItem(key);
     int lastX = key->pos().x() + key->boundingRect().width()*KEY_SCALE;
 
     //Рисуем размерность
-    QGraphicsTextItem* text = new QGraphicsTextItem(QString::number(params[0]));
-    text->setPos(lastX + 5, -45);;
-    text->setScale(TEXT_SCALE);
-    this->scene()->addItem(text);
+    text_1 = new QGraphicsTextItem(QString::number(params[0]));
+    text_1->setPos(lastX + 5, -3*SIZE_BETWEEN_LINES);;
+    text_1->setScale(TEXT_SCALE);
+    this->scene()->addItem(text_1);
 
-    text = new QGraphicsTextItem(QString::number(params[1]));
-    text->setPos(lastX + 5, -15);
-    text->setScale(TEXT_SCALE);
-    this->scene()->addItem(text);
-    lastX += text->boundingRect().width()*TEXT_SCALE + SPACE;
-    startX = lastX;
-
+    text_2 = new QGraphicsTextItem(QString::number(params[1]));
+    text_2->setPos(lastX + 5, -SIZE_BETWEEN_LINES);
+    text_2->setScale(TEXT_SCALE);
+    this->scene()->addItem(text_2);
 
     end->setTransformationMode(Qt::SmoothTransformation);
-    end->setFlag(QGraphicsItem::ItemIsSelectable);
-    end->setPos(right - end->boundingRect().width()*END_SCALE + 2,-15);
+    end->setPos(right - end->boundingRect().width()*END_SCALE + 2,-SIZE_BETWEEN_LINES);
     end->setScale(END_SCALE);
-    end->addParam(100);
     this->scene()->addItem(end);
 }
 
@@ -270,16 +267,20 @@ void Track::drawStart()
 void Track::createNote(int id)
 {
     NoteGroup* group = new NoteGroup;
-    MusicSymbol* symbol = new MusicSymbol(this, pixVect[NOTE_START+id], group);
-    symbol->addParam(0);
-    symbol->addParam(id);
+    Note* note = new Note(this, pixVect[NOTE_START+id], group);
+    note->addParam(id);
+    note->setX(right);
+    this->scene()->addItem(group);
 
-    symbol->setTransformationMode(Qt::SmoothTransformation);
-    symbol->setScale(NOTE_SCALE);
-    symbol->setX(right);
-    symbol->setFlag(QGraphicsItem::ItemSendsScenePositionChanges);
-    symbol->setFlag(QGraphicsItem::ItemIsFocusable);
-    symbol->setFlag(QGraphicsItem::ItemIsSelectable);
+    update();
+}
+
+void Track::createPause(int id)
+{
+    NoteGroup* group = new NoteGroup;
+    Pause* pause = new Pause(this, pixVect[PAUSE_START+id], group);
+    pause->addParam(id);
+    pause->setX(right);
     this->scene()->addItem(group);
 
     update();
@@ -291,6 +292,7 @@ void Track::focusInEvent(QFocusEvent *event)
     QBrush brush(Qt::white);
     this->scene()->setBackgroundBrush(brush);
     lastFocus = this;
+    Options::p_instance->updateData(QList<MusicSymbol*>());
 }
 
 void Track::focusOutEvent(QFocusEvent *event)
@@ -317,6 +319,7 @@ void Track::selectionChanged()
     for (QList<QGraphicsItem*>::iterator iter = notes.begin(); iter != notes.end(); ++iter)
     {
         MusicSymbol* symbol = dynamic_cast<MusicSymbol*>(*iter);
+
         if (symbol != nullptr)
         {
             symbols << symbol;
@@ -324,6 +327,54 @@ void Track::selectionChanged()
     }
 
     Options::p_instance->updateData(symbols);
+}
+
+void Track::keyPressEvent(QKeyEvent *event)
+{
+    if (event->key() == Qt::Key_Control)
+        ctrl = true;
+    else if (event->key() == Qt::Key_Delete)
+    {
+        QList<QGraphicsItem*> items = this->scene()->selectedItems();
+
+        for (QList<QGraphicsItem*>::iterator iter = items.begin(); iter != items.end(); ++iter)
+        {
+            MusicSymbol* symbol = static_cast<MusicSymbol*>(*iter);
+            symbol->deleteSymbol();
+        }
+        this->update();
+    }
+}
+
+void Track::keyReleaseEvent(QKeyEvent *event)
+{
+    if (event->key() == Qt::Key_Control)
+        ctrl = false;
+}
+
+End* Track::getEnd()
+{
+    return end;
+}
+
+Key* Track::getKey()
+{
+    return key;
+}
+
+QVector<int> Track::getParams()
+{
+    return params;
+}
+
+void Track::changeParam(int param, int i)
+{
+    params[i] = param;
+    if (i < 2)
+    {
+        text_1->setPlainText(QString::number(params[0]));
+        text_2->setPlainText(QString::number(params[1]));
+    }
 }
 
 Track::~Track()

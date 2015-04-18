@@ -19,6 +19,8 @@ public:
 
 private:
     QSignalMapper* noteMapper;
+    QSignalMapper* pauseMapper;
+
     Ui::MagicComposer *ui;
 };
 

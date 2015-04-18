@@ -1,0 +1,199 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>Note_Options</class>
+ <widget class="QWidget" name="Note_Options">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>143</width>
+    <height>300</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>Form</string>
+  </property>
+  <layout class="QGridLayout" name="gridLayout">
+   <property name="sizeConstraint">
+    <enum>QLayout::SetDefaultConstraint</enum>
+   </property>
+   <item row="4" column="2">
+    <widget class="QRadioButton" name="rBut_sharpDown">
+     <property name="focusPolicy">
+      <enum>Qt::NoFocus</enum>
+     </property>
+     <property name="text">
+      <string/>
+     </property>
+     <property name="icon">
+      <iconset>
+       <normaloff>../../../../../Study/Magic/build-Magic_Music_Composer-Desktop_Qt_5_3_MSVC2012_OpenGL_32bit-Debug/debug/images/spec3_2.png</normaloff>../../../../../Study/Magic/build-Magic_Music_Composer-Desktop_Qt_5_3_MSVC2012_OpenGL_32bit-Debug/debug/images/spec3_2.png</iconset>
+     </property>
+     <property name="iconSize">
+      <size>
+       <width>32</width>
+       <height>32</height>
+      </size>
+     </property>
+    </widget>
+   </item>
+   <item row="2" column="2">
+    <widget class="QRadioButton" name="rBut_flatDown">
+     <property name="focusPolicy">
+      <enum>Qt::NoFocus</enum>
+     </property>
+     <property name="text">
+      <string/>
+     </property>
+     <property name="icon">
+      <iconset>
+       <normaloff>../../../../../Study/Magic/build-Magic_Music_Composer-Desktop_Qt_5_3_MSVC2012_OpenGL_32bit-Debug/debug/images/spec1_2.png</normaloff>../../../../../Study/Magic/build-Magic_Music_Composer-Desktop_Qt_5_3_MSVC2012_OpenGL_32bit-Debug/debug/images/spec1_2.png</iconset>
+     </property>
+     <property name="iconSize">
+      <size>
+       <width>32</width>
+       <height>32</height>
+      </size>
+     </property>
+    </widget>
+   </item>
+   <item row="3" column="2">
+    <widget class="QRadioButton" name="rBut_natDown">
+     <property name="focusPolicy">
+      <enum>Qt::NoFocus</enum>
+     </property>
+     <property name="text">
+      <string/>
+     </property>
+     <property name="icon">
+      <iconset>
+       <normaloff>../../../../../Study/Magic/build-Magic_Music_Composer-Desktop_Qt_5_3_MSVC2012_OpenGL_32bit-Debug/debug/images/spec2_2.png</normaloff>../../../../../Study/Magic/build-Magic_Music_Composer-Desktop_Qt_5_3_MSVC2012_OpenGL_32bit-Debug/debug/images/spec2_2.png</iconset>
+     </property>
+     <property name="iconSize">
+      <size>
+       <width>32</width>
+       <height>32</height>
+      </size>
+     </property>
+    </widget>
+   </item>
+   <item row="3" column="0">
+    <widget class="QRadioButton" name="rBut_natUp">
+     <property name="focusPolicy">
+      <enum>Qt::NoFocus</enum>
+     </property>
+     <property name="text">
+      <string/>
+     </property>
+     <property name="icon">
+      <iconset>
+       <normaloff>../../../../../Study/Magic/build-Magic_Music_Composer-Desktop_Qt_5_3_MSVC2012_OpenGL_32bit-Debug/debug/images/spec2_1.png</normaloff>../../../../../Study/Magic/build-Magic_Music_Composer-Desktop_Qt_5_3_MSVC2012_OpenGL_32bit-Debug/debug/images/spec2_1.png</iconset>
+     </property>
+     <property name="iconSize">
+      <size>
+       <width>32</width>
+       <height>32</height>
+      </size>
+     </property>
+    </widget>
+   </item>
+   <item row="2" column="0">
+    <widget class="QRadioButton" name="rBut_flatUp">
+     <property name="focusPolicy">
+      <enum>Qt::NoFocus</enum>
+     </property>
+     <property name="text">
+      <string/>
+     </property>
+     <property name="icon">
+      <iconset>
+       <normaloff>../../../../../Study/Magic/build-Magic_Music_Composer-Desktop_Qt_5_3_MSVC2012_OpenGL_32bit-Debug/debug/images/spec1_1.png</normaloff>../../../../../Study/Magic/build-Magic_Music_Composer-Desktop_Qt_5_3_MSVC2012_OpenGL_32bit-Debug/debug/images/spec1_1.png</iconset>
+     </property>
+     <property name="iconSize">
+      <size>
+       <width>32</width>
+       <height>32</height>
+      </size>
+     </property>
+    </widget>
+   </item>
+   <item row="4" column="0">
+    <widget class="QRadioButton" name="rBut_sharpUp">
+     <property name="focusPolicy">
+      <enum>Qt::NoFocus</enum>
+     </property>
+     <property name="text">
+      <string/>
+     </property>
+     <property name="icon">
+      <iconset>
+       <normaloff>../../../../../Study/Magic/build-Magic_Music_Composer-Desktop_Qt_5_3_MSVC2012_OpenGL_32bit-Debug/debug/images/spec3_1.png</normaloff>../../../../../Study/Magic/build-Magic_Music_Composer-Desktop_Qt_5_3_MSVC2012_OpenGL_32bit-Debug/debug/images/spec3_1.png</iconset>
+     </property>
+     <property name="iconSize">
+      <size>
+       <width>32</width>
+       <height>32</height>
+      </size>
+     </property>
+    </widget>
+   </item>
+   <item row="10" column="0">
+    <widget class="QLabel" name="note_pixmap">
+     <property name="focusPolicy">
+      <enum>Qt::NoFocus</enum>
+     </property>
+     <property name="text">
+      <string/>
+     </property>
+     <property name="scaledContents">
+      <bool>false</bool>
+     </property>
+     <property name="alignment">
+      <set>Qt::AlignCenter</set>
+     </property>
+    </widget>
+   </item>
+   <item row="10" column="2">
+    <widget class="QSlider" name="note_slider">
+     <property name="focusPolicy">
+      <enum>Qt::NoFocus</enum>
+     </property>
+     <property name="maximum">
+      <number>7</number>
+     </property>
+     <property name="value">
+      <number>0</number>
+     </property>
+     <property name="orientation">
+      <enum>Qt::Vertical</enum>
+     </property>
+     <property name="invertedAppearance">
+      <bool>false</bool>
+     </property>
+    </widget>
+   </item>
+   <item row="8" column="0">
+    <widget class="QPushButton" name="but_delete">
+     <property name="focusPolicy">
+      <enum>Qt::NoFocus</enum>
+     </property>
+     <property name="text">
+      <string>delete</string>
+     </property>
+    </widget>
+   </item>
+   <item row="6" column="0">
+    <widget class="QPushButton" name="but_clear">
+     <property name="focusPolicy">
+      <enum>Qt::NoFocus</enum>
+     </property>
+     <property name="text">
+      <string>clear</string>
+     </property>
+    </widget>
+   </item>
+  </layout>
+ </widget>
+ <resources/>
+ <connections/>
+</ui>

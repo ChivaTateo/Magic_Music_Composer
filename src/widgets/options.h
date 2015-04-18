@@ -2,11 +2,13 @@
 #define OPTIONS_H
 
 #include <QWidget>
+#include <QSignalMapper>
 #include "track.h"
 
 namespace Ui {
-class Options_1;
-class Options_2;
+class Note_Options;
+class Pause_Options;
+class Track_Options;
 }
 
 //Класс НЕ синглтон. Он просто содержит статический указатель на себя.
@@ -22,14 +24,25 @@ public:
     static Options* p_instance;
     void updateData(QList<MusicSymbol*> symbols);
 private slots:
-    void changePixmap(int id);
+    //Слот для изменения параметров трека
+    void changeTrackParams();
+
+    //Слоты для изменения параметров нот
+    void changeNoteParams();
+    void changeNotePixmap(int id);
+    void clear_clicked();
+    void delete_clicked();
+
 private:
     QList<MusicSymbol*> symbols;
 
-    Ui::Options_1 *ui_1;
-    Ui::Options_2 *ui_2;
+    Ui::Note_Options *note_ui;
+    Ui::Pause_Options *pause_ui;
+    Ui::Track_Options *track_ui;
 
+    QSignalMapper* mapper;
     void deleteUi();
+    int idRadioButton();
 };
 
 #endif // OPTIONS_H

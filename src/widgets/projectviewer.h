@@ -3,6 +3,7 @@
 
 #include <QTabWidget>
 #include "trackviewer.h"
+#include "options.h"
 
 class ProjectViewer : public QTabWidget
 {
@@ -16,6 +17,7 @@ public slots:
     void addTrack();
     void addProject();
     void createNote(int id);
+    void createPause(int id);
 };
 
 #endif // PROJECTVIEWER_H

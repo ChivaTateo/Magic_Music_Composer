@@ -1,4 +1,4 @@
-#include "magiccomposer.h"
+#include "widgets/magiccomposer.h"
 #include <QApplication>
 
 int main(int argc, char *argv[])
