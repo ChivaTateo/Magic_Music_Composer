@@ -212,6 +212,9 @@
        <property name="focusPolicy">
         <enum>Qt::NoFocus</enum>
        </property>
+       <property name="styleSheet">
+        <string notr="true"/>
+       </property>
        <property name="text">
         <string/>
        </property>
@@ -325,8 +328,8 @@
   <widget class="QDockWidget" name="options">
    <property name="minimumSize">
     <size>
-     <width>0</width>
-     <height>0</height>
+     <width>80</width>
+     <height>38</height>
     </size>
    </property>
    <property name="maximumSize">

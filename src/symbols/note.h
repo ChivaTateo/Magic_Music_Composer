@@ -2,6 +2,7 @@
 #define NOTE_H
 
 #include "musicsymbol.h"
+#include "taktline.h"
 
 class Note : public MusicSymbol
 {

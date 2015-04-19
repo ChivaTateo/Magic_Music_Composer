@@ -6,6 +6,7 @@
 #include <QtCore>
 #include <QtGui>
 #include "../symbols/notegroup.h"
+#include "../symbols/taktline.h"
 
 class Track : public QGraphicsView
 {
@@ -33,7 +34,8 @@ public:
 private:
     qreal right;            //Крайнее положение стана
 
-    QGraphicsRectItem* selectRect;//"Курсор" при перемещении
+    QGraphicsRectItem* selectRect;   //Курсор при перемещении
+    QGraphicsLineItem* cursor;       //Курсор для вставки
 
     QVector<int> params;    //Параметры трека. Подробное описание будет в документации
     QPen pen;               //Ручка для прорисовки линий
@@ -66,6 +68,7 @@ private:
     void keyPressEvent(QKeyEvent *event);
     void keyReleaseEvent(QKeyEvent *event);
 
+    void mousePressEvent(QMouseEvent *event);
 public slots:
     //Слот изменения выделения нот
     void selectionChanged();

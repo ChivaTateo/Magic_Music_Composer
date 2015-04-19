@@ -34,7 +34,8 @@ HEADERS  += \
     symbols/note.h \
     symbols/pause.h \
     symbols/key.h \
-    symbols/end.h
+    symbols/end.h \
+    symbols/taktline.h
 
 FORMS    += \
     ui/magiccomposer.ui \

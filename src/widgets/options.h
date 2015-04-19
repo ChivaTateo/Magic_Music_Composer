@@ -33,6 +33,8 @@ private slots:
     void clear_clicked();
     void delete_clicked();
 
+    //Слоты для изменения параметров паузы
+    void changePauseParams(int id);
 private:
     QList<MusicSymbol*> symbols;
 
@@ -43,6 +45,10 @@ private:
     QSignalMapper* mapper;
     void deleteUi();
     int idRadioButton();
+
+    void loadTrackOptions();
+    void loadNoteOptions();
+    void loadPauseOptions();
 };
 
 #endif // OPTIONS_H

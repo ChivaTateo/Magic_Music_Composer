@@ -12,7 +12,7 @@ Track::Track(QWidget *parent) :
     this->setScene(new QGraphicsScene());
 
     //Первоначальные параметры трека при создании
-    params.push_back(2);
+    params.push_back(4);
     params.push_back(4);
 
     pen.setColor(Qt::black);
@@ -76,6 +76,9 @@ Track::Track(QWidget *parent) :
 
     //Создание кисти для курсора и самого курсора
     QBrush newBrush(Qt::blue);
+    QPen cur_pen(Qt::blue);
+    cursor = new QGraphicsLineItem();
+    cursor->setPen(cur_pen);
 
     selectRect = new QGraphicsRectItem(0,0,0,0);
     selectRect->setBrush(newBrush);
@@ -160,7 +163,7 @@ void Track::deleteTactLines()
 
     for (QList<QGraphicsItem*>::iterator iter = items.begin(); iter != items.end(); ++iter)
     {
-        QGraphicsLineItem* line = dynamic_cast<QGraphicsLineItem*>(*iter);
+        TaktLine* line = dynamic_cast<TaktLine*>(*iter);
         if (line != nullptr)
         {
             this->scene()->removeItem(line);
@@ -171,6 +174,7 @@ void Track::deleteTactLines()
 //Обновление виджета и координат нот
 void Track::update()
 {
+    this->scene()->advance();
     qreal lastX = 0;
     if (key->getParams()[0] == 1)
         key->setPos(-650,-1.5*SIZE_BETWEEN_LINES);
@@ -182,11 +186,8 @@ void Track::update()
     lastX += text_2->boundingRect().width()*TEXT_SCALE + SPACE;
 
     qreal count = 0;
-
     deleteTactLines();
     QList<NoteGroup*> groups = sortListGroups();
-    drawLines();
-
     for (QList<NoteGroup*>::iterator iter = groups.begin(); iter != groups.end(); ++iter)
     {
         NoteGroup* group = *iter;
@@ -222,7 +223,8 @@ void Track::update()
         {
             lastX += notes.first()->boundingRect().width()*NOTE_SCALE + SPACE;
             count = 0;
-            this->scene()->addLine(lastX,-SIZE_BETWEEN_LINES,lastX,3*SIZE_BETWEEN_LINES,pen);
+            TaktLine* takt =  new TaktLine(lastX,-SIZE_BETWEEN_LINES,lastX,3*SIZE_BETWEEN_LINES,pen);
+            this->scene()->addItem(takt);
         }
 
         lastX += notes.first()->boundingRect().width()*NOTE_SCALE + SPACE;
@@ -261,6 +263,10 @@ void Track::drawStart()
     end->setPos(right - end->boundingRect().width()*END_SCALE + 2,-SIZE_BETWEEN_LINES);
     end->setScale(END_SCALE);
     this->scene()->addItem(end);
+
+    lastX += text_2->boundingRect().width()*TEXT_SCALE + SPACE;
+    cursor->setLine(lastX, 45, lastX, -15);
+    this->scene()->addItem(cursor);
 }
 
 //Создание ноты
@@ -269,10 +275,12 @@ void Track::createNote(int id)
     NoteGroup* group = new NoteGroup;
     Note* note = new Note(this, pixVect[NOTE_START+id], group);
     note->addParam(id);
-    note->setX(right);
+    note->setX(cursor->line().x1());
     this->scene()->addItem(group);
 
     update();
+
+    cursor->setLine(note->x()+note->boundingRect().width()*NOTE_SCALE,45,note->x()+note->boundingRect().width()*NOTE_SCALE,-15);
 }
 
 void Track::createPause(int id)
@@ -280,10 +288,12 @@ void Track::createPause(int id)
     NoteGroup* group = new NoteGroup;
     Pause* pause = new Pause(this, pixVect[PAUSE_START+id], group);
     pause->addParam(id);
-    pause->setX(right);
+    pause->setX(cursor->line().x1());
     this->scene()->addItem(group);
 
     update();
+
+    cursor->setLine(pause->x()+pause->boundingRect().width()*PAUSE_SCALE,45,pause->x()+pause->boundingRect().width()*PAUSE_SCALE,-15);
 }
 
 void Track::focusInEvent(QFocusEvent *event)
@@ -350,6 +360,33 @@ void Track::keyReleaseEvent(QKeyEvent *event)
 {
     if (event->key() == Qt::Key_Control)
         ctrl = false;
+}
+
+void Track::mousePressEvent(QMouseEvent *event)
+{
+    QGraphicsView::mousePressEvent(event);
+
+    QLineF line = cursor->line();
+
+    QPointF magicPoint = mapToScene(event->pos());
+    cursor->setLine(magicPoint.x(), 45, magicPoint.x(), -15);
+    if (magicPoint.x() > right)
+    {
+        cursor->setLine(line);
+    }
+    else
+    {
+        QList<QGraphicsItem*> items = cursor->collidingItems();
+        for (QList<QGraphicsItem*>::iterator iter = items.begin(); iter != items.end(); ++iter)
+        {
+            MusicSymbol* symbol = dynamic_cast<MusicSymbol*>(*iter);
+            if (symbol != nullptr)
+            {
+                cursor->setLine(line);
+                break;
+            }
+        }
+    }
 }
 
 End* Track::getEnd()

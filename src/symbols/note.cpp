@@ -43,8 +43,8 @@ void Note::drawSymbol(qreal &lastX, QPen pen)
         {
             for (int i = 1; (i+1)*-SIZE_BETWEEN_LINES >= this->pos().y() + this->boundingRect().height()*NOTE_SCALE_FOR_CENTER; ++i)
             {
-                this->scene()->addLine(lastX - this->boundingRect().width()*NOTE_SCALE_FOR_CENTER,(i+1)*-SIZE_BETWEEN_LINES,
-                                       lastX - this->boundingRect().width()*NOTE_SCALE_FOR_CENTER+20,(i+1)*-SIZE_BETWEEN_LINES, pen);
+                this->scene()->addItem(new TaktLine(lastX - this->boundingRect().width()*NOTE_SCALE_FOR_CENTER,(i+1)*-SIZE_BETWEEN_LINES,
+                                       lastX - this->boundingRect().width()*NOTE_SCALE_FOR_CENTER+20,(i+1)*-SIZE_BETWEEN_LINES, pen));
             }
         }
 
@@ -52,8 +52,8 @@ void Note::drawSymbol(qreal &lastX, QPen pen)
         {
             for (int i = 3; (i+1)*SIZE_BETWEEN_LINES <= this->pos().y() + this->boundingRect().height()*NOTE_SCALE_FOR_CENTER; ++i)
             {
-                this->scene()->addLine(lastX - this->boundingRect().width()*NOTE_SCALE_FOR_CENTER,(i+1)*SIZE_BETWEEN_LINES,
-                                       lastX - this->boundingRect().width()*NOTE_SCALE_FOR_CENTER+20,(i+1)*SIZE_BETWEEN_LINES, pen);
+                this->scene()->addItem(new TaktLine(lastX - this->boundingRect().width()*NOTE_SCALE_FOR_CENTER,(i+1)*SIZE_BETWEEN_LINES,
+                                       lastX - this->boundingRect().width()*NOTE_SCALE_FOR_CENTER+20,(i+1)*SIZE_BETWEEN_LINES, pen));
             }
         }
     }
@@ -72,8 +72,8 @@ void Note::drawSymbol(qreal &lastX, QPen pen)
         {
             for (int i = 1; (i+1)*-SIZE_BETWEEN_LINES >= this->pos().y() + this->boundingRect().height()*NOTE_SCALE - HALF_SIZE; ++i)
             {
-                this->scene()->addLine(lastX - this->boundingRect().width()*NOTE_SCALE_FOR_CENTER,(i+1)*-SIZE_BETWEEN_LINES,
-                                       lastX - this->boundingRect().width()*NOTE_SCALE_FOR_CENTER+20,(i+1)*-SIZE_BETWEEN_LINES, pen);
+                this->scene()->addItem(new TaktLine(lastX - this->boundingRect().width()*NOTE_SCALE_FOR_CENTER,(i+1)*-SIZE_BETWEEN_LINES,
+                                       lastX - this->boundingRect().width()*NOTE_SCALE_FOR_CENTER+20,(i+1)*-SIZE_BETWEEN_LINES, pen));
             }
         }
 
@@ -81,8 +81,8 @@ void Note::drawSymbol(qreal &lastX, QPen pen)
         {
             for (int i = 3; (i+1)*SIZE_BETWEEN_LINES <= this->pos().y() + this->boundingRect().height()*NOTE_SCALE; ++i)
             {
-                this->scene()->addLine(lastX - this->boundingRect().width()*NOTE_SCALE_FOR_CENTER,(i+1)*SIZE_BETWEEN_LINES,
-                                       lastX - this->boundingRect().width()*NOTE_SCALE_FOR_CENTER+20,(i+1)*SIZE_BETWEEN_LINES, pen);
+                this->scene()->addItem(new TaktLine(lastX - this->boundingRect().width()*NOTE_SCALE_FOR_CENTER,(i+1)*SIZE_BETWEEN_LINES,
+                                       lastX - this->boundingRect().width()*NOTE_SCALE_FOR_CENTER+20,(i+1)*SIZE_BETWEEN_LINES, pen));
             }
         }
     }
