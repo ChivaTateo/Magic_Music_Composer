@@ -17,7 +17,6 @@ public:
 
     static bool ctrl;                    //Нажат ли CTRL
     static Track* lastFocus;             //Последний трек с фокусом
-    static QVector<QPixmap> pixVect;     //Массив всех иконок, необходимых для прорисовки
 
     //Возравращает отсортированный по X список всех блоков
     QList<NoteGroup*> sortListGroups();

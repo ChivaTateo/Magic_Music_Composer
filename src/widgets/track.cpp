@@ -2,7 +2,6 @@
 #include "options.h"
 
 Track* Track::lastFocus = nullptr;
-QVector<QPixmap> Track::pixVect;
 bool Track::ctrl = false;
 
 Track::Track(QWidget *parent) :
@@ -18,60 +17,6 @@ Track::Track(QWidget *parent) :
     pen.setColor(Qt::black);
     pen.setWidth(3);
 
-    //Заполнение массива иконок
-    QPixmap map(QCoreApplication::applicationDirPath() + "/images/key1.png");
-    pixVect.append(map);
-    map.load(QCoreApplication::applicationDirPath() + "/images/key2.png");
-    pixVect.append(map);
-
-    map.load(QCoreApplication::applicationDirPath() + "/images/note0.png");
-    pixVect.append(map);
-    map.load(QCoreApplication::applicationDirPath() + "/images/note1.png");
-    pixVect.append(map);
-    map.load(QCoreApplication::applicationDirPath() + "/images/note2.png");
-    pixVect.append(map);
-    map.load(QCoreApplication::applicationDirPath() + "/images/note3.png");
-    pixVect.append(map);
-    map.load(QCoreApplication::applicationDirPath() + "/images/note4.png");
-    pixVect.append(map);
-    map.load(QCoreApplication::applicationDirPath() + "/images/note5.png");
-    pixVect.append(map);
-    map.load(QCoreApplication::applicationDirPath() + "/images/note6.png");
-    pixVect.append(map);
-    map.load(QCoreApplication::applicationDirPath() + "/images/note7.png");
-    pixVect.append(map);
-
-    map.load(QCoreApplication::applicationDirPath() + "/images/pause1.png");
-    pixVect.append(map);
-    map.load(QCoreApplication::applicationDirPath() + "/images/pause2.png");
-    pixVect.append(map);
-    map.load(QCoreApplication::applicationDirPath() + "/images/pause3.png");
-    pixVect.append(map);
-    map.load(QCoreApplication::applicationDirPath() + "/images/pause4.png");
-    pixVect.append(map);
-    map.load(QCoreApplication::applicationDirPath() + "/images/pause5.png");
-    pixVect.append(map);
-    map.load(QCoreApplication::applicationDirPath() + "/images/pause6.png");
-    pixVect.append(map);
-
-    map.load(QCoreApplication::applicationDirPath() + "/images/end1.png");
-    pixVect.append(map);
-    map.load(QCoreApplication::applicationDirPath() + "/images/end2.png");
-    pixVect.append(map);
-
-    map.load(QCoreApplication::applicationDirPath() + "/images/spec1_1.png");
-    pixVect.append(map);
-    map.load(QCoreApplication::applicationDirPath() + "/images/spec1_2.png");
-    pixVect.append(map);
-    map.load(QCoreApplication::applicationDirPath() + "/images/spec2_1.png");
-    pixVect.append(map);
-    map.load(QCoreApplication::applicationDirPath() + "/images/spec2_2.png");
-    pixVect.append(map);
-    map.load(QCoreApplication::applicationDirPath() + "/images/spec3_1.png");
-    pixVect.append(map);
-    map.load(QCoreApplication::applicationDirPath() + "/images/spec3_2.png");
-    pixVect.append(map);
-
     setMouseTracking(true);
 
     //Создание кисти для курсора и самого курсора
@@ -85,9 +30,9 @@ Track::Track(QWidget *parent) :
     selectRect->setOpacity(0.1);
     this->scene()->addItem(selectRect);
 
-    key = new Key(this, pixVect[0]);
+    key = new Key(this, QPixmap(":/keys/0"));
     key->addParam(0);
-    end = new End(this, pixVect[END_START]);
+    end = new End(this, QPixmap(":/ends/0"));
     end->addParam(0);
 
     this->setAlignment(Qt::AlignLeft);
@@ -174,7 +119,6 @@ void Track::deleteTactLines()
 //Обновление виджета и координат нот
 void Track::update()
 {
-    this->scene()->advance();
     qreal lastX = 0;
     if (key->getParams()[0] == 1)
         key->setPos(-650,-1.5*SIZE_BETWEEN_LINES);
@@ -236,6 +180,7 @@ void Track::update()
     }
 
     end->setPos(right - end->boundingRect().width()*END_SCALE + 2,-SIZE_BETWEEN_LINES);
+    this->scene()->advance();
 }
 
 //Прорисовка ключа и трековых параметров, а так же конечных символов
@@ -273,7 +218,7 @@ void Track::drawStart()
 void Track::createNote(int id)
 {
     NoteGroup* group = new NoteGroup;
-    Note* note = new Note(this, pixVect[NOTE_START+id], group);
+    Note* note = new Note(this, QPixmap(":/notes/"+QString::number(id)), group);
     note->addParam(id);
     note->setX(cursor->line().x1());
     this->scene()->addItem(group);
@@ -286,7 +231,7 @@ void Track::createNote(int id)
 void Track::createPause(int id)
 {
     NoteGroup* group = new NoteGroup;
-    Pause* pause = new Pause(this, pixVect[PAUSE_START+id], group);
+    Pause* pause = new Pause(this, QPixmap(":/pauses/"+QString::number(id)), group);
     pause->addParam(id);
     pause->setX(cursor->line().x1());
     this->scene()->addItem(group);
@@ -298,16 +243,17 @@ void Track::createPause(int id)
 
 void Track::focusInEvent(QFocusEvent *event)
 {
-    event->accept();
+    QGraphicsView::focusInEvent(event);
     QBrush brush(Qt::white);
     this->scene()->setBackgroundBrush(brush);
     lastFocus = this;
-    Options::p_instance->updateData(QList<MusicSymbol*>());
+    if (lastFocus != nullptr)
+        Options::p_instance->updateData(QList<MusicSymbol*>());
 }
 
 void Track::focusOutEvent(QFocusEvent *event)
 {
-    event->accept();
+    QGraphicsView::focusOutEvent(event);
     QBrush brush(QColor(0,0,255,25));
     this->scene()->setBackgroundBrush(brush);
 }
@@ -416,5 +362,5 @@ void Track::changeParam(int param, int i)
 
 Track::~Track()
 {
-    pixVect.clear();
+    this->scene()->clear();
 }

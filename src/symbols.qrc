@@ -1,0 +1,36 @@
+<RCC>
+    <qresource prefix="/notes">
+        <file alias="0">images/note0.png</file>
+        <file alias="1">images/note1.png</file>
+        <file alias="2">images/note2.png</file>
+        <file alias="3">images/note3.png</file>
+        <file alias="4">images/note4.png</file>
+        <file alias="5">images/note5.png</file>
+        <file alias="6">images/note6.png</file>
+        <file alias="7">images/note7.png</file>
+    </qresource>
+    <qresource prefix="/pauses">
+        <file alias="0">images/pause1.png</file>
+        <file alias="1">images/pause2.png</file>
+        <file alias="2">images/pause3.png</file>
+        <file alias="3">images/pause4.png</file>
+        <file alias="4">images/pause5.png</file>
+        <file alias="5">images/pause6.png</file>
+    </qresource>
+    <qresource prefix="/keys">
+        <file alias="0">images/key1.png</file>
+        <file alias="1">images/key2.png</file>
+    </qresource>
+    <qresource prefix="/ends">
+        <file alias="0">images/end1.png</file>
+        <file alias="1">images/end2.png</file>
+    </qresource>
+    <qresource prefix="/special">
+        <file alias="0">images/spec1_1.png</file>
+        <file alias="1">images/spec1_2.png</file>
+        <file alias="2">images/spec2_1.png</file>
+        <file alias="3">images/spec2_2.png</file>
+        <file alias="4">images/spec3_1.png</file>
+        <file alias="5">images/spec3_2.png</file>
+    </qresource>
+</RCC>

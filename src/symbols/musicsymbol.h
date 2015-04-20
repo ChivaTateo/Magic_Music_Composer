@@ -20,12 +20,6 @@
 #define NOTE_SCALE_FOR_CENTER 0.25
 #define LONG_NOTE_SCALE_FOR_CENTER 0.43
 
-//Стартовые позиции в массиве, с которой начинаются:
-#define NOTE_START 2      //ноты
-#define PAUSE_START 10    //паузы
-#define END_START 16    //символы конца
-#define SPECIAL_START 18 //специальные символы
-
 #define SPACE 30      //Расстояние между символами
 #define HALF_SIZE 7.5 //Половина расстояния между линиями
 #define SIZE_BETWEEN_LINES 15       //Расстояние между линиями

@@ -36,33 +36,14 @@
        <enum>QTabWidget::Triangular</enum>
       </property>
       <property name="currentIndex">
-       <number>0</number>
+       <number>-1</number>
+      </property>
+      <property name="tabsClosable">
+       <bool>true</bool>
       </property>
       <property name="movable">
        <bool>true</bool>
       </property>
-      <widget class="TrackViewer" name="project">
-       <attribute name="title">
-        <string>Страница</string>
-       </attribute>
-       <layout class="QVBoxLayout" name="verticalLayout">
-        <property name="spacing">
-         <number>0</number>
-        </property>
-        <property name="leftMargin">
-         <number>0</number>
-        </property>
-        <property name="topMargin">
-         <number>0</number>
-        </property>
-        <property name="rightMargin">
-         <number>0</number>
-        </property>
-        <property name="bottomMargin">
-         <number>0</number>
-        </property>
-       </layout>
-      </widget>
      </widget>
     </item>
    </layout>
@@ -84,7 +65,7 @@
     <addaction name="open_project"/>
     <addaction name="save_project"/>
     <addaction name="separator"/>
-    <addaction name="add_track"/>
+    <addaction name="export_to"/>
     <addaction name="separator"/>
     <addaction name="exit"/>
    </widget>
@@ -125,6 +106,12 @@
      </property>
      <item row="5" column="1">
       <widget class="QPushButton" name="pause_3">
+       <property name="sizePolicy">
+        <sizepolicy hsizetype="Minimum" vsizetype="Minimum">
+         <horstretch>0</horstretch>
+         <verstretch>0</verstretch>
+        </sizepolicy>
+       </property>
        <property name="focusPolicy">
         <enum>Qt::NoFocus</enum>
        </property>
@@ -132,13 +119,25 @@
         <string/>
        </property>
        <property name="icon">
-        <iconset>
-         <normaloff>../../../../../Study/Magic/build-Magic_Music_Composer-Desktop_Qt_5_3_MSVC2012_OpenGL_32bit-Debug/debug/images/pause4.png</normaloff>../../../../../Study/Magic/build-Magic_Music_Composer-Desktop_Qt_5_3_MSVC2012_OpenGL_32bit-Debug/debug/images/pause4.png</iconset>
+        <iconset resource="../pauses.qrc">
+         <normaloff>:/pauses/3</normaloff>:/pauses/3</iconset>
+       </property>
+       <property name="iconSize">
+        <size>
+         <width>32</width>
+         <height>32</height>
+        </size>
        </property>
       </widget>
      </item>
      <item row="5" column="0">
       <widget class="QPushButton" name="pause_2">
+       <property name="sizePolicy">
+        <sizepolicy hsizetype="Minimum" vsizetype="Minimum">
+         <horstretch>0</horstretch>
+         <verstretch>0</verstretch>
+        </sizepolicy>
+       </property>
        <property name="focusPolicy">
         <enum>Qt::NoFocus</enum>
        </property>
@@ -146,41 +145,25 @@
         <string/>
        </property>
        <property name="icon">
-        <iconset>
-         <normaloff>../../../../../Study/Magic/build-Magic_Music_Composer-Desktop_Qt_5_3_MSVC2012_OpenGL_32bit-Debug/debug/images/pause3.png</normaloff>../../../../../Study/Magic/build-Magic_Music_Composer-Desktop_Qt_5_3_MSVC2012_OpenGL_32bit-Debug/debug/images/pause3.png</iconset>
+        <iconset resource="../pauses.qrc">
+         <normaloff>:/pauses/2</normaloff>:/pauses/2</iconset>
        </property>
-      </widget>
-     </item>
-     <item row="0" column="1">
-      <widget class="QPushButton" name="note_4">
-       <property name="focusPolicy">
-        <enum>Qt::NoFocus</enum>
-       </property>
-       <property name="text">
-        <string/>
-       </property>
-       <property name="icon">
-        <iconset>
-         <normaloff>../../../../Study/Magic/build-Magic_Music_Composer-Desktop_Qt_5_3_MSVC2012_OpenGL_32bit-Debug/debug/images/note4.png</normaloff>../../../../Study/Magic/build-Magic_Music_Composer-Desktop_Qt_5_3_MSVC2012_OpenGL_32bit-Debug/debug/images/note4.png</iconset>
-       </property>
-      </widget>
-     </item>
-     <item row="2" column="1">
-      <widget class="QPushButton" name="note_6">
-       <property name="focusPolicy">
-        <enum>Qt::NoFocus</enum>
-       </property>
-       <property name="text">
-        <string/>
-       </property>
-       <property name="icon">
-        <iconset>
-         <normaloff>../../../../Study/Magic/build-Magic_Music_Composer-Desktop_Qt_5_3_MSVC2012_OpenGL_32bit-Debug/debug/images/note6.png</normaloff>../../../../Study/Magic/build-Magic_Music_Composer-Desktop_Qt_5_3_MSVC2012_OpenGL_32bit-Debug/debug/images/note6.png</iconset>
+       <property name="iconSize">
+        <size>
+         <width>32</width>
+         <height>32</height>
+        </size>
        </property>
       </widget>
      </item>
      <item row="0" column="0">
       <widget class="QPushButton" name="note_0">
+       <property name="sizePolicy">
+        <sizepolicy hsizetype="Minimum" vsizetype="Minimum">
+         <horstretch>0</horstretch>
+         <verstretch>0</verstretch>
+        </sizepolicy>
+       </property>
        <property name="focusPolicy">
         <enum>Qt::NoFocus</enum>
        </property>
@@ -188,13 +171,77 @@
         <string/>
        </property>
        <property name="icon">
-        <iconset>
-         <normaloff>../../../../Study/Magic/build-Magic_Music_Composer-Desktop_Qt_5_3_MSVC2012_OpenGL_32bit-Debug/debug/images/note0.png</normaloff>../../../../Study/Magic/build-Magic_Music_Composer-Desktop_Qt_5_3_MSVC2012_OpenGL_32bit-Debug/debug/images/note0.png</iconset>
+        <iconset resource="../notes.qrc">
+         <normaloff>:/notes/0</normaloff>:/notes/0</iconset>
+       </property>
+       <property name="iconSize">
+        <size>
+         <width>32</width>
+         <height>32</height>
+        </size>
+       </property>
+      </widget>
+     </item>
+     <item row="0" column="1">
+      <widget class="QPushButton" name="note_4">
+       <property name="sizePolicy">
+        <sizepolicy hsizetype="Minimum" vsizetype="Minimum">
+         <horstretch>0</horstretch>
+         <verstretch>0</verstretch>
+        </sizepolicy>
+       </property>
+       <property name="focusPolicy">
+        <enum>Qt::NoFocus</enum>
+       </property>
+       <property name="text">
+        <string/>
+       </property>
+       <property name="icon">
+        <iconset resource="../notes.qrc">
+         <normaloff>:/notes/4</normaloff>:/notes/4</iconset>
+       </property>
+       <property name="iconSize">
+        <size>
+         <width>32</width>
+         <height>32</height>
+        </size>
+       </property>
+      </widget>
+     </item>
+     <item row="2" column="1">
+      <widget class="QPushButton" name="note_6">
+       <property name="sizePolicy">
+        <sizepolicy hsizetype="Minimum" vsizetype="Minimum">
+         <horstretch>0</horstretch>
+         <verstretch>0</verstretch>
+        </sizepolicy>
+       </property>
+       <property name="focusPolicy">
+        <enum>Qt::NoFocus</enum>
+       </property>
+       <property name="text">
+        <string/>
+       </property>
+       <property name="icon">
+        <iconset resource="../notes.qrc">
+         <normaloff>:/notes/6</normaloff>:/notes/6</iconset>
+       </property>
+       <property name="iconSize">
+        <size>
+         <width>32</width>
+         <height>32</height>
+        </size>
        </property>
       </widget>
      </item>
      <item row="3" column="0">
       <widget class="QPushButton" name="note_3">
+       <property name="sizePolicy">
+        <sizepolicy hsizetype="Minimum" vsizetype="Minimum">
+         <horstretch>0</horstretch>
+         <verstretch>0</verstretch>
+        </sizepolicy>
+       </property>
        <property name="focusPolicy">
         <enum>Qt::NoFocus</enum>
        </property>
@@ -202,13 +249,77 @@
         <string/>
        </property>
        <property name="icon">
-        <iconset>
-         <normaloff>../../../../Study/Magic/build-Magic_Music_Composer-Desktop_Qt_5_3_MSVC2012_OpenGL_32bit-Debug/debug/images/note3.png</normaloff>../../../../Study/Magic/build-Magic_Music_Composer-Desktop_Qt_5_3_MSVC2012_OpenGL_32bit-Debug/debug/images/note3.png</iconset>
+        <iconset resource="../notes.qrc">
+         <normaloff>:/notes/3</normaloff>:/notes/3</iconset>
+       </property>
+       <property name="iconSize">
+        <size>
+         <width>32</width>
+         <height>32</height>
+        </size>
+       </property>
+      </widget>
+     </item>
+     <item row="2" column="0">
+      <widget class="QPushButton" name="note_2">
+       <property name="sizePolicy">
+        <sizepolicy hsizetype="Minimum" vsizetype="Minimum">
+         <horstretch>0</horstretch>
+         <verstretch>0</verstretch>
+        </sizepolicy>
+       </property>
+       <property name="focusPolicy">
+        <enum>Qt::NoFocus</enum>
+       </property>
+       <property name="text">
+        <string/>
+       </property>
+       <property name="icon">
+        <iconset resource="../notes.qrc">
+         <normaloff>:/notes/2</normaloff>:/notes/2</iconset>
+       </property>
+       <property name="iconSize">
+        <size>
+         <width>32</width>
+         <height>32</height>
+        </size>
+       </property>
+      </widget>
+     </item>
+     <item row="1" column="0">
+      <widget class="QPushButton" name="note_1">
+       <property name="sizePolicy">
+        <sizepolicy hsizetype="Minimum" vsizetype="Minimum">
+         <horstretch>0</horstretch>
+         <verstretch>0</verstretch>
+        </sizepolicy>
+       </property>
+       <property name="focusPolicy">
+        <enum>Qt::NoFocus</enum>
+       </property>
+       <property name="text">
+        <string/>
+       </property>
+       <property name="icon">
+        <iconset resource="../notes.qrc">
+         <normaloff>:/notes/1</normaloff>:/notes/1</iconset>
+       </property>
+       <property name="iconSize">
+        <size>
+         <width>32</width>
+         <height>32</height>
+        </size>
        </property>
       </widget>
      </item>
      <item row="3" column="1">
       <widget class="QPushButton" name="note_7">
+       <property name="sizePolicy">
+        <sizepolicy hsizetype="Minimum" vsizetype="Minimum">
+         <horstretch>0</horstretch>
+         <verstretch>0</verstretch>
+        </sizepolicy>
+       </property>
        <property name="focusPolicy">
         <enum>Qt::NoFocus</enum>
        </property>
@@ -219,13 +330,25 @@
         <string/>
        </property>
        <property name="icon">
-        <iconset>
-         <normaloff>../../../../Study/Magic/build-Magic_Music_Composer-Desktop_Qt_5_3_MSVC2012_OpenGL_32bit-Debug/debug/images/note7.png</normaloff>../../../../Study/Magic/build-Magic_Music_Composer-Desktop_Qt_5_3_MSVC2012_OpenGL_32bit-Debug/debug/images/note7.png</iconset>
+        <iconset resource="../notes.qrc">
+         <normaloff>:/notes/7</normaloff>:/notes/7</iconset>
+       </property>
+       <property name="iconSize">
+        <size>
+         <width>32</width>
+         <height>32</height>
+        </size>
        </property>
       </widget>
      </item>
      <item row="1" column="1">
       <widget class="QPushButton" name="note_5">
+       <property name="sizePolicy">
+        <sizepolicy hsizetype="Minimum" vsizetype="Minimum">
+         <horstretch>0</horstretch>
+         <verstretch>0</verstretch>
+        </sizepolicy>
+       </property>
        <property name="focusPolicy">
         <enum>Qt::NoFocus</enum>
        </property>
@@ -233,55 +356,25 @@
         <string/>
        </property>
        <property name="icon">
-        <iconset>
-         <normaloff>../../../../Study/Magic/build-Magic_Music_Composer-Desktop_Qt_5_3_MSVC2012_OpenGL_32bit-Debug/debug/images/note5.png</normaloff>../../../../Study/Magic/build-Magic_Music_Composer-Desktop_Qt_5_3_MSVC2012_OpenGL_32bit-Debug/debug/images/note5.png</iconset>
+        <iconset resource="../notes.qrc">
+         <normaloff>:/notes/5</normaloff>:/notes/5</iconset>
        </property>
-      </widget>
-     </item>
-     <item row="2" column="0">
-      <widget class="QPushButton" name="note_2">
-       <property name="focusPolicy">
-        <enum>Qt::NoFocus</enum>
-       </property>
-       <property name="text">
-        <string/>
-       </property>
-       <property name="icon">
-        <iconset>
-         <normaloff>../../../../Study/Magic/build-Magic_Music_Composer-Desktop_Qt_5_3_MSVC2012_OpenGL_32bit-Debug/debug/images/note2.png</normaloff>../../../../Study/Magic/build-Magic_Music_Composer-Desktop_Qt_5_3_MSVC2012_OpenGL_32bit-Debug/debug/images/note2.png</iconset>
-       </property>
-      </widget>
-     </item>
-     <item row="1" column="0">
-      <widget class="QPushButton" name="note_1">
-       <property name="focusPolicy">
-        <enum>Qt::NoFocus</enum>
-       </property>
-       <property name="text">
-        <string/>
-       </property>
-       <property name="icon">
-        <iconset>
-         <normaloff>../../../../Study/Magic/build-Magic_Music_Composer-Desktop_Qt_5_3_MSVC2012_OpenGL_32bit-Debug/debug/images/note1.png</normaloff>../../../../Study/Magic/build-Magic_Music_Composer-Desktop_Qt_5_3_MSVC2012_OpenGL_32bit-Debug/debug/images/note1.png</iconset>
-       </property>
-      </widget>
-     </item>
-     <item row="4" column="0">
-      <widget class="QPushButton" name="pause_0">
-       <property name="focusPolicy">
-        <enum>Qt::NoFocus</enum>
-       </property>
-       <property name="text">
-        <string/>
-       </property>
-       <property name="icon">
-        <iconset>
-         <normaloff>../../../../../Study/Magic/build-Magic_Music_Composer-Desktop_Qt_5_3_MSVC2012_OpenGL_32bit-Debug/debug/images/pause1.png</normaloff>../../../../../Study/Magic/build-Magic_Music_Composer-Desktop_Qt_5_3_MSVC2012_OpenGL_32bit-Debug/debug/images/pause1.png</iconset>
+       <property name="iconSize">
+        <size>
+         <width>32</width>
+         <height>32</height>
+        </size>
        </property>
       </widget>
      </item>
      <item row="4" column="1">
       <widget class="QPushButton" name="pause_1">
+       <property name="sizePolicy">
+        <sizepolicy hsizetype="Minimum" vsizetype="Minimum">
+         <horstretch>0</horstretch>
+         <verstretch>0</verstretch>
+        </sizepolicy>
+       </property>
        <property name="focusPolicy">
         <enum>Qt::NoFocus</enum>
        </property>
@@ -289,13 +382,51 @@
         <string/>
        </property>
        <property name="icon">
-        <iconset>
-         <normaloff>../../../../../Study/Magic/build-Magic_Music_Composer-Desktop_Qt_5_3_MSVC2012_OpenGL_32bit-Debug/debug/images/pause2.png</normaloff>../../../../../Study/Magic/build-Magic_Music_Composer-Desktop_Qt_5_3_MSVC2012_OpenGL_32bit-Debug/debug/images/pause2.png</iconset>
+        <iconset resource="../pauses.qrc">
+         <normaloff>:/pauses/1</normaloff>:/pauses/1</iconset>
+       </property>
+       <property name="iconSize">
+        <size>
+         <width>32</width>
+         <height>32</height>
+        </size>
+       </property>
+      </widget>
+     </item>
+     <item row="4" column="0">
+      <widget class="QPushButton" name="pause_0">
+       <property name="sizePolicy">
+        <sizepolicy hsizetype="Minimum" vsizetype="Minimum">
+         <horstretch>0</horstretch>
+         <verstretch>0</verstretch>
+        </sizepolicy>
+       </property>
+       <property name="focusPolicy">
+        <enum>Qt::NoFocus</enum>
+       </property>
+       <property name="text">
+        <string/>
+       </property>
+       <property name="icon">
+        <iconset resource="../pauses.qrc">
+         <normaloff>:/pauses/0</normaloff>:/pauses/0</iconset>
+       </property>
+       <property name="iconSize">
+        <size>
+         <width>32</width>
+         <height>32</height>
+        </size>
        </property>
       </widget>
      </item>
      <item row="6" column="0">
       <widget class="QPushButton" name="pause_4">
+       <property name="sizePolicy">
+        <sizepolicy hsizetype="Minimum" vsizetype="Minimum">
+         <horstretch>0</horstretch>
+         <verstretch>0</verstretch>
+        </sizepolicy>
+       </property>
        <property name="focusPolicy">
         <enum>Qt::NoFocus</enum>
        </property>
@@ -303,13 +434,25 @@
         <string/>
        </property>
        <property name="icon">
-        <iconset>
-         <normaloff>../../../../../Study/Magic/build-Magic_Music_Composer-Desktop_Qt_5_3_MSVC2012_OpenGL_32bit-Debug/debug/images/pause5.png</normaloff>../../../../../Study/Magic/build-Magic_Music_Composer-Desktop_Qt_5_3_MSVC2012_OpenGL_32bit-Debug/debug/images/pause5.png</iconset>
+        <iconset resource="../pauses.qrc">
+         <normaloff>:/pauses/4</normaloff>:/pauses/4</iconset>
+       </property>
+       <property name="iconSize">
+        <size>
+         <width>32</width>
+         <height>32</height>
+        </size>
        </property>
       </widget>
      </item>
      <item row="6" column="1">
       <widget class="QPushButton" name="pause_5">
+       <property name="sizePolicy">
+        <sizepolicy hsizetype="Minimum" vsizetype="Minimum">
+         <horstretch>0</horstretch>
+         <verstretch>0</verstretch>
+        </sizepolicy>
+       </property>
        <property name="focusPolicy">
         <enum>Qt::NoFocus</enum>
        </property>
@@ -317,8 +460,14 @@
         <string/>
        </property>
        <property name="icon">
-        <iconset>
-         <normaloff>../../../../../Study/Magic/build-Magic_Music_Composer-Desktop_Qt_5_3_MSVC2012_OpenGL_32bit-Debug/debug/images/pause6.png</normaloff>../../../../../Study/Magic/build-Magic_Music_Composer-Desktop_Qt_5_3_MSVC2012_OpenGL_32bit-Debug/debug/images/pause6.png</iconset>
+        <iconset resource="../pauses.qrc">
+         <normaloff>:/pauses/5</normaloff>:/pauses/5</iconset>
+       </property>
+       <property name="iconSize">
+        <size>
+         <width>32</width>
+         <height>32</height>
+        </size>
        </property>
       </widget>
      </item>
@@ -371,15 +520,14 @@
     <string>Открыть проект</string>
    </property>
   </action>
+  <action name="export_to">
+   <property name="text">
+    <string>Экспорт</string>
+   </property>
+  </action>
  </widget>
  <layoutdefault spacing="6" margin="11"/>
  <customwidgets>
-  <customwidget>
-   <class>TrackViewer</class>
-   <extends>QWidget</extends>
-   <header>trackviewer.h</header>
-   <container>1</container>
-  </customwidget>
   <customwidget>
    <class>ProjectViewer</class>
    <extends>QTabWidget</extends>
@@ -388,6 +536,8 @@
    <slots>
     <slot>addTrack()</slot>
     <slot>addProject()</slot>
+    <slot>closeProject(int)</slot>
+    <slot>exportTo()</slot>
    </slots>
   </customwidget>
   <customwidget>
@@ -397,24 +547,11 @@
    <container>1</container>
   </customwidget>
  </customwidgets>
- <resources/>
+ <resources>
+  <include location="../notes.qrc"/>
+  <include location="../pauses.qrc"/>
+ </resources>
  <connections>
-  <connection>
-   <sender>add_track</sender>
-   <signal>triggered()</signal>
-   <receiver>viewer</receiver>
-   <slot>addTrack()</slot>
-   <hints>
-    <hint type="sourcelabel">
-     <x>-1</x>
-     <y>-1</y>
-    </hint>
-    <hint type="destinationlabel">
-     <x>331</x>
-     <y>251</y>
-    </hint>
-   </hints>
-  </connection>
   <connection>
    <sender>create_project</sender>
    <signal>triggered()</signal>
@@ -428,6 +565,38 @@
     <hint type="destinationlabel">
      <x>385</x>
      <y>251</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>viewer</sender>
+   <signal>tabCloseRequested(int)</signal>
+   <receiver>viewer</receiver>
+   <slot>closeProject(int)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>397</x>
+     <y>284</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>397</x>
+     <y>284</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>export_to</sender>
+   <signal>triggered()</signal>
+   <receiver>viewer</receiver>
+   <slot>exportTo()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>-1</x>
+     <y>-1</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>445</x>
+     <y>284</y>
     </hint>
    </hints>
   </connection>

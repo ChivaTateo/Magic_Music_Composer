@@ -56,7 +56,7 @@ void Options::updateData(QList<MusicSymbol*> symbols)
 void Options::changeNotePixmap(int id)
 {
     symbols.first()->changeParam(id, 1);
-    note_ui->note_pixmap->setPixmap(Track::pixVect[NOTE_START+id]);
+    note_ui->note_pixmap->setPixmap(QPixmap(":/notes/"+QString::number(id)));
     Track::lastFocus->update();
 }
 
@@ -95,12 +95,12 @@ int Options::idRadioButton()
 void Options::changeTrackParams()
 {
     Track::lastFocus->getEnd()->changeParam(track_ui->end_slider->value(),0);
-    Track::lastFocus->getEnd()->setPixmap(Track::pixVect[END_START + track_ui->end_slider->value()]);
-    track_ui->end_pixmap->setPixmap(Track::pixVect[END_START + track_ui->end_slider->value()]);
+    Track::lastFocus->getEnd()->setPixmap(QPixmap(":/ends/"+QString::number(track_ui->end_slider->value())));
+    track_ui->end_pixmap->setPixmap(QPixmap(":/ends/"+QString::number(track_ui->end_slider->value())));
 
     Track::lastFocus->getKey()->changeParam(track_ui->key_slider->value(),0);
-    Track::lastFocus->getKey()->setPixmap(Track::pixVect[track_ui->key_slider->value()]);
-    track_ui->key_pixmap->setPixmap(Track::pixVect[track_ui->key_slider->value()]);
+    Track::lastFocus->getKey()->setPixmap(QPixmap(":/keys/"+QString::number(track_ui->key_slider->value())));
+    track_ui->key_pixmap->setPixmap(QPixmap(":/keys/"+QString::number(track_ui->key_slider->value())));
 
     Track::lastFocus->changeParam(track_ui->param_1->value(),0);
     Track::lastFocus->changeParam(track_ui->param_2->value(),1);
@@ -111,7 +111,7 @@ void Options::changeTrackParams()
 void Options::changePauseParams(int id)
 {
     symbols.first()->changeParam(id, 0);
-    pause_ui->pause_pixmap->setPixmap(Track::pixVect[PAUSE_START+id]);
+    pause_ui->pause_pixmap->setPixmap(QPixmap(":/pauses/"+QString::number(id)));
     Track::lastFocus->update();
 }
 
@@ -140,11 +140,11 @@ void Options::loadTrackOptions()
     track_ui->param_1->setValue(Track::lastFocus->getParams()[0]);
     track_ui->param_2->setValue(Track::lastFocus->getParams()[1]);
 
-    track_ui->key_pixmap->setPixmap(Track::pixVect[Track::lastFocus->getKey()->getParams()[0]]);
+    track_ui->key_pixmap->setPixmap(QPixmap(":/keys/" + QString::number(Track::lastFocus->getKey()->getParams()[0])));
     track_ui->key_slider->setValue(Track::lastFocus->getKey()->getParams()[0]);
     track_ui->key_slider->setMaximum(1);
 
-    track_ui->end_pixmap->setPixmap(Track::pixVect[END_START + Track::lastFocus->getEnd()->getParams()[0]]);
+    track_ui->end_pixmap->setPixmap(QPixmap(":/ends/" + QString::number(Track::lastFocus->getKey()->getParams()[0])));
     track_ui->end_slider->setValue(Track::lastFocus->getEnd()->getParams()[0]);
     track_ui->end_slider->setMaximum(1);
 

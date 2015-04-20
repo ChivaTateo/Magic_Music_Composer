@@ -26,12 +26,12 @@ Note::Note(Track* track, const QPixmap &pixmap, QGraphicsItem *parent):
 
 void Note::drawSymbol(qreal &lastX, QPen pen)
 {
-    this->setPixmap(Track::pixVect[NOTE_START + params[1]]);
+    this->setPixmap(QPixmap(":/notes/"+QString::number(params[1])));
     if(params[1] == 0)
     {
         if(params.size() > 2)
         {
-            spec->setPixmap(Track::pixVect[SPECIAL_START + params[2]]);
+            spec->setPixmap(QPixmap(":/special/"+QString::number(params[2])));
             spec->setPos(-spec->boundingRect().width()*SPEC_SCALE,
                          -this->boundingRect().height()*NOTE_SCALE);
         }
@@ -61,7 +61,7 @@ void Note::drawSymbol(qreal &lastX, QPen pen)
     {
         if(params.size() > 2)
         {
-            spec->setPixmap(Track::pixVect[SPECIAL_START + params[2]]);
+            spec->setPixmap(QPixmap(":/special/"+QString::number(params[2])));
             spec->setPos(-spec->boundingRect().width()*SPEC_SCALE,
                          this->boundingRect().height()*NOTE_SCALE);
         }
@@ -171,7 +171,7 @@ void Note::mouseReleaseEvent(QGraphicsSceneMouseEvent *event)
 void Note::addSpec(int id)
 {
     this->addParam(id);
-    spec = new QGraphicsPixmapItem(Track::pixVect[SPECIAL_START+id],this);
+    spec = new QGraphicsPixmapItem(QPixmap(":/special/"+QString::number(id)),this);
     spec->setScale(SPEC_SCALE);
     spec->setTransformationMode(Qt::SmoothTransformation);
 }
@@ -182,7 +182,7 @@ void Note::clear()
     {
         spec->setParentItem(nullptr);
         this->scene()->removeItem(spec);
+        params.pop_back();
     }
     spec = nullptr;
-    params.pop_back();
 }

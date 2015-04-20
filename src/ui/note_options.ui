@@ -26,8 +26,8 @@
       <string/>
      </property>
      <property name="icon">
-      <iconset>
-       <normaloff>../../../../../Study/Magic/build-Magic_Music_Composer-Desktop_Qt_5_3_MSVC2012_OpenGL_32bit-Debug/debug/images/spec3_2.png</normaloff>../../../../../Study/Magic/build-Magic_Music_Composer-Desktop_Qt_5_3_MSVC2012_OpenGL_32bit-Debug/debug/images/spec3_2.png</iconset>
+      <iconset resource="../symbols.qrc">
+       <normaloff>:/special/5</normaloff>:/special/5</iconset>
      </property>
      <property name="iconSize">
       <size>
@@ -46,8 +46,8 @@
       <string/>
      </property>
      <property name="icon">
-      <iconset>
-       <normaloff>../../../../../Study/Magic/build-Magic_Music_Composer-Desktop_Qt_5_3_MSVC2012_OpenGL_32bit-Debug/debug/images/spec1_2.png</normaloff>../../../../../Study/Magic/build-Magic_Music_Composer-Desktop_Qt_5_3_MSVC2012_OpenGL_32bit-Debug/debug/images/spec1_2.png</iconset>
+      <iconset resource="../symbols.qrc">
+       <normaloff>:/special/1</normaloff>:/special/1</iconset>
      </property>
      <property name="iconSize">
       <size>
@@ -66,8 +66,8 @@
       <string/>
      </property>
      <property name="icon">
-      <iconset>
-       <normaloff>../../../../../Study/Magic/build-Magic_Music_Composer-Desktop_Qt_5_3_MSVC2012_OpenGL_32bit-Debug/debug/images/spec2_2.png</normaloff>../../../../../Study/Magic/build-Magic_Music_Composer-Desktop_Qt_5_3_MSVC2012_OpenGL_32bit-Debug/debug/images/spec2_2.png</iconset>
+      <iconset resource="../symbols.qrc">
+       <normaloff>:/special/3</normaloff>:/special/3</iconset>
      </property>
      <property name="iconSize">
       <size>
@@ -86,8 +86,8 @@
       <string/>
      </property>
      <property name="icon">
-      <iconset>
-       <normaloff>../../../../../Study/Magic/build-Magic_Music_Composer-Desktop_Qt_5_3_MSVC2012_OpenGL_32bit-Debug/debug/images/spec2_1.png</normaloff>../../../../../Study/Magic/build-Magic_Music_Composer-Desktop_Qt_5_3_MSVC2012_OpenGL_32bit-Debug/debug/images/spec2_1.png</iconset>
+      <iconset resource="../symbols.qrc">
+       <normaloff>:/special/2</normaloff>:/special/2</iconset>
      </property>
      <property name="iconSize">
       <size>
@@ -106,8 +106,8 @@
       <string/>
      </property>
      <property name="icon">
-      <iconset>
-       <normaloff>../../../../../Study/Magic/build-Magic_Music_Composer-Desktop_Qt_5_3_MSVC2012_OpenGL_32bit-Debug/debug/images/spec1_1.png</normaloff>../../../../../Study/Magic/build-Magic_Music_Composer-Desktop_Qt_5_3_MSVC2012_OpenGL_32bit-Debug/debug/images/spec1_1.png</iconset>
+      <iconset resource="../symbols.qrc">
+       <normaloff>:/special/0</normaloff>:/special/0</iconset>
      </property>
      <property name="iconSize">
       <size>
@@ -126,8 +126,8 @@
       <string/>
      </property>
      <property name="icon">
-      <iconset>
-       <normaloff>../../../../../Study/Magic/build-Magic_Music_Composer-Desktop_Qt_5_3_MSVC2012_OpenGL_32bit-Debug/debug/images/spec3_1.png</normaloff>../../../../../Study/Magic/build-Magic_Music_Composer-Desktop_Qt_5_3_MSVC2012_OpenGL_32bit-Debug/debug/images/spec3_1.png</iconset>
+      <iconset resource="../symbols.qrc">
+       <normaloff>:/special/4</normaloff>:/special/4</iconset>
      </property>
      <property name="iconSize">
       <size>
@@ -197,6 +197,8 @@
    </item>
   </layout>
  </widget>
- <resources/>
+ <resources>
+  <include location="../symbols.qrc"/>
+ </resources>
  <connections/>
 </ui>

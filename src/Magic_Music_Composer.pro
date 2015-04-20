@@ -5,8 +5,8 @@
 #-------------------------------------------------
 
 QT       += core gui
-
-greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
+QT       += printsupport
+greaterThan(QT_MAJOR_VERSION, 4): QT += widgets printsupport
 
 TARGET = Magic_Music_Composer
 TEMPLATE = app
@@ -42,3 +42,6 @@ FORMS    += \
     ui/note_options.ui \
     ui/pause_options.ui \
     ui/track_options.ui
+
+RESOURCES += \
+    symbols.qrc

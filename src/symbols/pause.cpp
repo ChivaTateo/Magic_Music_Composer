@@ -22,7 +22,7 @@ Pause::Pause(Track* track, const QPixmap &pixmap, QGraphicsItem *parent):
 
 void Pause::drawSymbol(qreal &lastX, QPen pen)
 {
-    this->setPixmap(Track::pixVect[PAUSE_START + params[0]]);
+    this->setPixmap(QPixmap(":/pauses/"+QString::number(params[0])));
 
     this->setPos(lastX - this->boundingRect().width()*PAUSE_SCALE,
                  3*SIZE_BETWEEN_LINES - this->boundingRect().height()*PAUSE_SCALE);
