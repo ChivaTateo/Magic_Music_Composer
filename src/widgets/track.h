@@ -5,6 +5,7 @@
 #include <QGraphicsPixmapItem>
 #include <QtCore>
 #include <QtGui>
+
 #include "../symbols/notegroup.h"
 #include "../symbols/taktline.h"
 
@@ -32,6 +33,7 @@ public:
     void changeParam(int param, int i);
 private:
     qreal right;            //Крайнее положение стана
+    bool scaled;
 
     QGraphicsRectItem* selectRect;   //Курсор при перемещении
     QGraphicsLineItem* cursor;       //Курсор для вставки
@@ -43,6 +45,7 @@ private:
     End* end;       //Конечный символ
     QGraphicsTextItem* text_1;
     QGraphicsTextItem* text_2;
+    QList<QGraphicsPixmapItem*> tones;
 
     //Рисует нотоносец(линии)
     inline void drawLines();
@@ -50,8 +53,17 @@ private:
     //Удлиняет линии, если требуется больше
     inline void changeLines(qreal x);
 
+    //рисует размерность
+    void drawSize();
     //Рисует ключ и параметры на всю строку
     void drawStart();
+    //Рисует тональность
+    void drawTones(qreal &lastX);
+
+    //Определяет точность карты
+    int toneCount(bool sharp);
+    //Создает карту тональности
+    QVector<int> createToneMap(bool sharp);
 
     //Удаляет все тактовые линии
     void deleteTactLines();
@@ -61,13 +73,13 @@ private:
 
     //Событие получения и выхода из фокуса
     void focusInEvent(QFocusEvent* event);
-    void focusOutEvent(QFocusEvent* event);
 
     //Обработка нажатия клавиш
     void keyPressEvent(QKeyEvent *event);
     void keyReleaseEvent(QKeyEvent *event);
 
     void mousePressEvent(QMouseEvent *event);
+    void mouseDoubleClickEvent(QMouseEvent *event);
 public slots:
     //Слот изменения выделения нот
     void selectionChanged();

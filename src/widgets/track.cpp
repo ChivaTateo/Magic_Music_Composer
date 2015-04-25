@@ -1,5 +1,6 @@
 #include "track.h"
 #include "options.h"
+#include "trackviewer.h"
 
 Track* Track::lastFocus = nullptr;
 bool Track::ctrl = false;
@@ -7,13 +8,17 @@ bool Track::ctrl = false;
 Track::Track(QWidget *parent) :
     QGraphicsView(parent)
 {
+    scaled = false;
+
     this->setRenderHints(QPainter::Antialiasing | QPainter::SmoothPixmapTransform);
     this->setScene(new QGraphicsScene());
-
+    this->setHorizontalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
+    this->setVerticalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
+    this->setDragMode(QGraphicsView::ScrollHandDrag);
     //Первоначальные параметры трека при создании
-    params.push_back(4);
-    params.push_back(4);
-
+    params.push_back(0);
+    params.push_back(0);
+    this->setStyleSheet( "QGraphicsView { border-style: none; }" );
     pen.setColor(Qt::black);
     pen.setWidth(3);
 
@@ -124,7 +129,13 @@ void Track::update()
         key->setPos(-650,-1.5*SIZE_BETWEEN_LINES);
     else
         key->setPos(-650,-3*SIZE_BETWEEN_LINES);
+
     lastX = key->pos().x() + key->boundingRect().width()*KEY_SCALE;
+    if (params[1] != 0)
+    {
+        drawTones(lastX);
+    }
+
     text_1->setPos(lastX + 5, -3*SIZE_BETWEEN_LINES);
     text_2->setPos(lastX + 5, -SIZE_BETWEEN_LINES);
     lastX += text_2->boundingRect().width()*TEXT_SCALE + SPACE;
@@ -194,12 +205,12 @@ void Track::drawStart()
     int lastX = key->pos().x() + key->boundingRect().width()*KEY_SCALE;
 
     //Рисуем размерность
-    text_1 = new QGraphicsTextItem(QString::number(params[0]));
+    text_1 = new QGraphicsTextItem("2");
     text_1->setPos(lastX + 5, -3*SIZE_BETWEEN_LINES);;
     text_1->setScale(TEXT_SCALE);
     this->scene()->addItem(text_1);
 
-    text_2 = new QGraphicsTextItem(QString::number(params[1]));
+    text_2 = new QGraphicsTextItem("4");
     text_2->setPos(lastX + 5, -SIZE_BETWEEN_LINES);
     text_2->setScale(TEXT_SCALE);
     this->scene()->addItem(text_2);
@@ -226,6 +237,7 @@ void Track::createNote(int id)
     update();
 
     cursor->setLine(note->x()+note->boundingRect().width()*NOTE_SCALE,45,note->x()+note->boundingRect().width()*NOTE_SCALE,-15);
+    this->centerOn(cursor);
 }
 
 void Track::createPause(int id)
@@ -239,23 +251,20 @@ void Track::createPause(int id)
     update();
 
     cursor->setLine(pause->x()+pause->boundingRect().width()*PAUSE_SCALE,45,pause->x()+pause->boundingRect().width()*PAUSE_SCALE,-15);
+    this->centerOn(cursor);
 }
 
 void Track::focusInEvent(QFocusEvent *event)
 {
     QGraphicsView::focusInEvent(event);
+    TrackViewer* viewer = static_cast<TrackViewer*>(this->parent());
+    viewer->focusChange();
+
     QBrush brush(Qt::white);
     this->scene()->setBackgroundBrush(brush);
     lastFocus = this;
-    if (lastFocus != nullptr)
-        Options::p_instance->updateData(QList<MusicSymbol*>());
-}
+    Options::p_instance->updateData(QList<MusicSymbol*>());
 
-void Track::focusOutEvent(QFocusEvent *event)
-{
-    QGraphicsView::focusOutEvent(event);
-    QBrush brush(QColor(0,0,255,25));
-    this->scene()->setBackgroundBrush(brush);
 }
 
 void Track::setSelectRect(qreal x, qreal y, qreal w, qreal h)
@@ -335,6 +344,30 @@ void Track::mousePressEvent(QMouseEvent *event)
     }
 }
 
+void Track::mouseDoubleClickEvent(QMouseEvent *event)
+{
+    QGraphicsView::mouseDoubleClickEvent(event);
+
+    scaled = !scaled;
+    if(scaled)
+    {
+        this->setHorizontalScrollBarPolicy(Qt::ScrollBarAsNeeded);
+        this->setVerticalScrollBarPolicy(Qt::ScrollBarAsNeeded);
+        this->scale(2,2);
+        this->centerOn(cursor);
+    }
+    else
+    {
+        this->setHorizontalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
+        this->setVerticalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
+        this->scale(0.5,0.5);
+        this->centerOn(cursor);
+    }
+
+    TrackViewer* viewer = static_cast<TrackViewer*>(this->parent());
+    viewer->scaleTrack(scaled);
+}
+
 End* Track::getEnd()
 {
     return end;
@@ -353,14 +386,124 @@ QVector<int> Track::getParams()
 void Track::changeParam(int param, int i)
 {
     params[i] = param;
-    if (i < 2)
+    drawSize();
+}
+
+void Track::drawSize()
+{
+    switch(params[0])
     {
-        text_1->setPlainText(QString::number(params[0]));
-        text_2->setPlainText(QString::number(params[1]));
+        case 0:
+            text_1->setPlainText("2");
+            text_2->setPlainText("4");
+            break;
+        case 1:
+            text_1->setPlainText("3");
+            text_2->setPlainText("4");
+            break;
+        case 2:
+            text_1->setPlainText("4");
+            text_2->setPlainText("4");
+            break;
+        case 3:
+            text_1->setPlainText("6");
+            text_2->setPlainText("8");
+            break;
+        case 4:
+            text_1->setPlainText("3");
+            text_2->setPlainText("8");
+            break;
     }
+}
+
+void Track::drawTones(qreal &lastX)
+{
+    for (QList<QGraphicsPixmapItem*>::iterator iter = tones.begin(); iter != tones.end(); ++iter)
+    {
+        this->scene()->removeItem(*iter);
+    }
+    tones.clear();
+
+    bool sharp = (params[1] % 2)  == 1;
+    QPixmap pixmap;
+    if (sharp)
+        pixmap.load(":/special/2");
+    else
+        pixmap.load(":/special/0");
+
+    QVector<int> toneMap = createToneMap(sharp);
+    int count = toneCount(sharp);
+
+    for (int i = 0; i < count; ++i)
+    {
+        QGraphicsPixmapItem* tone = new QGraphicsPixmapItem(pixmap);
+        tones.append(tone);
+        tone->setScale(SPEC_SCALE*NOTE_SCALE);
+        if (!sharp)
+        {
+            tone->setPos(lastX,
+                         toneMap[i]*HALF_SIZE - tone->boundingRect().height()*SPEC_SCALE*NOTE_SCALE);
+        }
+        else
+        {
+            tone->setPos(lastX,
+                         toneMap[i]*HALF_SIZE - tone->boundingRect().height()*SPEC_SCALE*TONE_SCALE);
+        }
+
+        lastX += tone->boundingRect().width()*SPEC_SCALE*NOTE_SCALE;
+        tone->setTransformationMode(Qt::SmoothTransformation);
+        this->scene()->addItem(tone);
+    }
+}
+
+int Track::toneCount(bool sharp)
+{
+    int res = 0;
+    if (sharp)
+    {
+        for(int i = -1; i != params[1]; i+=2)
+        {
+            ++res;
+        }
+    }
+    else
+    {
+        for(int i = 0; i != params[1]; i+=2)
+        {
+            ++res;
+        }
+    }
+    return res;
+}
+
+QVector<int> Track::createToneMap(bool sharp)
+{
+    QVector<int> map;
+
+    if (sharp)
+    {
+        map.append(0);
+        map.append(3);
+        map.append(-1);
+        map.append(2);
+        map.append(5);
+        map.append(1);
+        map.append(4);
+    }
+    else
+    {
+        map.append(4);
+        map.append(1);
+        map.append(5);
+        map.append(2);
+        map.append(6);
+        map.append(3);
+        map.append(7);
+    }
+
+    return map;
 }
 
 Track::~Track()
 {
-    this->scene()->clear();
 }

@@ -15,7 +15,8 @@
 #define TEXT_SCALE 4
 #define END_SCALE 0.5
 #define NOTE_SCALE 0.5
-#define SPEC_SCALE 0.8
+#define SPEC_SCALE 0.85
+#define TONE_SCALE 0.45
 
 #define NOTE_SCALE_FOR_CENTER 0.25
 #define LONG_NOTE_SCALE_FOR_CENTER 0.43

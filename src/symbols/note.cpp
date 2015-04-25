@@ -170,6 +170,7 @@ void Note::mouseReleaseEvent(QGraphicsSceneMouseEvent *event)
 
 void Note::addSpec(int id)
 {
+    clear();
     this->addParam(id);
     spec = new QGraphicsPixmapItem(QPixmap(":/special/"+QString::number(id)),this);
     spec->setScale(SPEC_SCALE);

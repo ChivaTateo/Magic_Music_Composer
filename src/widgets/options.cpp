@@ -51,6 +51,7 @@ void Options::updateData(QList<MusicSymbol*> symbols)
             }
         }
     }
+
 }
 
 void Options::changeNotePixmap(int id)
@@ -78,18 +79,14 @@ void Options::changeNoteParams()
 
 int Options::idRadioButton()
 {
-    if(note_ui->rBut_flatUp->isChecked())
+    if(note_ui->rBut_flat->isChecked())
         return 0;
-    else if(note_ui->rBut_flatDown->isChecked())
+    else if(note_ui->rBut_nat->isChecked())
         return 1;
-    else if(note_ui->rBut_natUp->isChecked())
+    else if(note_ui->rBut_sharp->isChecked())
         return 2;
-    else if(note_ui->rBut_natDown->isChecked())
-        return 3;
-    else if(note_ui->rBut_sharpUp->isChecked())
-        return 4;
-    else if(note_ui->rBut_sharpDown->isChecked())
-        return 5;
+    else
+        return 0;
 }
 
 void Options::changeTrackParams()
@@ -102,8 +99,8 @@ void Options::changeTrackParams()
     Track::lastFocus->getKey()->setPixmap(QPixmap(":/keys/"+QString::number(track_ui->key_slider->value())));
     track_ui->key_pixmap->setPixmap(QPixmap(":/keys/"+QString::number(track_ui->key_slider->value())));
 
-    Track::lastFocus->changeParam(track_ui->param_1->value(),0);
-    Track::lastFocus->changeParam(track_ui->param_2->value(),1);
+    Track::lastFocus->changeParam(track_ui->size_slider->value(),0);
+    Track::lastFocus->changeParam(track_ui->tones_cb->currentIndex(),1);
 
     Track::lastFocus->update();
 }
@@ -119,6 +116,8 @@ Options::~Options()
 {
     delete note_ui;
     delete pause_ui;
+    delete track_ui;
+    p_instance = nullptr;
 }
 
 void Options::clear_clicked()
@@ -137,8 +136,8 @@ void Options::delete_clicked()
 void Options::loadTrackOptions()
 {
     track_ui->setupUi(this);
-    track_ui->param_1->setValue(Track::lastFocus->getParams()[0]);
-    track_ui->param_2->setValue(Track::lastFocus->getParams()[1]);
+    track_ui->size_slider->setValue(Track::lastFocus->getParams()[0]);
+    track_ui->size_slider->setMaximum(4);
 
     track_ui->key_pixmap->setPixmap(QPixmap(":/keys/" + QString::number(Track::lastFocus->getKey()->getParams()[0])));
     track_ui->key_slider->setValue(Track::lastFocus->getKey()->getParams()[0]);
@@ -148,10 +147,12 @@ void Options::loadTrackOptions()
     track_ui->end_slider->setValue(Track::lastFocus->getEnd()->getParams()[0]);
     track_ui->end_slider->setMaximum(1);
 
+    track_ui->tones_cb->setCurrentIndex(Track::lastFocus->getParams()[1]);
+
     connect(track_ui->key_slider,SIGNAL(valueChanged(int)),this,SLOT(changeTrackParams()));
     connect(track_ui->end_slider,SIGNAL(valueChanged(int)),this,SLOT(changeTrackParams()));
-    connect(track_ui->param_1,SIGNAL(valueChanged(int)),this,SLOT(changeTrackParams()));
-    connect(track_ui->param_2,SIGNAL(valueChanged(int)),this,SLOT(changeTrackParams()));
+    connect(track_ui->size_slider,SIGNAL(valueChanged(int)),this,SLOT(changeTrackParams()));
+    connect(track_ui->tones_cb,SIGNAL(currentIndexChanged(int)),this,SLOT(changeTrackParams()));
 }
 
 void Options::loadNoteOptions()
@@ -165,23 +166,14 @@ void Options::loadNoteOptions()
     {
         switch(symbols.first()->getParams()[2])
         {
+            case 0:
+                note_ui->rBut_flat->setChecked(true);
+                break;
             case 1:
-                note_ui->rBut_flatUp->setChecked(true);
+                note_ui->rBut_nat->setChecked(true);
                 break;
             case 2:
-                note_ui->rBut_flatDown->setChecked(true);
-                break;
-            case 3:
-                note_ui->rBut_natUp->setChecked(true);
-                break;
-            case 4:
-                note_ui->rBut_natDown->setChecked(true);
-                break;
-            case 5:
-                note_ui->rBut_sharpUp->setChecked(true);
-                break;
-            case 6:
-                note_ui->rBut_sharpDown->setChecked(true);
+                note_ui->rBut_sharp->setChecked(true);
                 break;
         }
     }
@@ -190,12 +182,9 @@ void Options::loadNoteOptions()
     connect(note_ui->but_delete,SIGNAL(clicked()),this,SLOT(delete_clicked()));
     connect(note_ui->note_slider,SIGNAL(valueChanged(int)),this,SLOT(changeNotePixmap(int)));
 
-    connect(note_ui->rBut_flatUp,SIGNAL(clicked()),this,SLOT(changeNoteParams()));
-    connect(note_ui->rBut_flatDown,SIGNAL(clicked()),this,SLOT(changeNoteParams()));
-    connect(note_ui->rBut_natUp,SIGNAL(clicked()),this,SLOT(changeNoteParams()));
-    connect(note_ui->rBut_natDown,SIGNAL(clicked()),this,SLOT(changeNoteParams()));
-    connect(note_ui->rBut_sharpUp,SIGNAL(clicked()),this,SLOT(changeNoteParams()));
-    connect(note_ui->rBut_sharpDown,SIGNAL(clicked()),this,SLOT(changeNoteParams()));
+    connect(note_ui->rBut_flat,SIGNAL(clicked()),this,SLOT(changeNoteParams()));
+    connect(note_ui->rBut_nat,SIGNAL(clicked()),this,SLOT(changeNoteParams()));
+    connect(note_ui->rBut_sharp,SIGNAL(clicked()),this,SLOT(changeNoteParams()));
 }
 
 void Options::loadPauseOptions()

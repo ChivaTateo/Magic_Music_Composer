@@ -4,7 +4,7 @@
 #include <QWidget>
 #include <QLayout>
 #include <QCommandLinkButton>
-
+#include <QPropertyAnimation>
 #include "track.h"
 
 class TrackViewer : public QWidget
@@ -20,9 +20,12 @@ class TrackViewer : public QWidget
 public:
     explicit TrackViewer(QWidget *parent = 0);
     QList<Track*> getTracks();
+    void scaleTrack(bool scaled);
+    ~TrackViewer();
 public slots:
     void addTrack();
     void deleteTrack(int index);
+    void focusChange();
 };
 
 #endif // TRACKVIEWER_H

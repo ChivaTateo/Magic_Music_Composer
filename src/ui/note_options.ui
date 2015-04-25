@@ -7,7 +7,7 @@
     <x>0</x>
     <y>0</y>
     <width>158</width>
-    <height>300</height>
+    <height>384</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -17,28 +17,8 @@
    <property name="sizeConstraint">
     <enum>QLayout::SetDefaultConstraint</enum>
    </property>
-   <item row="4" column="2">
-    <widget class="QRadioButton" name="rBut_sharpDown">
-     <property name="focusPolicy">
-      <enum>Qt::NoFocus</enum>
-     </property>
-     <property name="text">
-      <string/>
-     </property>
-     <property name="icon">
-      <iconset resource="../symbols.qrc">
-       <normaloff>:/special/5</normaloff>:/special/5</iconset>
-     </property>
-     <property name="iconSize">
-      <size>
-       <width>32</width>
-       <height>32</height>
-      </size>
-     </property>
-    </widget>
-   </item>
-   <item row="2" column="2">
-    <widget class="QRadioButton" name="rBut_flatDown">
+   <item row="3" column="0">
+    <widget class="QRadioButton" name="rBut_nat">
      <property name="focusPolicy">
       <enum>Qt::NoFocus</enum>
      </property>
@@ -57,48 +37,8 @@
      </property>
     </widget>
    </item>
-   <item row="3" column="2">
-    <widget class="QRadioButton" name="rBut_natDown">
-     <property name="focusPolicy">
-      <enum>Qt::NoFocus</enum>
-     </property>
-     <property name="text">
-      <string/>
-     </property>
-     <property name="icon">
-      <iconset resource="../symbols.qrc">
-       <normaloff>:/special/3</normaloff>:/special/3</iconset>
-     </property>
-     <property name="iconSize">
-      <size>
-       <width>32</width>
-       <height>32</height>
-      </size>
-     </property>
-    </widget>
-   </item>
-   <item row="3" column="0">
-    <widget class="QRadioButton" name="rBut_natUp">
-     <property name="focusPolicy">
-      <enum>Qt::NoFocus</enum>
-     </property>
-     <property name="text">
-      <string/>
-     </property>
-     <property name="icon">
-      <iconset resource="../symbols.qrc">
-       <normaloff>:/special/2</normaloff>:/special/2</iconset>
-     </property>
-     <property name="iconSize">
-      <size>
-       <width>32</width>
-       <height>32</height>
-      </size>
-     </property>
-    </widget>
-   </item>
    <item row="2" column="0">
-    <widget class="QRadioButton" name="rBut_flatUp">
+    <widget class="QRadioButton" name="rBut_flat">
      <property name="focusPolicy">
       <enum>Qt::NoFocus</enum>
      </property>
@@ -118,7 +58,7 @@
     </widget>
    </item>
    <item row="4" column="0">
-    <widget class="QRadioButton" name="rBut_sharpUp">
+    <widget class="QRadioButton" name="rBut_sharp">
      <property name="focusPolicy">
       <enum>Qt::NoFocus</enum>
      </property>
@@ -127,7 +67,7 @@
      </property>
      <property name="icon">
       <iconset resource="../symbols.qrc">
-       <normaloff>:/special/4</normaloff>:/special/4</iconset>
+       <normaloff>:/special/2</normaloff>:/special/2</iconset>
      </property>
      <property name="iconSize">
       <size>
@@ -175,23 +115,23 @@
      </property>
     </widget>
    </item>
-   <item row="8" column="0">
-    <widget class="QPushButton" name="but_delete">
-     <property name="focusPolicy">
-      <enum>Qt::NoFocus</enum>
-     </property>
-     <property name="text">
-      <string>delete</string>
-     </property>
-    </widget>
-   </item>
-   <item row="6" column="0">
+   <item row="6" column="0" colspan="3">
     <widget class="QPushButton" name="but_clear">
      <property name="focusPolicy">
       <enum>Qt::NoFocus</enum>
      </property>
      <property name="text">
       <string>clear</string>
+     </property>
+    </widget>
+   </item>
+   <item row="8" column="0" colspan="3">
+    <widget class="QPushButton" name="but_delete">
+     <property name="focusPolicy">
+      <enum>Qt::NoFocus</enum>
+     </property>
+     <property name="text">
+      <string>delete</string>
      </property>
     </widget>
    </item>

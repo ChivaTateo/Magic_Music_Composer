@@ -17,7 +17,7 @@ class ProjectViewer : public QTabWidget
     Q_OBJECT
 public:
     explicit ProjectViewer(QWidget *parent = 0);
-
+    ~ProjectViewer();
 public slots:
     void addTrack();
     void addProject();

@@ -28,28 +28,34 @@ void ProjectViewer::addProject()
 
 void ProjectViewer::createNote(int id)
 {
-    TrackViewer* viewer = static_cast<TrackViewer*>(this->currentWidget());
-    QList<Track*> tracks = viewer->getTracks();
-
-    for(QList<Track*>::iterator iter = tracks.begin(); iter != tracks.end(); ++iter)
+    if (this->currentIndex() != -1)
     {
-        if (Track::lastFocus == *iter)
+        TrackViewer* viewer = static_cast<TrackViewer*>(this->currentWidget());
+        QList<Track*> tracks = viewer->getTracks();
+
+        for(QList<Track*>::iterator iter = tracks.begin(); iter != tracks.end(); ++iter)
         {
-            (*iter)->createNote(id);
+            if (Track::lastFocus == *iter)
+            {
+                (*iter)->createNote(id);
+            }
         }
     }
 }
 
 void ProjectViewer::createPause(int id)
 {
-    TrackViewer* viewer = static_cast<TrackViewer*>(this->currentWidget());
-    QList<Track*> tracks = viewer->getTracks();
-
-    for(QList<Track*>::iterator iter = tracks.begin(); iter != tracks.end(); ++iter)
+    if (this->currentIndex() != -1)
     {
-        if (Track::lastFocus == *iter)
+        TrackViewer* viewer = static_cast<TrackViewer*>(this->currentWidget());
+        QList<Track*> tracks = viewer->getTracks();
+
+        for(QList<Track*>::iterator iter = tracks.begin(); iter != tracks.end(); ++iter)
         {
-            (*iter)->createPause(id);
+            if (Track::lastFocus == *iter)
+            {
+                (*iter)->createPause(id);
+            }
         }
     }
 }
@@ -78,5 +84,10 @@ void ProjectViewer::exportTo()
                 image->save(fileName);
             }
         }
+
+}
+
+ProjectViewer::~ProjectViewer()
+{
 
 }
