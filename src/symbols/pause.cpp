@@ -20,7 +20,7 @@ Pause::Pause(Track* track, const QPixmap &pixmap, QGraphicsItem *parent):
     this->setFlag(QGraphicsItem::ItemIsSelectable);
 }
 
-void Pause::drawSymbol(qreal &lastX, QPen pen)
+void Pause::drawSymbol(qreal &lastX)
 {
     this->setPixmap(QPixmap(":/pauses/"+QString::number(params[0])));
 
@@ -34,8 +34,6 @@ void Pause::mouseMoveEvent(QGraphicsSceneMouseEvent *event)
 
     track->setSelectRect(mousePos.x()-this->boundingRect().width()*NOTE_SCALE_FOR_CENTER,
                          -60, 20, 130);
-
-    //track->update();
 }
 
 void Pause::mouseReleaseEvent(QGraphicsSceneMouseEvent *event)

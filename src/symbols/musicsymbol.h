@@ -10,21 +10,25 @@
 #include <QMessageBox>
 #include <QVector>
 
-#define PAUSE_SCALE 0.6
-#define KEY_SCALE 0.9
-#define TEXT_SCALE 4
-#define END_SCALE 0.5
-#define NOTE_SCALE 0.5
-#define SPEC_SCALE 0.85
-#define TONE_SCALE 0.45
-
-#define NOTE_SCALE_FOR_CENTER 0.25
-#define LONG_NOTE_SCALE_FOR_CENTER 0.43
-
 #define SPACE 30      //Расстояние между символами
 #define HALF_SIZE 7.5 //Половина расстояния между линиями
 #define SIZE_BETWEEN_LINES 15       //Расстояние между линиями
 #define MORE_LENGTH 500 //Удлинение линии
+
+#ifdef Q_OS_ANDROID
+    #define TEXT_SCALE 2
+    #define TEXT_Y_1 -2*SIZE_BETWEEN_LINES
+    #define TEXT_Y_2 0
+#else
+    #define TEXT_SCALE 4
+    #define TEXT_Y_1 -3*SIZE_BETWEEN_LINES
+    #define TEXT_Y_2 -SIZE_BETWEEN_LINES
+#endif
+
+#define TONE_SCALE 0.45
+
+#define NOTE_SCALE_FOR_CENTER 0.25
+#define LONG_NOTE_SCALE_FOR_CENTER 0.43
 
 
 class Track;
@@ -45,7 +49,7 @@ public:
     void changeParam(int param, int i);
 
     //Рисование ноты
-    virtual void drawSymbol(qreal &lastX, QPen pen) = 0;
+    virtual void drawSymbol(qreal &lastX) = 0;
 
     ~MusicSymbol();
 protected:

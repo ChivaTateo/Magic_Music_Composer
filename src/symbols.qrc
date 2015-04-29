@@ -30,21 +30,9 @@
         <file alias="1">images/spec2.png</file>
         <file alias="2">images/spec3.png</file>
     </qresource>
-    <qresource prefix="/tones">
-        <file alias="5">images/A.png</file>
-        <file alias="8">images/Ab.png</file>
-        <file alias="9">images/B.png</file>
-        <file alias="4">images/Bb.png</file>
-        <file alias="13">images/C#.png</file>
-        <file alias="0">images/C.png</file>
-        <file alias="14">images/Cb.png</file>
-        <file alias="3">images/D.png</file>
-        <file alias="10">images/Db.png</file>
-        <file alias="7">images/E.png</file>
-        <file alias="6">images/Eb.png</file>
-        <file alias="11">images/F#.png</file>
-        <file alias="2">images/F.png</file>
-        <file alias="1">images/G.png</file>
-        <file alias="12">images/Gb.png</file>
+    <qresource prefix="/takts">
+        <file alias="0">images/takt_1.png</file>
+        <file alias="1">images/takt_2.png</file>
+        <file alias="2">images/takt_3.png</file>
     </qresource>
 </RCC>

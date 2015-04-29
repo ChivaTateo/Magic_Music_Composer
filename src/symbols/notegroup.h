@@ -7,25 +7,13 @@
 #include "key.h"
 #include "end.h"
 
-class NoteGroup : public QGraphicsItem
+class NoteGroup : public QGraphicsRectItem
 {
 public:
     NoteGroup() {}
 
     ~NoteGroup()
     {
-    }
-
-    //Переопределенные функции абстрактного класса
-    QRectF boundingRect() const
-    {
-        return QRectF(0,0,0,0);
-    }
-    void paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget)
-    {
-        painter = nullptr;
-        option = nullptr;
-        widget = nullptr;
     }
 
     //Является ли item ребенком данного объекта

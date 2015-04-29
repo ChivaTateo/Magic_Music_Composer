@@ -20,6 +20,7 @@ public:
 private:
     QSignalMapper* noteMapper;
     QSignalMapper* pauseMapper;
+    QSignalMapper* taktMapper;
 
     Ui::MagicComposer *ui;
 };

@@ -17,7 +17,7 @@ TrackViewer::TrackViewer(QWidget *parent) :
 
 void TrackViewer::addTrack()
 {
-    if (tracks.size() < 4)
+    if (tracks.size() < MAX_TRACKS)
     {
         QPushButton* magic = new QPushButton(this);
         layout->addWidget(magic,tracks.size(),0);
@@ -36,7 +36,7 @@ void TrackViewer::addTrack()
         layout->addWidget(button,tracks.size()+1,0,1,0);
     }
 
-    if (tracks.size() == 4)
+    if (tracks.size() == MAX_TRACKS)
     {
         button->setHidden(true);
     }
@@ -95,7 +95,8 @@ void TrackViewer::scaleTrack(bool scaled)
              buttons.at(i)->setHidden(false);
              ++i;
          }
-         button->setHidden(false);
+         if (tracks.size() < 4)
+            button->setHidden(false);
      }
 }
 
@@ -112,4 +113,19 @@ TrackViewer::~TrackViewer()
 {
     tracks.clear();
     buttons.clear();
+}
+
+void TrackViewer::createNote(int id)
+{
+    Track::lastFocus->createNote(id);
+}
+
+void TrackViewer::createTakt(int id)
+{
+    Track::lastFocus->createTakt(id);
+}
+
+void TrackViewer::createPause(int id)
+{
+    Track::lastFocus->createPause(id);
 }

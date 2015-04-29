@@ -21,7 +21,9 @@ SOURCES += main.cpp\
     symbols/note.cpp \
     symbols/pause.cpp \
     symbols/key.cpp \
-    symbols/end.cpp
+    symbols/end.cpp \
+    symbols/taktline.cpp \
+    symbols/additline.cpp
 
 HEADERS  += \
     symbols/musicsymbol.h \
@@ -33,15 +35,18 @@ HEADERS  += \
     widgets/trackviewer.h \
     symbols/note.h \
     symbols/pause.h \
+    symbols/taktline.h \
     symbols/key.h \
     symbols/end.h \
-    symbols/taktline.h
+    symbols/additline.h
 
 FORMS    += \
     ui/magiccomposer.ui \
     ui/note_options.ui \
     ui/pause_options.ui \
-    ui/track_options.ui
+    ui/track_options.ui \
+    ui/magiccomposer_andr.ui
 
 RESOURCES += \
-    symbols.qrc
+    symbols.qrc \
+    icons.qrc

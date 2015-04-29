@@ -10,7 +10,7 @@ End::End(Track* track, const QPixmap &pixmap, QGraphicsItem *parent):
 {
 }
 
-void End::drawSymbol(qreal &lastX, QPen pen)
+void End::drawSymbol(qreal &lastX)
 {
-
+    this->setPos(lastX - this->boundingRect().width()*END_SCALE + 2,-SIZE_BETWEEN_LINES);
 }

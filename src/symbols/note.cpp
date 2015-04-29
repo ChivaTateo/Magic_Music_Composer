@@ -24,7 +24,7 @@ Note::Note(Track* track, const QPixmap &pixmap, QGraphicsItem *parent):
     this->setFlag(QGraphicsItem::ItemIsSelectable);
 }
 
-void Note::drawSymbol(qreal &lastX, QPen pen)
+void Note::drawSymbol(qreal &lastX)
 {
     this->setPixmap(QPixmap(":/notes/"+QString::number(params[1])));
     if(params[1] == 0)
@@ -43,8 +43,8 @@ void Note::drawSymbol(qreal &lastX, QPen pen)
         {
             for (int i = 1; (i+1)*-SIZE_BETWEEN_LINES >= this->pos().y() + this->boundingRect().height()*NOTE_SCALE_FOR_CENTER; ++i)
             {
-                this->scene()->addItem(new TaktLine(lastX - this->boundingRect().width()*NOTE_SCALE_FOR_CENTER,(i+1)*-SIZE_BETWEEN_LINES,
-                                       lastX - this->boundingRect().width()*NOTE_SCALE_FOR_CENTER+20,(i+1)*-SIZE_BETWEEN_LINES, pen));
+                this->scene()->addItem(new AdditLine(lastX - this->boundingRect().width()*NOTE_SCALE_FOR_CENTER,(i+1)*-SIZE_BETWEEN_LINES,
+                                       lastX - this->boundingRect().width()*NOTE_SCALE_FOR_CENTER+20,(i+1)*-SIZE_BETWEEN_LINES, track->getPen()));
             }
         }
 
@@ -52,8 +52,8 @@ void Note::drawSymbol(qreal &lastX, QPen pen)
         {
             for (int i = 3; (i+1)*SIZE_BETWEEN_LINES <= this->pos().y() + this->boundingRect().height()*NOTE_SCALE_FOR_CENTER; ++i)
             {
-                this->scene()->addItem(new TaktLine(lastX - this->boundingRect().width()*NOTE_SCALE_FOR_CENTER,(i+1)*SIZE_BETWEEN_LINES,
-                                       lastX - this->boundingRect().width()*NOTE_SCALE_FOR_CENTER+20,(i+1)*SIZE_BETWEEN_LINES, pen));
+                this->scene()->addItem(new AdditLine(lastX - this->boundingRect().width()*NOTE_SCALE_FOR_CENTER,(i+1)*SIZE_BETWEEN_LINES,
+                                       lastX - this->boundingRect().width()*NOTE_SCALE_FOR_CENTER+20,(i+1)*SIZE_BETWEEN_LINES, track->getPen()));
             }
         }
     }
@@ -61,7 +61,7 @@ void Note::drawSymbol(qreal &lastX, QPen pen)
     {
         if(params.size() > 2)
         {
-            spec->setPixmap(QPixmap(":/special/"+QString::number(params[2])));
+            spec->setPixmap(QPixmap(":/special/" + QString::number(params[2])));
             spec->setPos(-spec->boundingRect().width()*SPEC_SCALE,
                          this->boundingRect().height()*NOTE_SCALE);
         }
@@ -72,8 +72,8 @@ void Note::drawSymbol(qreal &lastX, QPen pen)
         {
             for (int i = 1; (i+1)*-SIZE_BETWEEN_LINES >= this->pos().y() + this->boundingRect().height()*NOTE_SCALE - HALF_SIZE; ++i)
             {
-                this->scene()->addItem(new TaktLine(lastX - this->boundingRect().width()*NOTE_SCALE_FOR_CENTER,(i+1)*-SIZE_BETWEEN_LINES,
-                                       lastX - this->boundingRect().width()*NOTE_SCALE_FOR_CENTER+20,(i+1)*-SIZE_BETWEEN_LINES, pen));
+                this->scene()->addItem(new AdditLine(lastX - this->boundingRect().width()*NOTE_SCALE_FOR_CENTER,(i+1)*-SIZE_BETWEEN_LINES,
+                                       lastX - this->boundingRect().width()*NOTE_SCALE_FOR_CENTER+20,(i+1)*-SIZE_BETWEEN_LINES, track->getPen()));
             }
         }
 
@@ -81,8 +81,8 @@ void Note::drawSymbol(qreal &lastX, QPen pen)
         {
             for (int i = 3; (i+1)*SIZE_BETWEEN_LINES <= this->pos().y() + this->boundingRect().height()*NOTE_SCALE; ++i)
             {
-                this->scene()->addItem(new TaktLine(lastX - this->boundingRect().width()*NOTE_SCALE_FOR_CENTER,(i+1)*SIZE_BETWEEN_LINES,
-                                       lastX - this->boundingRect().width()*NOTE_SCALE_FOR_CENTER+20,(i+1)*SIZE_BETWEEN_LINES, pen));
+                this->scene()->addItem(new AdditLine(lastX - this->boundingRect().width()*NOTE_SCALE_FOR_CENTER,(i+1)*SIZE_BETWEEN_LINES,
+                                       lastX - this->boundingRect().width()*NOTE_SCALE_FOR_CENTER+20,(i+1)*SIZE_BETWEEN_LINES, track->getPen()));
             }
         }
     }
@@ -136,20 +136,17 @@ void Note::mouseReleaseEvent(QGraphicsSceneMouseEvent *event)
             {
                 haveSymbols = true;
                 NoteGroup* group = static_cast<NoteGroup*>(note->parentItem());
-                if (group != nullptr)
+                if (group->hasChild(this))
                 {
-                    if (group->hasChild(this))
-                    {
-                        break;
-                    }
-
-                    if (this->parentItem()->childItems().size() == 1)
-                    {
-                        this->scene()->removeItem(this->parentItem());
-                    }
-                    this->setParentItem(group);
                     break;
                 }
+
+                if (this->parentItem()->childItems().size() == 1)
+                {
+                    this->scene()->removeItem(this->parentItem());
+                }
+                this->setParentItem(group);
+                break;
             }
         }
 

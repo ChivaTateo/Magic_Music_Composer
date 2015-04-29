@@ -4,8 +4,13 @@
 #include <QWidget>
 #include <QLayout>
 #include <QCommandLinkButton>
-#include <QPropertyAnimation>
 #include "track.h"
+
+#ifdef Q_OS_ANDROID
+    #define MAX_TRACKS 2
+#else
+    #define MAX_TRACKS 4
+#endif
 
 class TrackViewer : public QWidget
 {
@@ -26,6 +31,10 @@ public slots:
     void addTrack();
     void deleteTrack(int index);
     void focusChange();
+
+    void createNote(int id);
+    void createPause(int id);
+    void createTakt(int id);
 };
 
 #endif // TRACKVIEWER_H

@@ -7,13 +7,20 @@
     <x>0</x>
     <y>0</y>
     <width>189</width>
-    <height>214</height>
+    <height>347</height>
    </rect>
   </property>
   <property name="windowTitle">
    <string>Form</string>
   </property>
+  <property name="windowIcon">
+   <iconset resource="../icons.qrc">
+    <normaloff>:/images/icon.png</normaloff>:/images/icon.png</iconset>
+  </property>
   <layout class="QGridLayout" name="gridLayout">
+   <property name="sizeConstraint">
+    <enum>QLayout::SetNoConstraint</enum>
+   </property>
    <item row="0" column="0">
     <widget class="QLabel" name="key_pixmap">
      <property name="text">
@@ -86,7 +93,7 @@
        <string>C</string>
       </property>
       <property name="icon">
-       <iconset resource="../symbols.qrc">
+       <iconset resource="../icons.qrc">
         <normaloff>:/tones/0</normaloff>:/tones/0</iconset>
       </property>
      </item>
@@ -95,7 +102,7 @@
        <string>G</string>
       </property>
       <property name="icon">
-       <iconset resource="../symbols.qrc">
+       <iconset resource="../icons.qrc">
         <normaloff>:/tones/1</normaloff>:/tones/1</iconset>
       </property>
      </item>
@@ -104,7 +111,7 @@
        <string>F</string>
       </property>
       <property name="icon">
-       <iconset resource="../symbols.qrc">
+       <iconset resource="../icons.qrc">
         <normaloff>:/tones/2</normaloff>:/tones/2</iconset>
       </property>
      </item>
@@ -113,7 +120,7 @@
        <string>D</string>
       </property>
       <property name="icon">
-       <iconset resource="../symbols.qrc">
+       <iconset resource="../icons.qrc">
         <normaloff>:/tones/3</normaloff>:/tones/3</iconset>
       </property>
      </item>
@@ -122,7 +129,7 @@
        <string>Bb</string>
       </property>
       <property name="icon">
-       <iconset resource="../symbols.qrc">
+       <iconset resource="../icons.qrc">
         <normaloff>:/tones/4</normaloff>:/tones/4</iconset>
       </property>
      </item>
@@ -131,7 +138,7 @@
        <string>A</string>
       </property>
       <property name="icon">
-       <iconset resource="../symbols.qrc">
+       <iconset resource="../icons.qrc">
         <normaloff>:/tones/5</normaloff>:/tones/5</iconset>
       </property>
      </item>
@@ -140,7 +147,7 @@
        <string>Eb</string>
       </property>
       <property name="icon">
-       <iconset resource="../symbols.qrc">
+       <iconset resource="../icons.qrc">
         <normaloff>:/tones/6</normaloff>:/tones/6</iconset>
       </property>
      </item>
@@ -149,7 +156,7 @@
        <string>E</string>
       </property>
       <property name="icon">
-       <iconset resource="../symbols.qrc">
+       <iconset resource="../icons.qrc">
         <normaloff>:/tones/7</normaloff>:/tones/7</iconset>
       </property>
      </item>
@@ -158,7 +165,7 @@
        <string>Ab</string>
       </property>
       <property name="icon">
-       <iconset resource="../symbols.qrc">
+       <iconset resource="../icons.qrc">
         <normaloff>:/tones/8</normaloff>:/tones/8</iconset>
       </property>
      </item>
@@ -167,7 +174,7 @@
        <string>B</string>
       </property>
       <property name="icon">
-       <iconset resource="../symbols.qrc">
+       <iconset resource="../icons.qrc">
         <normaloff>:/tones/9</normaloff>:/tones/9</iconset>
       </property>
      </item>
@@ -176,7 +183,7 @@
        <string>Db</string>
       </property>
       <property name="icon">
-       <iconset resource="../symbols.qrc">
+       <iconset resource="../icons.qrc">
         <normaloff>:/tones/10</normaloff>:/tones/10</iconset>
       </property>
      </item>
@@ -185,7 +192,7 @@
        <string>F#</string>
       </property>
       <property name="icon">
-       <iconset resource="../symbols.qrc">
+       <iconset resource="../icons.qrc">
         <normaloff>:/tones/11</normaloff>:/tones/11</iconset>
       </property>
      </item>
@@ -194,7 +201,7 @@
        <string>Gb</string>
       </property>
       <property name="icon">
-       <iconset resource="../symbols.qrc">
+       <iconset resource="../icons.qrc">
         <normaloff>:/tones/12</normaloff>:/tones/12</iconset>
       </property>
      </item>
@@ -203,7 +210,7 @@
        <string>C#</string>
       </property>
       <property name="icon">
-       <iconset resource="../symbols.qrc">
+       <iconset resource="../icons.qrc">
         <normaloff>:/tones/13</normaloff>:/tones/13</iconset>
       </property>
      </item>
@@ -212,7 +219,7 @@
        <string>Cb</string>
       </property>
       <property name="icon">
-       <iconset resource="../symbols.qrc">
+       <iconset resource="../icons.qrc">
         <normaloff>:/tones/14</normaloff>:/tones/14</iconset>
       </property>
      </item>
@@ -221,7 +228,7 @@
   </layout>
  </widget>
  <resources>
-  <include location="../symbols.qrc"/>
+  <include location="../icons.qrc"/>
  </resources>
  <connections/>
 </ui>

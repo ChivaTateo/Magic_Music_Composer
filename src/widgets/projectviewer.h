@@ -6,7 +6,6 @@
 #include <QToolButton>
 #include <QSignalMapper>
 #include <QImage>
-#include <QtPrintSupport/QPrinter>
 #include <qimage.h>
 #include <QFileDialog>
 #include "trackviewer.h"
@@ -21,12 +20,22 @@ public:
 public slots:
     void addTrack();
     void addProject();
+
     void createNote(int id);
     void createPause(int id);
+    void createTakt(int id);
     void closeProject(int index);
     void exportTo();
+
+    void saveProject();
+    void openProject();
+    void saveTrack();
+    void openTrack();
 private:
     QSignalMapper* mapper;
+
+    void createTrackXML(QXmlStreamWriter &xmlWriter, Track* track);
+    void readTrackXML(QXmlStreamReader &xmlReader);
 
 };
 

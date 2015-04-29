@@ -1,22 +1,21 @@
 #ifndef TAKTLINES_H
 #define TAKTLINES_H
 
-#include <QGraphicsLineItem>
+#include "musicsymbol.h"
+#define TAKT_SCALE 0.5
 
-class TaktLine : public QGraphicsLineItem
+class Track;
+
+class TaktLine : public MusicSymbol
 {
 public:
-    explicit TaktLine(QGraphicsItem *parent = 0):
-        QGraphicsLineItem(parent)
-    {
-    }
+    explicit TaktLine(QGraphicsItem *parent = 0);
+    explicit TaktLine(Track* track, const QPixmap &pixmap, QGraphicsItem *parent = 0);
 
-    explicit TaktLine(qreal x1,qreal y1,qreal x2,qreal y2,QPen pen,QGraphicsItem *parent = 0):
-        QGraphicsLineItem(x1,y1,x2,y2,parent)
-    {
-        this->setPen(pen);
-    }
+    void drawSymbol(qreal &lastX);
 
+    void mouseMoveEvent(QGraphicsSceneMouseEvent *event);
+    void mouseReleaseEvent(QGraphicsSceneMouseEvent *event);
 };
 
 #endif // TAKTLINES_H

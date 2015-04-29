@@ -8,6 +8,7 @@
 
 #include "../symbols/notegroup.h"
 #include "../symbols/taktline.h"
+#include "../symbols/additline.h"
 
 class Track : public QGraphicsView
 {
@@ -24,7 +25,7 @@ public:
 
     //Задает координаты "курсора" при перемещении мыши
     void setSelectRect(qreal x, qreal y, qreal w, qreal h);
-
+    QPen getPen();
     QGraphicsRectItem* getSelectRect();
     QVector<int> getParams();
     Key* getKey();
@@ -65,8 +66,8 @@ private:
     //Создает карту тональности
     QVector<int> createToneMap(bool sharp);
 
-    //Удаляет все тактовые линии
-    void deleteTactLines();
+    //Удаляет все доп. линии
+    void deleteAdditLines();
 
     //Изменение координат в зависимости от параметров symbol
     void drawSymbol(MusicSymbol* symbol, qreal lastX);
@@ -87,6 +88,8 @@ public slots:
     void createNote(int id);
     //Слот создания паузы(обработка нажатия кнопок)
     void createPause(int id);
+    //Слот создания такта(обработка нажатия кнопок)
+    void createTakt(int id);
     //Обновление всего трека
     void update();
 };

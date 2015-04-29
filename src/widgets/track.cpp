@@ -107,13 +107,13 @@ QList<NoteGroup*> Track::sortListGroups()
 }
 
 //Удаление всех тактовых линий
-void Track::deleteTactLines()
+void Track::deleteAdditLines()
 {
     QList<QGraphicsItem*> items = this->scene()->items();
 
     for (QList<QGraphicsItem*>::iterator iter = items.begin(); iter != items.end(); ++iter)
     {
-        TaktLine* line = dynamic_cast<TaktLine*>(*iter);
+        AdditLine* line = dynamic_cast<AdditLine*>(*iter);
         if (line != nullptr)
         {
             this->scene()->removeItem(line);
@@ -125,36 +125,38 @@ void Track::deleteTactLines()
 void Track::update()
 {
     qreal lastX = 0;
-    if (key->getParams()[0] == 1)
-        key->setPos(-650,-1.5*SIZE_BETWEEN_LINES);
-    else
-        key->setPos(-650,-3*SIZE_BETWEEN_LINES);
 
-    lastX = key->pos().x() + key->boundingRect().width()*KEY_SCALE;
+    key->drawSymbol(lastX);
+
+    for (QList<QGraphicsPixmapItem*>::iterator iter = tones.begin(); iter != tones.end(); ++iter)
+    {
+        this->scene()->removeItem(*iter);
+    }
+    tones.clear();
+
     if (params[1] != 0)
     {
         drawTones(lastX);
     }
 
-    text_1->setPos(lastX + 5, -3*SIZE_BETWEEN_LINES);
-    text_2->setPos(lastX + 5, -SIZE_BETWEEN_LINES);
+    text_1->setPos(lastX + 5,TEXT_Y_1);
+    text_2->setPos(lastX + 5,TEXT_Y_2);
     lastX += text_2->boundingRect().width()*TEXT_SCALE + SPACE;
 
-    qreal count = 0;
-    deleteTactLines();
+    //qreal count = 0;
+    deleteAdditLines();
     QList<NoteGroup*> groups = sortListGroups();
     for (QList<NoteGroup*>::iterator iter = groups.begin(); iter != groups.end(); ++iter)
     {
         NoteGroup* group = *iter;
         QList<QGraphicsItem*> notes = group->childItems();
-        bool first = true;
+        //bool first = true;
         for (QList<QGraphicsItem*>::iterator iter_n = notes.begin(); iter_n != notes.end(); ++iter_n)
         {
             MusicSymbol* symbol = static_cast<MusicSymbol*>(*iter_n);
-            QVector<int> params = symbol->getParams();
-            symbol->drawSymbol(lastX,pen);
+            symbol->drawSymbol(lastX);
 
-            if (first)
+            /*if (first)
             {
                 if (params.size() == 1)
                 {
@@ -170,17 +172,17 @@ void Track::update()
                         count += 1/qPow(2,params[1]);
                 }
                 first = false;
-            }
+            }*/
 
         }
 
-        if (count >= 1)
+        /*if (count >= 1)
         {
             lastX += notes.first()->boundingRect().width()*NOTE_SCALE + SPACE;
             count = 0;
             TaktLine* takt =  new TaktLine(lastX,-SIZE_BETWEEN_LINES,lastX,3*SIZE_BETWEEN_LINES,pen);
             this->scene()->addItem(takt);
-        }
+        }*/
 
         lastX += notes.first()->boundingRect().width()*NOTE_SCALE + SPACE;
         if (lastX >= right)
@@ -190,7 +192,8 @@ void Track::update()
 
     }
 
-    end->setPos(right - end->boundingRect().width()*END_SCALE + 2,-SIZE_BETWEEN_LINES);
+    lastX = right;
+    end->drawSymbol(lastX);
     this->scene()->advance();
 }
 
@@ -206,12 +209,12 @@ void Track::drawStart()
 
     //Рисуем размерность
     text_1 = new QGraphicsTextItem("2");
-    text_1->setPos(lastX + 5, -3*SIZE_BETWEEN_LINES);;
+    text_1->setPos(lastX + 5, TEXT_Y_1);;
     text_1->setScale(TEXT_SCALE);
     this->scene()->addItem(text_1);
 
     text_2 = new QGraphicsTextItem("4");
-    text_2->setPos(lastX + 5, -SIZE_BETWEEN_LINES);
+    text_2->setPos(lastX + 5, TEXT_Y_2);
     text_2->setScale(TEXT_SCALE);
     this->scene()->addItem(text_2);
 
@@ -252,6 +255,25 @@ void Track::createPause(int id)
 
     cursor->setLine(pause->x()+pause->boundingRect().width()*PAUSE_SCALE,45,pause->x()+pause->boundingRect().width()*PAUSE_SCALE,-15);
     this->centerOn(cursor);
+}
+
+void Track::createTakt(int id)
+{
+    NoteGroup* group = new NoteGroup;
+    TaktLine* takt = new TaktLine(this, QPixmap(":/takts/" + QString::number(id)),group);
+    takt->addParam(id);
+    takt->setX(cursor->line().x1());
+    this->scene()->addItem(group);
+
+    update();
+
+    cursor->setLine(takt->x()+takt->boundingRect().width(),45,takt->x()+takt->boundingRect().width(),-15);
+    this->centerOn(cursor);
+}
+
+QPen Track::getPen()
+{
+    return pen;
 }
 
 void Track::focusInEvent(QFocusEvent *event)
@@ -353,14 +375,14 @@ void Track::mouseDoubleClickEvent(QMouseEvent *event)
     {
         this->setHorizontalScrollBarPolicy(Qt::ScrollBarAsNeeded);
         this->setVerticalScrollBarPolicy(Qt::ScrollBarAsNeeded);
-        this->scale(2,2);
+        this->scale(1.6,1.6);
         this->centerOn(cursor);
     }
     else
     {
         this->setHorizontalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
         this->setVerticalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
-        this->scale(0.5,0.5);
+        this->scale(0.625,0.625);
         this->centerOn(cursor);
     }
 
@@ -418,12 +440,6 @@ void Track::drawSize()
 
 void Track::drawTones(qreal &lastX)
 {
-    for (QList<QGraphicsPixmapItem*>::iterator iter = tones.begin(); iter != tones.end(); ++iter)
-    {
-        this->scene()->removeItem(*iter);
-    }
-    tones.clear();
-
     bool sharp = (params[1] % 2)  == 1;
     QPixmap pixmap;
     if (sharp)

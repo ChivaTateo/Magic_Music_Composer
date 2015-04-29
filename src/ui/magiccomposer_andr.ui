@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>572</width>
-    <height>483</height>
+    <width>610</width>
+    <height>341</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -22,72 +22,10 @@
   </property>
   <widget class="QWidget" name="centralWidget">
    <layout class="QGridLayout" name="gridLayout">
-    <item row="1" column="0">
-     <widget class="ProjectViewer" name="viewer">
-      <property name="sizePolicy">
-       <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
-        <horstretch>0</horstretch>
-        <verstretch>0</verstretch>
-       </sizepolicy>
-      </property>
-      <property name="mouseTracking">
-       <bool>true</bool>
-      </property>
-      <property name="acceptDrops">
-       <bool>true</bool>
-      </property>
-      <property name="tabShape">
-       <enum>QTabWidget::Triangular</enum>
-      </property>
-      <property name="currentIndex">
-       <number>-1</number>
-      </property>
-      <property name="tabsClosable">
-       <bool>true</bool>
-      </property>
-      <property name="movable">
-       <bool>true</bool>
-      </property>
-     </widget>
+    <item row="0" column="0">
+     <widget class="TrackViewer" name="viewer" native="true"/>
     </item>
    </layout>
-  </widget>
-  <widget class="QMenuBar" name="menuBar">
-   <property name="geometry">
-    <rect>
-     <x>0</x>
-     <y>0</y>
-     <width>572</width>
-     <height>21</height>
-    </rect>
-   </property>
-   <widget class="QMenu" name="menu">
-    <property name="title">
-     <string>Файл</string>
-    </property>
-    <widget class="QMenu" name="save">
-     <property name="title">
-      <string>Сохранить...</string>
-     </property>
-     <addaction name="save_project_2"/>
-     <addaction name="save_track"/>
-    </widget>
-    <widget class="QMenu" name="open">
-     <property name="title">
-      <string>Открыть...</string>
-     </property>
-     <addaction name="open_project_2"/>
-     <addaction name="open_track"/>
-    </widget>
-    <addaction name="create_project"/>
-    <addaction name="open"/>
-    <addaction name="save"/>
-    <addaction name="separator"/>
-    <addaction name="export_to"/>
-    <addaction name="separator"/>
-    <addaction name="exit"/>
-   </widget>
-   <addaction name="menu"/>
   </widget>
   <widget class="QToolBar" name="mainToolBar">
    <property name="sizePolicy">
@@ -106,7 +44,7 @@
     <enum>TopToolBarArea</enum>
    </attribute>
    <attribute name="toolBarBreak">
-    <bool>true</bool>
+    <bool>false</bool>
    </attribute>
    <addaction name="actionNote_0"/>
    <addaction name="actionNote_1"/>
@@ -127,11 +65,7 @@
    <addaction name="actionTakt_1"/>
    <addaction name="actionTakt_2"/>
    <addaction name="actionTakt_3"/>
-  </widget>
-  <widget class="QStatusBar" name="statusBar">
-   <property name="enabled">
-    <bool>true</bool>
-   </property>
+   <addaction name="actionOprions"/>
   </widget>
   <widget class="QDockWidget" name="options">
    <property name="sizePolicy">
@@ -174,9 +108,24 @@
     <string>Создать проект</string>
    </property>
   </action>
+  <action name="save_project">
+   <property name="text">
+    <string>Сохранить проект</string>
+   </property>
+  </action>
+  <action name="add_track">
+   <property name="text">
+    <string>Добавить трек</string>
+   </property>
+  </action>
   <action name="exit">
    <property name="text">
     <string>Выход</string>
+   </property>
+  </action>
+  <action name="open_project">
+   <property name="text">
+    <string>Открыть проект</string>
    </property>
   </action>
   <action name="export_to">
@@ -358,7 +307,7 @@
      <normaloff>:/takts/0</normaloff>:/takts/0</iconset>
    </property>
    <property name="text">
-    <string>takt_1</string>
+    <string>Takt_1</string>
    </property>
   </action>
   <action name="actionTakt_2">
@@ -379,24 +328,12 @@
     <string>Takt_3</string>
    </property>
   </action>
-  <action name="save_project_2">
-   <property name="text">
-    <string>Проект</string>
+  <action name="actionOprions">
+   <property name="checkable">
+    <bool>true</bool>
    </property>
-  </action>
-  <action name="save_track">
    <property name="text">
-    <string>Трек</string>
-   </property>
-  </action>
-  <action name="open_project_2">
-   <property name="text">
-    <string>Проект</string>
-   </property>
-  </action>
-  <action name="open_track">
-   <property name="text">
-    <string>Трек</string>
+    <string>Options</string>
    </property>
   </action>
  </widget>
@@ -405,138 +342,19 @@
   <customwidget>
    <class>Options</class>
    <extends>QWidget</extends>
-   <header>options.h</header>
+   <header>widgets/options.h</header>
    <container>1</container>
   </customwidget>
   <customwidget>
-   <class>ProjectViewer</class>
-   <extends>QTabWidget</extends>
-   <header>projectviewer.h</header>
+   <class>TrackViewer</class>
+   <extends>QWidget</extends>
+   <header>widgets/trackviewer.h</header>
    <container>1</container>
-   <slots>
-    <slot>saveTrack()</slot>
-    <slot>openTrack()</slot>
-    <slot>saveProject()</slot>
-    <slot>openProject()</slot>
-   </slots>
   </customwidget>
  </customwidgets>
  <resources>
   <include location="../symbols.qrc"/>
   <include location="../icons.qrc"/>
  </resources>
- <connections>
-  <connection>
-   <sender>create_project</sender>
-   <signal>triggered()</signal>
-   <receiver>viewer</receiver>
-   <slot>addProject()</slot>
-   <hints>
-    <hint type="sourcelabel">
-     <x>-1</x>
-     <y>-1</y>
-    </hint>
-    <hint type="destinationlabel">
-     <x>385</x>
-     <y>251</y>
-    </hint>
-   </hints>
-  </connection>
-  <connection>
-   <sender>viewer</sender>
-   <signal>tabCloseRequested(int)</signal>
-   <receiver>viewer</receiver>
-   <slot>closeProject(int)</slot>
-   <hints>
-    <hint type="sourcelabel">
-     <x>397</x>
-     <y>284</y>
-    </hint>
-    <hint type="destinationlabel">
-     <x>397</x>
-     <y>284</y>
-    </hint>
-   </hints>
-  </connection>
-  <connection>
-   <sender>export_to</sender>
-   <signal>triggered()</signal>
-   <receiver>viewer</receiver>
-   <slot>exportTo()</slot>
-   <hints>
-    <hint type="sourcelabel">
-     <x>-1</x>
-     <y>-1</y>
-    </hint>
-    <hint type="destinationlabel">
-     <x>445</x>
-     <y>284</y>
-    </hint>
-   </hints>
-  </connection>
-  <connection>
-   <sender>save_track</sender>
-   <signal>triggered()</signal>
-   <receiver>viewer</receiver>
-   <slot>saveTrack()</slot>
-   <hints>
-    <hint type="sourcelabel">
-     <x>-1</x>
-     <y>-1</y>
-    </hint>
-    <hint type="destinationlabel">
-     <x>396</x>
-     <y>258</y>
-    </hint>
-   </hints>
-  </connection>
-  <connection>
-   <sender>open_track</sender>
-   <signal>triggered()</signal>
-   <receiver>viewer</receiver>
-   <slot>openTrack()</slot>
-   <hints>
-    <hint type="sourcelabel">
-     <x>-1</x>
-     <y>-1</y>
-    </hint>
-    <hint type="destinationlabel">
-     <x>396</x>
-     <y>258</y>
-    </hint>
-   </hints>
-  </connection>
-  <connection>
-   <sender>open_project_2</sender>
-   <signal>triggered()</signal>
-   <receiver>viewer</receiver>
-   <slot>openProject()</slot>
-   <hints>
-    <hint type="sourcelabel">
-     <x>-1</x>
-     <y>-1</y>
-    </hint>
-    <hint type="destinationlabel">
-     <x>396</x>
-     <y>258</y>
-    </hint>
-   </hints>
-  </connection>
-  <connection>
-   <sender>save_project_2</sender>
-   <signal>triggered()</signal>
-   <receiver>viewer</receiver>
-   <slot>saveProject()</slot>
-   <hints>
-    <hint type="sourcelabel">
-     <x>-1</x>
-     <y>-1</y>
-    </hint>
-    <hint type="destinationlabel">
-     <x>396</x>
-     <y>258</y>
-    </hint>
-   </hints>
-  </connection>
- </connections>
+ <connections/>
 </ui>
