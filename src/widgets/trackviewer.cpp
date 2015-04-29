@@ -1,11 +1,13 @@
 #include "trackviewer.h"
+#include "options.h"
 
 TrackViewer::TrackViewer(QWidget *parent) :
     QWidget(parent)
 {
     layout = new QGridLayout(this);
     this->setLayout(layout);
-
+    layout->setMargin(0);
+    layout->setSpacing(0);
     button = new QCommandLinkButton("Add Track",this);
     layout->addWidget(button,0,0,1,0);
     button->setFocusPolicy(Qt::NoFocus);
@@ -21,7 +23,7 @@ void TrackViewer::addTrack()
     {
         QPushButton* magic = new QPushButton(this);
         layout->addWidget(magic,tracks.size(),0);
-        magic->setText("delete");
+        magic->setIcon(QPixmap(":/icons/1"));
         magic->setSizePolicy(QSizePolicy(QSizePolicy::Fixed,QSizePolicy::Preferred));
         magic->setFocusPolicy(Qt::NoFocus);
         buttons.append(magic);
@@ -32,7 +34,7 @@ void TrackViewer::addTrack()
         layout->addWidget(track,tracks.size(),1);
         track->setFocus();
         tracks.append(track);
-
+        Track::lastFocus = track;
         layout->addWidget(button,tracks.size()+1,0,1,0);
     }
 
@@ -41,6 +43,8 @@ void TrackViewer::addTrack()
         button->setHidden(true);
     }
 
+
+    Options::p_instance->updateData(QList<MusicSymbol*>());
 }
 
 void TrackViewer::deleteTrack(int index)
@@ -63,6 +67,10 @@ void TrackViewer::deleteTrack(int index)
 
     if(focus && !tracks.isEmpty())
         tracks.first()->setFocus();
+
+    if (tracks.isEmpty())
+        Options::p_instance->deleteUi();
+
 }
 
 QList<Track*> TrackViewer::getTracks()
@@ -95,7 +103,7 @@ void TrackViewer::scaleTrack(bool scaled)
              buttons.at(i)->setHidden(false);
              ++i;
          }
-         if (tracks.size() < 4)
+         if (tracks.size() < MAX_TRACKS)
             button->setHidden(false);
      }
 }
@@ -117,15 +125,18 @@ TrackViewer::~TrackViewer()
 
 void TrackViewer::createNote(int id)
 {
-    Track::lastFocus->createNote(id);
+    if(!this->tracks.isEmpty())
+        Track::lastFocus->createNote(id);
 }
 
 void TrackViewer::createTakt(int id)
 {
-    Track::lastFocus->createTakt(id);
+    if(!this->tracks.isEmpty())
+        Track::lastFocus->createTakt(id);
 }
 
 void TrackViewer::createPause(int id)
 {
-    Track::lastFocus->createPause(id);
+    if(!this->tracks.isEmpty())
+        Track::lastFocus->createPause(id);
 }

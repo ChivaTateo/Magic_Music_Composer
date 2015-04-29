@@ -51,7 +51,6 @@ void Options::updateData(QList<MusicSymbol*> symbols)
             }
         }
     }
-
 }
 
 void Options::changeNotePixmap(int id)

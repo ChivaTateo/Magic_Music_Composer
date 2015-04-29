@@ -285,8 +285,8 @@ void Track::focusInEvent(QFocusEvent *event)
     QBrush brush(Qt::white);
     this->scene()->setBackgroundBrush(brush);
     lastFocus = this;
-    Options::p_instance->updateData(QList<MusicSymbol*>());
-
+    if (event->reason() == Qt::MouseFocusReason)
+        Options::p_instance->updateData(QList<MusicSymbol*>());
 }
 
 void Track::setSelectRect(qreal x, qreal y, qreal w, qreal h)

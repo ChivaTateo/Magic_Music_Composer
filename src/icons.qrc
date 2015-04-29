@@ -16,7 +16,8 @@
         <file alias="11">images/F1.png</file>
         <file alias="13">images/C1.png</file>
     </qresource>
-    <qresource prefix="/">
-        <file>images/icon.png</file>
+    <qresource prefix="/icons">
+        <file alias="0">images/icon.png</file>
+        <file alias="1">images/delete.png</file>
     </qresource>
 </RCC>

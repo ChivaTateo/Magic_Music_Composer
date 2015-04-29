@@ -6,6 +6,8 @@
 #include <QCommandLinkButton>
 #include "track.h"
 
+class Options;
+
 #ifdef Q_OS_ANDROID
     #define MAX_TRACKS 2
 #else

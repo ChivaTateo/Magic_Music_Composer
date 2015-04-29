@@ -23,6 +23,7 @@ public:
 
     static Options* p_instance;
     void updateData(QList<MusicSymbol*> symbols);
+    void deleteUi();
 private slots:
     //Слот для изменения параметров трека
     void changeTrackParams();
@@ -43,12 +44,12 @@ private:
     Ui::Track_Options *track_ui;
 
     QSignalMapper* mapper;
-    void deleteUi();
     int idRadioButton();
 
     void loadTrackOptions();
     void loadNoteOptions();
     void loadPauseOptions();
+
 };
 
 #endif // OPTIONS_H

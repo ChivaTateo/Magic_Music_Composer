@@ -30,7 +30,9 @@ void ProjectViewer::createNote(int id)
 {
     if (this->currentIndex() != -1)
     {
-        Track::lastFocus->createNote(id);
+        TrackViewer* viewer = static_cast<TrackViewer*>(this->currentWidget());
+        if(!viewer->getTracks().isEmpty())
+            Track::lastFocus->createNote(id);
     }
 }
 
@@ -38,7 +40,9 @@ void ProjectViewer::createPause(int id)
 {
     if (this->currentIndex() != -1)
     {
-        Track::lastFocus->createPause(id);
+        TrackViewer* viewer = static_cast<TrackViewer*>(this->currentWidget());
+        if(!viewer->getTracks().isEmpty())
+            Track::lastFocus->createPause(id);
     }
 }
 
@@ -73,7 +77,9 @@ void ProjectViewer::createTakt(int id)
 {
     if (this->currentIndex() != -1)
     {
-        Track::lastFocus->createTakt(id);
+        TrackViewer* viewer = static_cast<TrackViewer*>(this->currentWidget());
+        if(!viewer->getTracks().isEmpty())
+            Track::lastFocus->createTakt(id);
     }
 }
 

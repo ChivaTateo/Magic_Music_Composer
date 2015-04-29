@@ -50,5 +50,6 @@ FORMS    += \
 RESOURCES += \
     symbols.qrc \
     icons.qrc
+
 QMAKE_CXXFLAGS += \
--std=c++0x
+    -std=c++0x
