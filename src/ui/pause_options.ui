@@ -14,7 +14,7 @@
    <string>Form</string>
   </property>
   <property name="windowIcon">
-   <iconset resource="../icons.qrc">
+   <iconset>
     <normaloff>:/images/icon.png</normaloff>:/images/icon.png</iconset>
   </property>
   <layout class="QHBoxLayout" name="horizontalLayout">
@@ -30,6 +30,25 @@
    </item>
    <item>
     <widget class="QSlider" name="pause_slider">
+     <property name="styleSheet">
+      <string notr="true"> QSlider::groove:vertical {
+     background: qlineargradient(x1:0, y1:0, x2:0, y2:1, stop:0 #B1B1B1, stop:1  #D3D3D3);
+	 width: 20px;
+ border: 1px solid #999999;
+     position: absolute; /* абсолютная позиция в 4px слева и справа от виджета. установка полей виджета также будет работать... */
+     left: 4px; right: 4px;
+ }
+
+ QSlider::handle:vertical {
+     height: 50px;
+	 width: 20px;
+ border: 1px solid #000000;
+     background: qlineargradient(x1:0, y1:0, x2:1, y2:1, stop:0 #b4b4b4, stop:1 #8f8f8f);
+     margin: 0 -4px; /* расширяется наружу от бороздки */
+ }
+
+</string>
+     </property>
      <property name="orientation">
       <enum>Qt::Vertical</enum>
      </property>
@@ -37,8 +56,6 @@
    </item>
   </layout>
  </widget>
- <resources>
-  <include location="../icons.qrc"/>
- </resources>
+ <resources/>
  <connections/>
 </ui>
