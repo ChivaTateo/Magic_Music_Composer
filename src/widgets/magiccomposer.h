@@ -16,7 +16,9 @@ class MagicComposer : public QMainWindow
 public:
     explicit MagicComposer(QWidget *parent = 0);
     ~MagicComposer();
-
+    void closeEvent(QCloseEvent *);
+public slots:
+    void on_exit_triggered();
 private:
     QSignalMapper* noteMapper;
     QSignalMapper* pauseMapper;

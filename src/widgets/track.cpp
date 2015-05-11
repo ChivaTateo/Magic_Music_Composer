@@ -139,9 +139,8 @@ void Track::update()
         drawTones(lastX);
     }
 
-    text_1->setPos(lastX + 5,TEXT_Y_1);
-    text_2->setPos(lastX + 5,TEXT_Y_2);
-    lastX += text_2->boundingRect().width()*TEXT_SCALE + SPACE;
+    size->setPos(lastX + 5,-SIZE_BETWEEN_LINES);
+    lastX += size->boundingRect().width()*SIZE_SCALE + SPACE;
 
     //qreal count = 0;
     deleteAdditLines();
@@ -208,22 +207,18 @@ void Track::drawStart()
     int lastX = key->pos().x() + key->boundingRect().width()*KEY_SCALE;
 
     //Рисуем размерность
-    text_1 = new QGraphicsTextItem("2");
-    text_1->setPos(lastX + 5, TEXT_Y_1);;
-    text_1->setScale(TEXT_SCALE);
-    this->scene()->addItem(text_1);
-
-    text_2 = new QGraphicsTextItem("4");
-    text_2->setPos(lastX + 5, TEXT_Y_2);
-    text_2->setScale(TEXT_SCALE);
-    this->scene()->addItem(text_2);
+    size = new QGraphicsPixmapItem(QPixmap(":/sizes/0"));
+    size->setTransformationMode(Qt::SmoothTransformation);
+    size->setScale(SIZE_SCALE);
+    size->setPos(lastX + 5,-SIZE_BETWEEN_LINES);
+    this->scene()->addItem(size);
 
     end->setTransformationMode(Qt::SmoothTransformation);
     end->setPos(right - end->boundingRect().width()*END_SCALE + 2,-SIZE_BETWEEN_LINES);
     end->setScale(END_SCALE);
     this->scene()->addItem(end);
 
-    lastX += text_2->boundingRect().width()*TEXT_SCALE + SPACE;
+    lastX += size->boundingRect().width()*SIZE_SCALE + SPACE;
     cursor->setLine(lastX, 45, lastX, -15);
     this->scene()->addItem(cursor);
 }
@@ -416,24 +411,19 @@ void Track::drawSize()
     switch(params[0])
     {
         case 0:
-            text_1->setPlainText("2");
-            text_2->setPlainText("4");
+            size->setPixmap(QPixmap(":/sizes/0"));
             break;
         case 1:
-            text_1->setPlainText("3");
-            text_2->setPlainText("4");
+            size->setPixmap(QPixmap(":/sizes/1"));
             break;
         case 2:
-            text_1->setPlainText("4");
-            text_2->setPlainText("4");
+            size->setPixmap(QPixmap(":/sizes/2"));
             break;
         case 3:
-            text_1->setPlainText("6");
-            text_2->setPlainText("8");
+            size->setPixmap(QPixmap(":/sizes/3"));
             break;
         case 4:
-            text_1->setPlainText("3");
-            text_2->setPlainText("8");
+            size->setPixmap(QPixmap(":/sizes/4"));
             break;
     }
 }

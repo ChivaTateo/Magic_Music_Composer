@@ -20,8 +20,28 @@
   <property name="layoutDirection">
    <enum>Qt::LeftToRight</enum>
   </property>
+  <property name="styleSheet">
+   <string notr="true"> QToolBar {
+   background:  #D3D3D3;
+ }</string>
+  </property>
   <widget class="QWidget" name="centralWidget">
    <layout class="QGridLayout" name="gridLayout">
+    <property name="leftMargin">
+     <number>0</number>
+    </property>
+    <property name="topMargin">
+     <number>0</number>
+    </property>
+    <property name="rightMargin">
+     <number>0</number>
+    </property>
+    <property name="bottomMargin">
+     <number>0</number>
+    </property>
+    <property name="spacing">
+     <number>0</number>
+    </property>
     <item row="0" column="0">
      <widget class="TrackViewer" name="viewer" native="true">
       <property name="styleSheet">
@@ -428,7 +448,7 @@ QScrollBar:horizontal {
   <customwidget>
    <class>Options</class>
    <extends>QWidget</extends>
-   <header>options.h</header>
+   <header>widgets/options.h</header>
    <container>1</container>
   </customwidget>
   <customwidget>

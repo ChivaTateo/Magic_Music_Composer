@@ -142,7 +142,7 @@ void Options::loadTrackOptions()
     track_ui->key_slider->setValue(Track::lastFocus->getKey()->getParams()[0]);
     track_ui->key_slider->setMaximum(1);
 
-    track_ui->end_pixmap->setPixmap(QPixmap(":/ends/" + QString::number(Track::lastFocus->getKey()->getParams()[0])));
+    track_ui->end_pixmap->setPixmap(QPixmap(":/ends/" + QString::number(Track::lastFocus->getEnd()->getParams()[0])));
     track_ui->end_slider->setValue(Track::lastFocus->getEnd()->getParams()[0]);
     track_ui->end_slider->setMaximum(1);
 

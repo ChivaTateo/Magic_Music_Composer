@@ -15,16 +15,6 @@
 #define SIZE_BETWEEN_LINES 15       //Расстояние между линиями
 #define MORE_LENGTH 500 //Удлинение линии
 
-#ifdef Q_OS_ANDROID
-    #define TEXT_SCALE 2
-    #define TEXT_Y_1 -2*SIZE_BETWEEN_LINES
-    #define TEXT_Y_2 0
-#else
-    #define TEXT_SCALE 4
-    #define TEXT_Y_1 -3*SIZE_BETWEEN_LINES
-    #define TEXT_Y_2 -SIZE_BETWEEN_LINES
-#endif
-
 #define TONE_SCALE 0.45
 
 #define NOTE_SCALE_FOR_CENTER 0.25

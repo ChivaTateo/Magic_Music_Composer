@@ -10,6 +10,7 @@
 #include "../symbols/taktline.h"
 #include "../symbols/additline.h"
 
+#define SIZE_SCALE 0.6
 class Track : public QGraphicsView
 {
     Q_OBJECT
@@ -44,8 +45,7 @@ private:
 
     Key* key;       //Ключ
     End* end;       //Конечный символ
-    QGraphicsTextItem* text_1;
-    QGraphicsTextItem* text_2;
+    QGraphicsPixmapItem* size;
     QList<QGraphicsPixmapItem*> tones;
 
     //Рисует нотоносец(линии)

@@ -525,7 +525,7 @@ QScrollBar:horizontal {
   <customwidget>
    <class>Options</class>
    <extends>QWidget</extends>
-   <header>options.h</header>
+   <header>widgets/options.h</header>
    <container>1</container>
   </customwidget>
   <customwidget>

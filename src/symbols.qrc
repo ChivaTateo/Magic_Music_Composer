@@ -35,4 +35,11 @@
         <file alias="1">images/takt_2.png</file>
         <file alias="2">images/takt_3.png</file>
     </qresource>
+    <qresource prefix="/sizes">
+        <file alias="0">images/size1.png</file>
+        <file alias="1">images/size2.png</file>
+        <file alias="2">images/size3.png</file>
+        <file alias="3">images/size4.png</file>
+        <file alias="4">images/size5.png</file>
+    </qresource>
 </RCC>
