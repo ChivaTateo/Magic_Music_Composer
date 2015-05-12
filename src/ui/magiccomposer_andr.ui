@@ -6,7 +6,7 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>610</width>
+    <width>928</width>
     <height>341</height>
    </rect>
   </property>
@@ -146,6 +146,12 @@ QScrollBar:horizontal {
    <property name="allowedAreas">
     <set>Qt::AllToolBarAreas</set>
    </property>
+   <property name="iconSize">
+    <size>
+     <width>32</width>
+     <height>32</height>
+    </size>
+   </property>
    <attribute name="toolBarArea">
     <enum>TopToolBarArea</enum>
    </attribute>
@@ -171,7 +177,11 @@ QScrollBar:horizontal {
    <addaction name="actionTakt_1"/>
    <addaction name="actionTakt_2"/>
    <addaction name="actionTakt_3"/>
-   <addaction name="actionOprions"/>
+   <addaction name="actionOptions"/>
+   <addaction name="actionOpen_project"/>
+   <addaction name="save_project"/>
+   <addaction name="export_to"/>
+   <addaction name="separator"/>
   </widget>
   <widget class="QDockWidget" name="options">
    <property name="sizePolicy">
@@ -209,32 +219,20 @@ QScrollBar:horizontal {
    </attribute>
    <widget class="Options" name="dockWidgetContents"/>
   </widget>
-  <action name="create_project">
-   <property name="text">
-    <string>Создать проект</string>
-   </property>
-  </action>
   <action name="save_project">
+   <property name="icon">
+    <iconset resource="../icons.qrc">
+     <normaloff>:/icons/5</normaloff>:/icons/5</iconset>
+   </property>
    <property name="text">
     <string>Сохранить проект</string>
    </property>
   </action>
-  <action name="add_track">
-   <property name="text">
-    <string>Добавить трек</string>
-   </property>
-  </action>
-  <action name="exit">
-   <property name="text">
-    <string>Выход</string>
-   </property>
-  </action>
-  <action name="open_project">
-   <property name="text">
-    <string>Открыть проект</string>
-   </property>
-  </action>
   <action name="export_to">
+   <property name="icon">
+    <iconset resource="../icons.qrc">
+     <normaloff>:/icons/6</normaloff>:/icons/6</iconset>
+   </property>
    <property name="text">
     <string>Экспорт</string>
    </property>
@@ -434,12 +432,25 @@ QScrollBar:horizontal {
     <string>Takt_3</string>
    </property>
   </action>
-  <action name="actionOprions">
+  <action name="actionOptions">
    <property name="checkable">
     <bool>true</bool>
    </property>
+   <property name="icon">
+    <iconset resource="../icons.qrc">
+     <normaloff>:/icons/4</normaloff>:/icons/4</iconset>
+   </property>
    <property name="text">
     <string>Options</string>
+   </property>
+  </action>
+  <action name="actionOpen_project">
+   <property name="icon">
+    <iconset resource="../icons.qrc">
+     <normaloff>:/icons/3</normaloff>:/icons/3</iconset>
+   </property>
+   <property name="text">
+    <string>open_project</string>
    </property>
   </action>
  </widget>
@@ -448,7 +459,7 @@ QScrollBar:horizontal {
   <customwidget>
    <class>Options</class>
    <extends>QWidget</extends>
-   <header>widgets/options.h</header>
+   <header>options.h</header>
    <container>1</container>
   </customwidget>
   <customwidget>
@@ -459,7 +470,62 @@ QScrollBar:horizontal {
   </customwidget>
  </customwidgets>
  <resources>
+  <include location="../icons.qrc"/>
   <include location="../symbols.qrc"/>
  </resources>
- <connections/>
+ <connections>
+  <connection>
+   <sender>export_to</sender>
+   <signal>triggered()</signal>
+   <receiver>MagicComposer</receiver>
+   <slot>exportTo()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>-1</x>
+     <y>-1</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>463</x>
+     <y>170</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>save_project</sender>
+   <signal>triggered()</signal>
+   <receiver>MagicComposer</receiver>
+   <slot>saveProject()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>-1</x>
+     <y>-1</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>463</x>
+     <y>170</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>actionOpen_project</sender>
+   <signal>triggered()</signal>
+   <receiver>MagicComposer</receiver>
+   <slot>openProject()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>-1</x>
+     <y>-1</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>463</x>
+     <y>170</y>
+    </hint>
+   </hints>
+  </connection>
+ </connections>
+ <slots>
+  <slot>saveProject()</slot>
+  <slot>openProject()</slot>
+  <slot>exportTo()</slot>
+ </slots>
 </ui>

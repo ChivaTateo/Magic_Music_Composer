@@ -176,12 +176,28 @@ QScrollBar:horizontal {
      <property name="title">
       <string>Сохранить...</string>
      </property>
+     <property name="icon">
+      <iconset resource="../icons.qrc">
+       <normaloff>:/icons/5</normaloff>:/icons/5</iconset>
+     </property>
      <addaction name="save_project_2"/>
      <addaction name="save_track"/>
     </widget>
     <widget class="QMenu" name="open">
+     <property name="geometry">
+      <rect>
+       <x>0</x>
+       <y>0</y>
+       <width>183</width>
+       <height>91</height>
+      </rect>
+     </property>
      <property name="title">
       <string>Открыть...</string>
+     </property>
+     <property name="icon">
+      <iconset resource="../icons.qrc">
+       <normaloff>:/icons/3</normaloff>:/icons/3</iconset>
      </property>
      <addaction name="open_project_2"/>
      <addaction name="open_track"/>
@@ -290,16 +306,28 @@ QScrollBar:horizontal {
    </widget>
   </widget>
   <action name="create_project">
+   <property name="icon">
+    <iconset resource="../icons.qrc">
+     <normaloff>:/icons/8</normaloff>:/icons/8</iconset>
+   </property>
    <property name="text">
     <string>Создать проект</string>
    </property>
   </action>
   <action name="exit">
+   <property name="icon">
+    <iconset resource="../icons.qrc">
+     <normaloff>:/icons/7</normaloff>:/icons/7</iconset>
+   </property>
    <property name="text">
     <string>Выход</string>
    </property>
   </action>
   <action name="export_to">
+   <property name="icon">
+    <iconset resource="../icons.qrc">
+     <normaloff>:/icons/6</normaloff>:/icons/6</iconset>
+   </property>
    <property name="text">
     <string>Экспорт</string>
    </property>
@@ -525,7 +553,7 @@ QScrollBar:horizontal {
   <customwidget>
    <class>Options</class>
    <extends>QWidget</extends>
-   <header>widgets/options.h</header>
+   <header>options.h</header>
    <container>1</container>
   </customwidget>
   <customwidget>
@@ -543,6 +571,7 @@ QScrollBar:horizontal {
  </customwidgets>
  <resources>
   <include location="../symbols.qrc"/>
+  <include location="../icons.qrc"/>
  </resources>
  <connections>
   <connection>
@@ -580,7 +609,7 @@ QScrollBar:horizontal {
   <connection>
    <sender>export_to</sender>
    <signal>triggered()</signal>
-   <receiver>viewer</receiver>
+   <receiver>MagicComposer</receiver>
    <slot>exportTo()</slot>
    <hints>
     <hint type="sourcelabel">
@@ -588,15 +617,15 @@ QScrollBar:horizontal {
      <y>-1</y>
     </hint>
     <hint type="destinationlabel">
-     <x>445</x>
-     <y>284</y>
+     <x>285</x>
+     <y>241</y>
     </hint>
    </hints>
   </connection>
   <connection>
    <sender>save_track</sender>
    <signal>triggered()</signal>
-   <receiver>viewer</receiver>
+   <receiver>MagicComposer</receiver>
    <slot>saveTrack()</slot>
    <hints>
     <hint type="sourcelabel">
@@ -604,15 +633,15 @@ QScrollBar:horizontal {
      <y>-1</y>
     </hint>
     <hint type="destinationlabel">
-     <x>396</x>
-     <y>258</y>
+     <x>285</x>
+     <y>241</y>
     </hint>
    </hints>
   </connection>
   <connection>
    <sender>open_track</sender>
    <signal>triggered()</signal>
-   <receiver>viewer</receiver>
+   <receiver>MagicComposer</receiver>
    <slot>openTrack()</slot>
    <hints>
     <hint type="sourcelabel">
@@ -620,15 +649,15 @@ QScrollBar:horizontal {
      <y>-1</y>
     </hint>
     <hint type="destinationlabel">
-     <x>396</x>
-     <y>258</y>
+     <x>285</x>
+     <y>241</y>
     </hint>
    </hints>
   </connection>
   <connection>
    <sender>open_project_2</sender>
    <signal>triggered()</signal>
-   <receiver>viewer</receiver>
+   <receiver>MagicComposer</receiver>
    <slot>openProject()</slot>
    <hints>
     <hint type="sourcelabel">
@@ -636,15 +665,15 @@ QScrollBar:horizontal {
      <y>-1</y>
     </hint>
     <hint type="destinationlabel">
-     <x>396</x>
-     <y>258</y>
+     <x>285</x>
+     <y>241</y>
     </hint>
    </hints>
   </connection>
   <connection>
    <sender>save_project_2</sender>
    <signal>triggered()</signal>
-   <receiver>viewer</receiver>
+   <receiver>MagicComposer</receiver>
    <slot>saveProject()</slot>
    <hints>
     <hint type="sourcelabel">
@@ -652,10 +681,17 @@ QScrollBar:horizontal {
      <y>-1</y>
     </hint>
     <hint type="destinationlabel">
-     <x>396</x>
-     <y>258</y>
+     <x>285</x>
+     <y>241</y>
     </hint>
    </hints>
   </connection>
  </connections>
+ <slots>
+  <slot>saveTrack()</slot>
+  <slot>saveProject()</slot>
+  <slot>openTrack()</slot>
+  <slot>openProject()</slot>
+  <slot>exportTo()</slot>
+ </slots>
 </ui>

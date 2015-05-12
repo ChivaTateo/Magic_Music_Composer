@@ -3,7 +3,8 @@
 
 #include <QMainWindow>
 #include <QSignalMapper>
-#include "track.h"
+#include <QFileDialog>
+#include "trackviewer.h"
 
 namespace Ui {
 class MagicComposer;
@@ -19,12 +20,21 @@ public:
     void closeEvent(QCloseEvent *);
 public slots:
     void on_exit_triggered();
+    void exportTo();
+    void saveProject();
+    void openProject();
+    void saveTrack();
+    void openTrack();
+
 private:
     QSignalMapper* noteMapper;
     QSignalMapper* pauseMapper;
     QSignalMapper* taktMapper;
 
     Ui::MagicComposer *ui;
+
+    void createTrackXML(QXmlStreamWriter &xmlWriter, Track* track);
+    void readTrackXML(QXmlStreamReader &xmlReader);
 };
 
 #endif // MAINWINDOW_H

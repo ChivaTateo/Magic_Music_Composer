@@ -1,13 +1,13 @@
 #ifndef PROJECTVIEWER_H
 #define PROJECTVIEWER_H
 
+#ifndef Q_OS_ANDROID
 #include <QTabWidget>
 #include <QTabBar>
 #include <QToolButton>
 #include <QSignalMapper>
 #include <QImage>
 #include <qimage.h>
-#include <QFileDialog>
 #include "trackviewer.h"
 #include "options.h"
 
@@ -25,18 +25,11 @@ public slots:
     void createPause(int id);
     void createTakt(int id);
     void closeProject(int index);
-    void exportTo();
 
-    void saveProject();
-    void openProject();
-    void saveTrack();
-    void openTrack();
 private:
     QSignalMapper* mapper;
 
-    void createTrackXML(QXmlStreamWriter &xmlWriter, Track* track);
-    void readTrackXML(QXmlStreamReader &xmlReader);
-
 };
 
+#endif // Q_OS_ANDROID
 #endif // PROJECTVIEWER_H

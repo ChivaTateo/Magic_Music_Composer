@@ -19,5 +19,12 @@
     <qresource prefix="/icons">
         <file alias="0">images/icon.png</file>
         <file alias="1">images/delete.png</file>
+        <file alias="2">images/clear.png</file>
+        <file alias="3">images/open.png</file>
+        <file alias="4">images/options.png</file>
+        <file alias="5">images/save.png</file>
+        <file alias="6">images/export.png</file>
+        <file alias="7">images/exit.png</file>
+        <file alias="8">images/new.png</file>
     </qresource>
 </RCC>

@@ -194,4 +194,5 @@ void Options::loadPauseOptions()
     pause_ui->pause_slider->setMaximum(5);
 
     connect(pause_ui->pause_slider,SIGNAL(valueChanged(int)),this,SLOT(changePauseParams(int)));
+    connect(pause_ui->but_delete,SIGNAL(clicked()),this,SLOT(delete_clicked()));
 }
