@@ -80,7 +80,11 @@ MagicComposer::MagicComposer(QWidget *parent) :
 
     #ifdef Q_OS_ANDROID
         ui->options->hide();
-        connect(ui->actionOptions,SIGNAL(triggered(bool)),ui->options,SLOT(setVisible(bool)));
+        connect(ui->actionOptions,SIGNAL(triggered(bool)),ui->options,SLOT(setVisible(bool)));   
+        ui->mainToolBar->setIconSize(QSize(32*QApplication::screens().first()->devicePixelRatio(),
+                                           32*QApplication::screens().first()->devicePixelRatio()));
+
+
     #endif
 }
 

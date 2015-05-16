@@ -4,6 +4,8 @@
 #include <QMainWindow>
 #include <QSignalMapper>
 #include <QFileDialog>
+#include <QPaintDevice>
+#include <QScreen>
 #include "trackviewer.h"
 
 namespace Ui {
